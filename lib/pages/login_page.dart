@@ -1,10 +1,8 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/utils/colors.dart';
-import 'package:picme/widgets/login/button_login.dart';
-import 'package:picme/widgets/login/textform_login.dart';
+import 'package:picme/widget/login/button_login.dart';
+import 'package:picme/widget/login/textform_login.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
