@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:picme/pages/register_page.dart';
 import 'package:picme/utils/colors.dart';
 import 'package:picme/widget/login/button_login.dart';
 import 'package:picme/widget/login/textform_login.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
+  static const routeName = "/login_page";
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -61,10 +63,18 @@ class _LoginPageState extends State<LoginPage> {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      InkWell(
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const RegisterPage()),
+                          );
+                        },
                         child: Text(
                           'Sign up',
                           style: GoogleFonts.poppins(
+                              decoration: TextDecoration.underline,
                               fontWeight: FontWeight.bold,
                               color: PicmeColors.mainColor),
                         ),

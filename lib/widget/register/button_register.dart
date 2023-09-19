@@ -3,14 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/pages/home_page.dart';
 import 'package:picme/utils/colors.dart';
 
-class ButtonLogin extends StatelessWidget {
-  const ButtonLogin({Key? key}) : super(key: key);
+class ButtonRegister extends StatelessWidget {
+  const ButtonRegister({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print('Login');
+        print('Register');
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -31,7 +31,7 @@ class ButtonLogin extends StatelessWidget {
               borderRadius: BorderRadius.circular(5),
             ),
             child: Text(
-              'Login',
+              'Register',
               style: GoogleFonts.poppins(
                 color: Colors.white,
                 fontWeight: FontWeight.w400,
