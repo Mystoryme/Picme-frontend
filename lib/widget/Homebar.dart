@@ -37,7 +37,7 @@ class _BottomNavigationState extends State<Home_bar> {
           icon: Icon(Icons.home),
           label: '',
         ),
-        BottomNavigationBarItem(icon: Icon(Icons.add), label: ''),
+        BottomNavigationBarItem(icon: Icon(Icons.add), label: '',),
         BottomNavigationBarItem(icon: Icon(Icons.notifications), label: ''),
         BottomNavigationBarItem(
             icon: Icon(Icons.account_box_outlined), label: ''),

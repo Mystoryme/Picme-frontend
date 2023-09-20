@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/pages/home_page.dart';
+import 'package:picme/pages/profile_page.dart';
 import 'package:picme/utils/colors.dart';
+import 'package:picme/widget/profile.dart';
 
 class ButtonLogin extends StatelessWidget {
   const ButtonLogin({Key? key}) : super(key: key);
@@ -20,7 +22,7 @@ class ButtonLogin extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const Homepage()),
+              MaterialPageRoute(builder: (context) => const ProfilePage()),
             );
           },
           child: Container(

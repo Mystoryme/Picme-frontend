@@ -12,7 +12,7 @@ class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Timer(const Duration(seconds: 1), () {
-      Get.to(const LoginPage());
+      Get.to(() => const LoginPage());
     });
     return Scaffold(
       backgroundColor: PicmeColors.mainColor,

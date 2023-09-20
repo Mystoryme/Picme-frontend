@@ -72,7 +72,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           );
                         },
                         child: Text(
-                          'Login',
+                          'Cancel',
                           style: GoogleFonts.poppins(
                               decoration: TextDecoration.underline,
                               fontWeight: FontWeight.bold,

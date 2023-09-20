@@ -68,15 +68,15 @@ class _TextFormRegisterState extends State<TextFormRegister> {
           ),
           Text(
             // textAlign: TextAlign.start,
-            'E-mail*',
+            'Email*',
             style: GoogleFonts.poppins(
               color: PicmeColors.grayBlack,
               fontSize: 16,
               fontWeight: FontWeight.w500,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(
+          const Padding(
+            padding: EdgeInsets.only(
               top: 10,
             ),
           ),
@@ -88,7 +88,7 @@ class _TextFormRegisterState extends State<TextFormRegister> {
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderSide: BorderSide(width: 2, color: PicmeColors.grayBlack),
-                borderRadius: BorderRadius.all(
+                borderRadius: const BorderRadius.all(
                   Radius.circular(5),
                 ),
               ),
@@ -117,8 +117,8 @@ class _TextFormRegisterState extends State<TextFormRegister> {
             ),
             cursorColor: Colors.black54,
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20),
+          const Padding(
+            padding: EdgeInsets.only(top: 20),
           ),
           Text(
             // textAlign: TextAlign.start,
@@ -129,8 +129,8 @@ class _TextFormRegisterState extends State<TextFormRegister> {
               fontWeight: FontWeight.w500,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(
+          const Padding(
+            padding: EdgeInsets.only(
               top: 10,
             ),
           ),
@@ -142,7 +142,7 @@ class _TextFormRegisterState extends State<TextFormRegister> {
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderSide: BorderSide(width: 2, color: PicmeColors.grayBlack),
-                borderRadius: BorderRadius.all(
+                borderRadius: const BorderRadius.all(
                   Radius.circular(5),
                 ),
               ),
@@ -171,8 +171,8 @@ class _TextFormRegisterState extends State<TextFormRegister> {
             ),
             cursorColor: Colors.black54,
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20),
+          const Padding(
+            padding: EdgeInsets.only(top: 20),
           ),
           Text(
             // textAlign: TextAlign.start,
@@ -183,8 +183,8 @@ class _TextFormRegisterState extends State<TextFormRegister> {
               fontWeight: FontWeight.w500,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(
+          const Padding(
+            padding: EdgeInsets.only(
               top: 10,
             ),
           ),
@@ -208,7 +208,7 @@ class _TextFormRegisterState extends State<TextFormRegister> {
                 border: OutlineInputBorder(
                   borderSide:
                       BorderSide(width: 2, color: PicmeColors.grayBlack),
-                  borderRadius: BorderRadius.all(
+                  borderRadius: const BorderRadius.all(
                     Radius.circular(5),
                   ),
                 ),
@@ -241,8 +241,8 @@ class _TextFormRegisterState extends State<TextFormRegister> {
               cursorColor: Colors.black54,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(
+          const Padding(
+            padding: EdgeInsets.only(
               top: 20,
             ),
           ),
@@ -255,8 +255,8 @@ class _TextFormRegisterState extends State<TextFormRegister> {
               fontWeight: FontWeight.w500,
             ),
           ),
-          Padding(
-              padding: const EdgeInsets.only(
+          const Padding(
+              padding: EdgeInsets.only(
             top: 10,
           )),
           Padding(
@@ -279,7 +279,7 @@ class _TextFormRegisterState extends State<TextFormRegister> {
                 border: OutlineInputBorder(
                   borderSide:
                       BorderSide(width: 2, color: PicmeColors.grayBlack),
-                  borderRadius: BorderRadius.all(
+                  borderRadius: const BorderRadius.all(
                     Radius.circular(5),
                   ),
                 ),

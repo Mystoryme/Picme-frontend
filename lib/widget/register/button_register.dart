@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:picme/pages/home_page.dart';
+import 'package:picme/pages/login_page.dart';
 import 'package:picme/utils/colors.dart';
 
 class ButtonRegister extends StatelessWidget {
@@ -20,7 +20,7 @@ class ButtonRegister extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const Homepage()),
+              MaterialPageRoute(builder: (context) => const LoginPage()),
             );
           },
           child: Container(

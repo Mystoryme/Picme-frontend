@@ -35,19 +35,19 @@ class _TextFormLoginState extends State<TextFormLogin> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-                  'Login to your account',
-                  style: GoogleFonts.poppins(
-                    color: PicmeColors.grayBlack,
-                    fontSize: 24,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
+            'Login to your account',
+            style: GoogleFonts.poppins(
+              color: PicmeColors.grayBlack,
+              fontSize: 24,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
           Text(
             // textAlign: TextAlign.start,
-            'E-mail*',
+            'Email*',
             style: GoogleFonts.poppins(
               color: PicmeColors.grayBlack,
               fontSize: 16,
@@ -96,7 +96,9 @@ class _TextFormLoginState extends State<TextFormLogin> {
             ),
             cursorColor: Colors.black54,
           ),
-          Padding(padding: const EdgeInsets.only(top: 20),),
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
+          ),
           Text(
             // textAlign: TextAlign.start,
             'Password*',
@@ -112,12 +114,11 @@ class _TextFormLoginState extends State<TextFormLogin> {
           )),
           Padding(
             padding: const EdgeInsets.only(
-              // top: 20,
-              // right: 25,
-              // left: 25,
-              // bottom: 80,
-            ),
-            
+                // top: 20,
+                // right: 25,
+                // left: 25,
+                // bottom: 80,
+                ),
             child: TextFormField(
               onChanged: ((value) {
                 setState(() {});
