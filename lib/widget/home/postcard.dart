@@ -19,8 +19,7 @@ class _PostCardState extends State<PostCard> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: 493,
-        width: 321,
+        constraints: BoxConstraints(minHeight: 493, maxWidth: 321),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(13),
             color: Colors.white,
@@ -147,15 +146,15 @@ class _PostCardState extends State<PostCard> {
           ]),
           Padding(
             padding:
-                const EdgeInsets.only(top: 5, bottom: 20, left: 24, right: 24),
-            child: Container(
+                const EdgeInsets.only(top: 5, bottom: 10, left: 24, right: 24),
+            child: SizedBox(
               width: MediaQuery.of(context).size.width,
-              child:
-                  Text('The perfect picture of the sky will always be sunset.',
-                      style: GoogleFonts.poppins(
-                        color: PicmeColors.grayBlack,
-                        fontSize: 12,
-                      )),
+              child: Text(
+                  'The perfect picture of the sky will always be sunset kefmwekfknjkgnwrg อะไรยาว ๆ อะไรยาว ๆ อะไรยาว ๆ อะไรยาว ๆ อะไรยาว ๆ อะไรยาว ๆ อะไรยาว ๆ  .',
+                  style: GoogleFonts.poppins(
+                    color: PicmeColors.grayBlack,
+                    fontSize: 12,
+                  )),
             ),
           )
         ]),

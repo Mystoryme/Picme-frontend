@@ -30,7 +30,9 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+          child: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
             pinned: true,
@@ -53,7 +55,7 @@ class _HomepageState extends State<Homepage> {
             ),
           ),
         ],
-      ),
+      )),
       bottomNavigationBar: Home_bar(
         currentIndex: _currentIndex,
         onTap: _onItemTapped,
