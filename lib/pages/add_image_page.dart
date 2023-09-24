@@ -5,6 +5,9 @@ class AddImagePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(
+      height: 3,
+      color: Colors.amber,
+    );
   }
 }
