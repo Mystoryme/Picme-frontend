@@ -22,57 +22,18 @@ class HeadEditProfile extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 15),
                   // alignment: Alignment.center,
                   child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ProfilePage()),
-                      );
-                    },
-                    child: Text(
-                      'Cancel',
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.poppins(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Container(
-                  // alignment: Alignment.center,
-                  child: Text(
-                    'Edit Profile',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
-                      color: Colors.black,
-                      fontSize: 22,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Container(
-                  padding: const EdgeInsets.only(right: 15),
-                  // alignment: Alignment.center,
-                  child: TextButton(
                     onPressed: () => showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
-                        title: const Text('AlertDialog Title'),
-                        content: const Text('AlertDialog description'),
+                        title: const Text('Cancel'),
+                        content: const Text(
+                            'Are you sure you want to cancel this your change?'),
                         actions: <Widget>[
                           TextButton(
                             onPressed: () => Navigator.pop(context, 'Cancel'),
                             child: Text(
                               'Cancel',
-                              style: TextStyle(color: PicmeColors.mainColor),
+                              style: TextStyle(color: PicmeColors.grayBlack),
                             ),
                           ),
                           TextButton(
@@ -85,6 +46,43 @@ class HeadEditProfile extends StatelessWidget {
                         ],
                       ),
                     ),
+                    child: Text(
+                      'Cancel',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.poppins(
+                        color: PicmeColors.grayBlack,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 2,
+                child: Text(
+                  'Edit Profile',
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.poppins(
+                    color: Colors.black,
+                    fontSize: 22,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  padding: const EdgeInsets.only(right: 15),
+                  // alignment: Alignment.center,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ProfilePage()),
+                      );
+                    },
                     child: Text(
                       'Save',
                       textAlign: TextAlign.center,

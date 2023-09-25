@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: Splash(),
-      initialRoute: '/home_page',
       routes: {
         '/login_page': (context) => const LoginPage(),
         '/register_page': (context) => const RegisterPage(),

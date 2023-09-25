@@ -38,6 +38,12 @@ dependencies:
   get: ^4.6.6
   google_fonts: ^6.0.0
   like_button: ^2.0.4
+  image_picker: ^1.0.4
+  file_picker: ^5.5.0
+  uuid: ^4.0.0
+  json_annotation: ^4.8.1
+  dio: ^5.3.3
+  flutter_platform_alert: ^0.4.0
 
 dev_dependencies:
   flutter_test:
@@ -49,6 +55,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  json_serializable: ^6.7.1
+  build_runner: ^2.3.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -65,6 +73,7 @@ flutter:
     - assets/profile.jpg
     - assets/procreate.png
     - assets/sunset.jpg
+    - assets/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

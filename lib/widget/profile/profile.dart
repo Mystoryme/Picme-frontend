@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/pages/edit_profile_page.dart';
 
 import 'package:picme/utils/colors.dart';
+import 'package:picme/widget/profile/detail_profile.dart';
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
@@ -68,6 +69,7 @@ class Profile extends StatelessWidget {
                       ),
                     ],
                   ),
+                  const DetailProfile(),
                 ],
               )
             ],

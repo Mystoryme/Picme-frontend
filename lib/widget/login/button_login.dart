@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/pages/home_page.dart';
 import 'package:picme/pages/profile_page.dart';
 import 'package:picme/utils/colors.dart';
-import 'package:picme/widget/profile.dart';
+import 'package:picme/widget/profile/profile.dart';
 
 class ButtonLogin extends StatelessWidget {
   const ButtonLogin({Key? key}) : super(key: key);
