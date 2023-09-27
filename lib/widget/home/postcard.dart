@@ -86,8 +86,9 @@ class _PostCardState extends State<PostCard> {
                         isTapped
                             ? CupertinoIcons.heart_fill
                             : CupertinoIcons.heart,
-                        color:
-                            isTapped ? Color(0xFFF44336) : PicmeColors.mainColor,
+                        color: isTapped
+                            ? Color(0xFFF44336)
+                            : PicmeColors.mainColor,
                       );
                     },
                   ),
@@ -95,7 +96,8 @@ class _PostCardState extends State<PostCard> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const Homepage()),
+                        MaterialPageRoute(
+                            builder: (context) => const Homepage()),
                       );
                     },
                     icon: const Icon(CupertinoIcons.bubble_middle_bottom),
@@ -126,7 +128,57 @@ class _PostCardState extends State<PostCard> {
                   IconButton(
                     hoverColor: Colors.white,
                     color: PicmeColors.grayBlack,
-                    onPressed: () {},
+                    onPressed: () {
+                      showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          titleTextStyle: GoogleFonts.poppins(
+                              fontSize: 20, color: Colors.black),
+                          titlePadding: EdgeInsets.only(
+                              right: 20, left: 20, top: 20, bottom: 20),
+                          title: const Text(
+                            'You need to download this picture?',
+                          ),
+                          actionsPadding:
+                              EdgeInsets.only(bottom: 20, right: 20),
+                          actions: <Widget>[
+                            Container(
+                              height: 40,
+                              width: 70,
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: PicmeColors.grayWhite),
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(context, 'Cancel'),
+                                child: Text(
+                                  'No',
+                                  style: TextStyle(
+                                      color: PicmeColors.grayBlack,
+                                      fontSize: 18),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: 40,
+                              width: 70,
+                              decoration: BoxDecoration(
+                                  color: PicmeColors.mainColor,
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: TextButton(
+                                onPressed: () => Navigator.pop(context, 'OK'),
+                                child: Text(
+                                  'Yes',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 18),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
                     icon: Icon(Icons.save_alt_rounded),
                     iconSize: 24,
                   ),
@@ -148,8 +200,8 @@ class _PostCardState extends State<PostCard> {
               )
             ]),
             Padding(
-              padding:
-                  const EdgeInsets.only(top: 5, bottom: 10, left: 24, right: 24),
+              padding: const EdgeInsets.only(
+                  top: 5, bottom: 10, left: 24, right: 24),
               child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: Text(
