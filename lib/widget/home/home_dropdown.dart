@@ -15,8 +15,6 @@ class Home_navbar extends StatefulWidget {
 }
 
 class _Home_dropdownState extends State<Home_navbar> {
-  var _popupMenuItemIndex = 0;
-  Color _changeColorAccordingToMenuItem = Colors.red;
   var appBarHeight = AppBar().preferredSize.height;
   @override
   Widget build(BuildContext context) {

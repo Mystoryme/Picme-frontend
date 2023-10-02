@@ -192,7 +192,7 @@ class _PostCardState extends State<PostCard> {
                             builder: (context) => const SupportPage()),
                       );
                     },
-                    icon: Icon(Icons.attach_money_rounded),
+                    icon: Icon(CupertinoIcons.gift),
                     color: PicmeColors.grayBlack,
                     iconSize: 24,
                   ),

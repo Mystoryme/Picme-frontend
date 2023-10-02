@@ -11,7 +11,7 @@ import 'package:picme/utils/colors.dart';
 
 //import 'package:picme/widget/home/HomeDropdown.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:picme/widget/home/postcard.dart';
+import 'package:picme/widget/postcard/postcard.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -34,7 +34,9 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-          child:  Container(constraints: BoxConstraints.expand(), child: _buildPage(_currentIndex)),
+        child: Container(
+            constraints: BoxConstraints.expand(),
+            child: _buildPage(_currentIndex)),
       ),
       bottomNavigationBar: Home_bar(
         currentIndex: _currentIndex,
