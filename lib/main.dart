@@ -10,7 +10,9 @@ import 'package:picme/pages/edit_profile_page.dart';
 import 'package:picme/pages/explore_page.dart';
 import 'package:picme/pages/home_page.dart';
 import 'package:picme/pages/login_page.dart';
-import 'package:picme/pages/payment_page.dart';
+import 'package:picme/pages/payment/payment_boost_post_page.dart';
+import 'package:picme/pages/payment_success_page.dart';
+import 'package:picme/pages/payment/payment_support_page.dart';
 import 'package:picme/pages/profile_page.dart';
 import 'package:picme/pages/register_page.dart';
 import 'package:picme/pages/search_page.dart';
@@ -44,7 +46,9 @@ class MyApp extends StatelessWidget {
         '/edit_profile_page': (context) => EditProfilePage(),
         '/explore_page': (context) => const ExplorePage(),
         '/home_page': (context) => const Homepage(),
-        'payment_page': (context) => const PaymentPage(),
+        '/payment_support_page': (context) => const PaymentSupportPage(),
+        '/payment_boost_post_page': (context) => const PaymentBoostPostPage(),
+        '/payment_success_page': (context) => const PaymentSuccessPage(),
         '/profile_page': (context) => const ProfilePage(),
         '/search_page': (context) => const SearchPage(),
       },

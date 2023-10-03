@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:picme/pages/boost_post/boost_post_page.dart';
+import 'package:picme/pages/home_page.dart';
 import 'package:picme/utils/colors.dart';
-import 'package:picme/widget/boost_post/button_review_boost_post.dart';
-import 'package:picme/widget/boost_post/detail_review_boost_post.dart';
+import 'package:picme/widget/payment_boost_post/detail_payment_boost_post.dart';
+import 'package:picme/widget/payment_support/button_payment_support.dart';
 
-class ReviewBoostPostPage extends StatefulWidget {
-  const ReviewBoostPostPage({Key? key}) : super(key: key);
-  static const routeName = "/review_boost_post_page";
+class PaymentBoostPostPage extends StatefulWidget {
+  const PaymentBoostPostPage({Key? key}) : super(key: key);
+  static const routeName = "/payment_boost_post_page";
 
   @override
-  State<ReviewBoostPostPage> createState() => _ReviewBoostPostPageState();
+  State<PaymentBoostPostPage> createState() => _PaymentBoostPostPageState();
 }
 
-class _ReviewBoostPostPageState extends State<ReviewBoostPostPage> {
-  @override
+class _PaymentBoostPostPageState extends State<PaymentBoostPostPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
@@ -23,7 +22,6 @@ class _ReviewBoostPostPageState extends State<ReviewBoostPostPage> {
         padding: const EdgeInsets.all(15.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Column(
               children: [
@@ -40,7 +38,7 @@ class _ReviewBoostPostPageState extends State<ReviewBoostPostPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const BoostPostPage()),
+                                  builder: (context) => const Homepage()),
                             );
                           },
                           icon: const Icon(
@@ -56,9 +54,9 @@ class _ReviewBoostPostPageState extends State<ReviewBoostPostPage> {
                     Expanded(
                       flex: 2,
                       child: Container(
-                        padding: const EdgeInsets.only(left: 25),
+                        padding: const EdgeInsets.only(left: 15),
                         child: Text(
-                          'Review',
+                          'Payment',
                           style: GoogleFonts.poppins(
                             color: Colors.black,
                             fontSize: 24,
@@ -69,35 +67,16 @@ class _ReviewBoostPostPageState extends State<ReviewBoostPostPage> {
                     ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Review your ad',
-                        style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const DetailReviewBoostPost(),
-                // TextFormSupport(
-                //   support: _support,
-                // ),
+                DetailPaymentBoostPost(),
               ],
             ),
             Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
                     textAlign: TextAlign.center,
-                    'You won’t be charged until your ad is approved and starts running.',
+                    'You payment methods are saved and stored securely',
                     style: GoogleFonts.poppins(
                       color: PicmeColors.grayBlack,
                       fontSize: 12,
@@ -106,7 +85,7 @@ class _ReviewBoostPostPageState extends State<ReviewBoostPostPage> {
                   ),
                 ),
                 const Padding(padding: EdgeInsets.only(bottom: 10)),
-                const ButtonReviewBoostPost(),
+                const ButtonPaymentSupport(),
               ],
             ),
           ],

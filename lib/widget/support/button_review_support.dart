@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:picme/pages/payment/payment_support_page.dart';
 import 'package:picme/pages/support/review_support_page.dart';
 import 'package:picme/utils/colors.dart';
 
@@ -23,7 +24,7 @@ class ButtonReviewSupport extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const ReviewSupportPage()),
+                    builder: (context) => const PaymentSupportPage()),
               );
             },
             child: Container(

@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/pages/home_page.dart';
-import 'package:picme/widget/boost_post/button_boost_post.dart';
-import 'package:picme/widget/boost_post/textform_boost_post.dart';
+import 'package:picme/utils/colors.dart';
+import 'package:picme/widget/payment_success/button_payment_success.dart';
+import 'package:picme/widget/payment_success/detail_payment_success.dart';
 
-class BoostPostPage extends StatefulWidget {
-  const BoostPostPage({Key? key}) : super(key: key);
-  static const routeName = "/boost_post_page";
+class PaymentSuccessPage extends StatefulWidget {
+  const PaymentSuccessPage({Key? key}) : super(key: key);
+  static const routeName = "/payment_success_page";
 
   @override
-  State<BoostPostPage> createState() => _BoostPostPageState();
+  State<PaymentSuccessPage> createState() => _PaymentSuccessPageState();
 }
 
-class _BoostPostPageState extends State<BoostPostPage> {
-  final TextEditingController _boostpost = TextEditingController();
-  @override
+class _PaymentSuccessPageState extends State<PaymentSuccessPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
@@ -53,11 +52,11 @@ class _BoostPostPageState extends State<BoostPostPage> {
                     //   height: 150,
                     // ),
                     Expanded(
-                      flex: 4,
+                      flex: 2,
                       child: Container(
-                        padding: const EdgeInsets.only(left: 10),
+                        padding: const EdgeInsets.only(left: 15),
                         child: Text(
-                          'Budget & duration',
+                          'Payment',
                           style: GoogleFonts.poppins(
                             color: Colors.black,
                             fontSize: 24,
@@ -68,31 +67,14 @@ class _BoostPostPageState extends State<BoostPostPage> {
                     ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Select your budget & duration',
-                          style: GoogleFonts.poppins(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
-                      ]),
-                ),
-                TextFormBoostPost(
-                  boostpost: _boostpost,
-                ),
+                DetailPaymentSuccess(),
               ],
             ),
-
-            // const SizedBox(
-            //   height: 570,
-            // ),
-            const ButtonBoostPost(),
+             Column(
+              children: [
+                ButtonPaymentSuccess(),
+              ],
+            ),
           ],
         ),
       ),

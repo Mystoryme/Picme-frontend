@@ -122,18 +122,11 @@ class DetailReviewBoostPost extends StatelessWidget {
                     // textAlign: TextAlign.justify,
                     'QR code',
                     style: GoogleFonts.poppins(
-                      color: Colors.black,
+                      color: PicmeColors.grayBlack,
                       fontSize: 16,
                       fontWeight: FontWeight.normal,
                     ),
                   ),
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.radio_button_unchecked,
-                        color: Colors.black,
-                        size: 15,
-                      ))
                 ],
               ),
             ],

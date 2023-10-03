@@ -17,79 +17,79 @@ class _SupportPageState extends State<SupportPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-      child: SafeArea(
-        child: Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            children: [
-              Row(
-                // mainAxisAlignment: MainAxisAlignment.start,
-                // crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      alignment: Alignment.bottomLeft,
-                      child: IconButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Homepage()),
-                          );
-                        },
-                        icon: const Icon(
-                          Icons.arrow_back_ios_new_rounded,
-                          color: Colors.black54,
+        body: SafeArea(
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              children: [
+                Row(
+                  // mainAxisAlignment: MainAxisAlignment.start,
+                  // crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        alignment: Alignment.bottomLeft,
+                        child: IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Homepage()),
+                            );
+                          },
+                          icon: const Icon(
+                            Icons.arrow_back_ios_new_rounded,
+                            color: Colors.black54,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  // const SizedBox(
-                  //   height: 150,
-                  // ),
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Text(
-                        'Support',
-                        style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontSize: 24,
-                          fontWeight: FontWeight.normal,
+                    // const SizedBox(
+                    //   height: 150,
+                    // ),
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Text(
+                          'Support',
+                          style: GoogleFonts.poppins(
+                            color: Colors.black,
+                            fontSize: 24,
+                            fontWeight: FontWeight.normal,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Support your favorite artist',
-                        style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.normal,
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Support your favorite artist',
+                          style: GoogleFonts.poppins(
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontWeight: FontWeight.normal,
+                          ),
                         ),
-                      ),
-                    ]),
-              ),
-              TextFormSupport(
-                support: _support,
-              ),
-              const SizedBox(
-                height: 580,
-              ),
-              const ButtonSupport(),
-            ],
-          ),
+                      ]),
+                ),
+                TextFormSupport(
+                  support: _support,
+                ),
+              ],
+            ),
+            const ButtonSupport(),
+          ],
         ),
       ),
     ));

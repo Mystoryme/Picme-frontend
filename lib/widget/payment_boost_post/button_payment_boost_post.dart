@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:picme/pages/boost_post/boost_post_page.dart';
-import 'package:picme/pages/payment/payment_support_page.dart';
+import 'package:picme/pages/payment_success_page.dart';
 import 'package:picme/utils/colors.dart';
 
-class ButtonLogin extends StatelessWidget {
-  const ButtonLogin({Key? key}) : super(key: key);
+class ButtonPaymentBoostPost extends StatelessWidget {
+  const ButtonPaymentBoostPost({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print('Login');
+        print('Next');
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 80),
         child: ElevatedButton(
           style:
               ElevatedButton.styleFrom(backgroundColor: PicmeColors.mainColor),
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const BoostPostPage()),
+              MaterialPageRoute(
+                  builder: (context) => const PaymentSuccessPage()),
             );
           },
           child: Container(
@@ -32,7 +32,7 @@ class ButtonLogin extends StatelessWidget {
               borderRadius: BorderRadius.circular(5),
             ),
             child: Text(
-              'Login',
+              'Next',
               style: GoogleFonts.poppins(
                 color: Colors.white,
                 fontWeight: FontWeight.w400,
