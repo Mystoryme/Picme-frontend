@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:picme/widget/postcard/postcard.dart';
+import 'package:picme/widget/postcard/postcard_grid.dart';
 import 'package:picme/widget/postcard/postcard_owner.dart';
 import 'package:picme/widget/profile/profilesec.dart';
-import 'package:picme/widget/profile/selection.dart';
+import 'package:picme/widget/profile/profilebar.dart';
 import 'package:picme/widget/profile/sortby.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -10,11 +12,13 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        body: SingleChildScrollView(
-            child: SafeArea(
-      child: Column(
-        children: [Profile(), Selection(), SortBy(), PostCardOwner()],
+    return Scaffold(
+        body: SafeArea(
+            child: SingleChildScrollView(
+      child: Container(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [Profile(), ProfileBar()]),
       ),
     )));
   }
