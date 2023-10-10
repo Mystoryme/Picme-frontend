@@ -8,7 +8,7 @@ class DetailReviewBoostPost extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 40),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         // crossAxisAlignment: CrossAxisAlignment.start,
         // mainAxisAlignment: MainAxisAlignment.end,
@@ -170,7 +170,7 @@ class DetailReviewBoostPost extends StatelessWidget {
                   ),
                   Text(
                     // textAlign: TextAlign.right,
-                    '100.00 THB',
+                    '69.00 THB',
                     style: GoogleFonts.poppins(
                       color: PicmeColors.grayBlack,
                       fontSize: 16,

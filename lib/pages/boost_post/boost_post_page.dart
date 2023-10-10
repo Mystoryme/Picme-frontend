@@ -74,7 +74,7 @@ class _BoostPostPageState extends State<BoostPostPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Select your budget & duration',
+                          'Select your duration',
                           style: GoogleFonts.poppins(
                             color: Colors.black,
                             fontSize: 18,

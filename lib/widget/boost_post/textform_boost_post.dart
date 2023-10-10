@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/utils/colors.dart';
 
-const List<String> list = <String>['7 days', '14 days', '28 days'];
+const List<String> list = <String>[
+  '1 day',
+  '3 days',
+  '5 days',
+  '7 days',
+  '14 days',
+  '28 days'
+];
 
 class TextFormBoostPost extends StatefulWidget {
   const TextFormBoostPost({Key? key, required this.boostpost})
@@ -37,7 +44,7 @@ class _TextFormBoostPostState extends State<TextFormBoostPost> {
           ),
           Text(
             textAlign: TextAlign.right,
-            'Daily budget',
+            'Budget',
             style: GoogleFonts.poppins(
               color: Colors.black,
               fontSize: 16,
