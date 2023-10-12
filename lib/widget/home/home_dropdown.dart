@@ -68,7 +68,7 @@ class _Home_dropdownState extends State<Home_navbar> {
         Row(
           children: [
             Padding(
-              padding: EdgeInsets.only(right: 20.0),
+              padding: EdgeInsets.only(right: 5.0),
               child: IconButton(
                 onPressed: () {
                   Navigator.push(

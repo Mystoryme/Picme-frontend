@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         '/review_support_page': (context) => const ReviewSupportPage(),
         '/support_page': (context) => const SupportPage(),
         '/account_insights_page': (context) => const AccountInsightsPage(),
-        '/add_image_page': (context) => const AddImagePage(),
+        '/add_image_page': (context) => AddImagePage(),
         '/check_image_page': (context) => const CheckImagePage(),
         '/direct_message_page': (context) => const DirectMessagePage(),
         '/edit_profile_page': (context) => EditProfilePage(),
