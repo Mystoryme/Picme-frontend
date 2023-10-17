@@ -35,9 +35,7 @@ class _BottomNavigationState extends State<Home_bar> {
     return BottomNavigationBar(
       selectedIconTheme: IconThemeData(color: PicmeColors.mainColor, size: 38),
       selectedItemColor: PicmeColors.mainColor,
-      unselectedIconTheme: IconThemeData(
-        color: PicmeColors.grayBlack,
-      ),
+      unselectedIconTheme: IconThemeData(color: Color(0xffA0A5D8)),
       unselectedItemColor: PicmeColors.grayWhite,
       iconSize: 33,
       elevation: 0,

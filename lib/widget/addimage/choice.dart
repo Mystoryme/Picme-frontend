@@ -15,6 +15,9 @@ List<String> options = [
   'Mixed Media & Collage',
   'Digital / Graphic',
   'Other',
+];
+
+List<String> options2 = [
   'Procreate',
   'ibis PaintX',
   'Clip Studio Paint',
@@ -25,6 +28,7 @@ List<String> options = [
 
 class _ChoiceState extends State<Choice> {
   String currentOption = options[0];
+  String currentOption2 = options2[0];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -163,18 +167,18 @@ class _ChoiceState extends State<Choice> {
               title: Text(
                 'Procreate',
                 style: GoogleFonts.poppins(
-                    fontWeight: (currentOption == options[5])
+                    fontWeight: (currentOption2 == options2[0])
                         ? FontWeight.w600
                         : FontWeight.normal,
-                    color: (currentOption == options[5])
+                    color: (currentOption2 == options2[0])
                         ? PicmeColors.mainColor
                         : Colors.black),
               ),
-              value: options[5],
-              groupValue: currentOption,
+              value: options2[0],
+              groupValue: currentOption2,
               onChanged: (value) {
                 setState(() {
-                  currentOption = value.toString();
+                  currentOption2 = value.toString();
                 });
               },
             ),
@@ -184,18 +188,18 @@ class _ChoiceState extends State<Choice> {
               title: Text(
                 'ibis PaintX',
                 style: GoogleFonts.poppins(
-                    fontWeight: (currentOption == options[6])
+                    fontWeight: (currentOption2 == options2[1])
                         ? FontWeight.w600
                         : FontWeight.normal,
-                    color: (currentOption == options[6])
+                    color: (currentOption2 == options2[1])
                         ? PicmeColors.mainColor
                         : Colors.black),
               ),
-              value: options[6],
-              groupValue: currentOption,
+              value: options2[1],
+              groupValue: currentOption2,
               onChanged: (value) {
                 setState(() {
-                  currentOption = value.toString();
+                  currentOption2 = value.toString();
                 });
               },
             ),
@@ -205,18 +209,18 @@ class _ChoiceState extends State<Choice> {
               title: Text(
                 'Clip Studio Paint',
                 style: GoogleFonts.poppins(
-                    fontWeight: (currentOption == options[7])
+                    fontWeight: (currentOption2 == options2[2])
                         ? FontWeight.w600
                         : FontWeight.normal,
-                    color: (currentOption == options[7])
+                    color: (currentOption2 == options2[2])
                         ? PicmeColors.mainColor
                         : Colors.black),
               ),
-              value: options[7],
-              groupValue: currentOption,
+              value: options2[2],
+              groupValue: currentOption2,
               onChanged: (value) {
                 setState(() {
-                  currentOption = value.toString();
+                  currentOption2 = value.toString();
                 });
               },
             ),
@@ -226,18 +230,18 @@ class _ChoiceState extends State<Choice> {
               title: Text(
                 'Blender',
                 style: GoogleFonts.poppins(
-                    fontWeight: (currentOption == options[8])
+                    fontWeight: (currentOption2 == options2[3])
                         ? FontWeight.w600
                         : FontWeight.normal,
-                    color: (currentOption == options[8])
+                    color: (currentOption2 == options2[3])
                         ? PicmeColors.mainColor
                         : Colors.black),
               ),
-              value: options[8],
-              groupValue: currentOption,
+              value: options2[3],
+              groupValue: currentOption2,
               onChanged: (value) {
                 setState(() {
-                  currentOption = value.toString();
+                  currentOption2 = value.toString();
                 });
               },
             ),
@@ -247,18 +251,18 @@ class _ChoiceState extends State<Choice> {
               title: Text(
                 'Photoshop',
                 style: GoogleFonts.poppins(
-                    fontWeight: (currentOption == options[9])
+                    fontWeight: (currentOption2 == options2[4])
                         ? FontWeight.w600
                         : FontWeight.normal,
-                    color: (currentOption == options[9])
+                    color: (currentOption2 == options2[4])
                         ? PicmeColors.mainColor
                         : Colors.black),
               ),
-              value: options[9],
-              groupValue: currentOption,
+              value: options2[4],
+              groupValue: currentOption2,
               onChanged: (value) {
                 setState(() {
-                  currentOption = value.toString();
+                  currentOption2 = value.toString();
                 });
               },
             ),
@@ -268,18 +272,18 @@ class _ChoiceState extends State<Choice> {
               title: Text(
                 'Other',
                 style: GoogleFonts.poppins(
-                    fontWeight: (currentOption == options[10])
+                    fontWeight: (currentOption2 == options2[5])
                         ? FontWeight.w600
                         : FontWeight.normal,
-                    color: (currentOption == options[10])
+                    color: (currentOption2 == options2[5])
                         ? PicmeColors.mainColor
                         : Colors.black),
               ),
-              value: options[10],
-              groupValue: currentOption,
+              value: options2[5],
+              groupValue: currentOption2,
               onChanged: (value) {
                 setState(() {
-                  currentOption = value.toString();
+                  currentOption2 = value.toString();
                 });
               },
             ),
