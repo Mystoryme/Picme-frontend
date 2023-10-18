@@ -56,7 +56,7 @@ class _ReviewBoostPostPageState extends State<ReviewBoostPostPage> {
                     Expanded(
                       flex: 2,
                       child: Container(
-                        padding: const EdgeInsets.only(left: 25),
+                        padding: const EdgeInsets.only(left: 20),
                         child: Text(
                           'Review',
                           style: GoogleFonts.poppins(

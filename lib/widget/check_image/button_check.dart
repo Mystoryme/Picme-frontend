@@ -15,8 +15,8 @@ class ButtonCheck extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40),
         child: ElevatedButton(
-          style:
-              ElevatedButton.styleFrom(backgroundColor: PicmeColors.mainColor),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: PicmeColors.mainColor, elevation: 0),
           onPressed: () {
             Navigator.push(
               context,

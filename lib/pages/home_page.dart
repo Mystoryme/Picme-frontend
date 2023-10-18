@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:picme/pages/add_image_page.dart';
 import 'package:picme/pages/check_image_page.dart';
 import 'package:picme/pages/home/home.dart';
+import 'package:picme/pages/notification_page.dart';
 import 'package:picme/pages/profile_page.dart';
 import 'package:picme/pages/search_page.dart';
 import 'package:picme/widget/home/home_dropdown.dart';
@@ -53,7 +54,7 @@ Widget _buildPage(int index) {
     case 1:
       return AddImagePage();
     case 2:
-      return HomeTab();
+      return const NotificationPage();
     case 3:
       return ProfilePage();
     default:

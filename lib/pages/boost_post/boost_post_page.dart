@@ -55,7 +55,7 @@ class _BoostPostPageState extends State<BoostPostPage> {
                     Expanded(
                       flex: 4,
                       child: Container(
-                        padding: const EdgeInsets.only(left: 10),
+                        padding: const EdgeInsets.only(left: 1),
                         child: Text(
                           'Budget & duration',
                           style: GoogleFonts.poppins(

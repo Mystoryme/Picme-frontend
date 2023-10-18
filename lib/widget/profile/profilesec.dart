@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:picme/pages/account_insights_page.dart';
 import 'package:picme/pages/edit_profile_page.dart';
 import 'package:picme/pages/login_page.dart';
 
@@ -40,7 +41,7 @@ class Profile extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => EditProfilePage()),
                   );
                 },
-                icon: Icon(
+                icon: const Icon(
                   CupertinoIcons.chat_bubble,
                   size: 33,
                   color: Colors.black,
@@ -93,8 +94,11 @@ class Profile extends StatelessWidget {
                       ),
                       Container(
                         constraints:
-                            BoxConstraints(minHeight: 36, maxWidth: 190),
+                            BoxConstraints(minHeight: 36, maxWidth: 180),
                         child: Text(
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          // softWrap: true,
                           'illustrator || Story artist || cat lover',
                           style: GoogleFonts.poppins(
                               fontSize: 12,
@@ -114,8 +118,11 @@ class Profile extends StatelessWidget {
                       ),
                       Container(
                         constraints:
-                            BoxConstraints(minHeight: 36, maxWidth: 190),
+                            BoxConstraints(minHeight: 36, maxWidth: 180),
                         child: Text(
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          // softWrap: true,
                           'Contact 081-xxx-xxxx , Twitter: @abcd',
                           style: GoogleFonts.poppins(
                               fontSize: 12,
@@ -133,7 +140,7 @@ class Profile extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const LoginPage()),
+                                builder: (context) => const AccountInsightsPage()),
                           );
                         },
                         child: Container(

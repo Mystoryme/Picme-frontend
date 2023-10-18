@@ -69,7 +69,7 @@ class AddImagePage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const PaymentSuccessPage()),
+                              builder: (context) => const Homepage()),
                         );
                       },
                       child: Container(

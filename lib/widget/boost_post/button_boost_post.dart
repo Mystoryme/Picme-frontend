@@ -19,11 +19,12 @@ class ButtonBoostPost extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 80),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-                backgroundColor: PicmeColors.mainColor),
+                backgroundColor: PicmeColors.mainColor, elevation: 0),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ReviewBoostPostPage()),
+                MaterialPageRoute(
+                    builder: (context) => const ReviewBoostPostPage()),
               );
             },
             child: Container(

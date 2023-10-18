@@ -22,7 +22,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         padding: const EdgeInsets.all(15.0),
         child: Column(
           children: [
-            HeadEditProfile(),
+            const HeadEditProfile(),
             EditProfile(),
             TextFormEditProfile(
               username: _username,

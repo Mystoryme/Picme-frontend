@@ -9,6 +9,7 @@ import 'package:picme/pages/direct_message_page.dart';
 import 'package:picme/pages/edit_profile_page.dart';
 import 'package:picme/pages/explore_page.dart';
 import 'package:picme/pages/home_page.dart';
+import 'package:picme/pages/notification_page.dart';
 import 'package:picme/pages/login_page.dart';
 import 'package:picme/pages/payment/payment_boost_post_page.dart';
 import 'package:picme/pages/payment_success_page.dart';
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
         '/payment_success_page': (context) => const PaymentSuccessPage(),
         '/profile_page': (context) => const ProfilePage(),
         '/search_page': (context) => const SearchPage(),
+        '/notification_page': (context) =>   NotificationPage(),
       },
     );
   }

@@ -65,7 +65,7 @@ class CheckImagePage extends StatelessWidget {
                   Expanded(
                     flex: 3,
                     child: Container(
-                      padding: const EdgeInsets.only(left: 20),
+                      padding: const EdgeInsets.only(left: 10),
                       child: Text(
                         'Check Image',
                         style: GoogleFonts.poppins(

@@ -51,7 +51,7 @@ class HeadEditProfile extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: GoogleFonts.poppins(
                         color: PicmeColors.grayBlack,
-                        fontSize: 18,
+                        fontSize: 16,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -88,7 +88,7 @@ class HeadEditProfile extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: GoogleFonts.poppins(
                         color: PicmeColors.mainColor,
-                        fontSize: 18,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

@@ -58,8 +58,8 @@ class _TextFormEditProfileState extends State<TextFormEditProfile> {
               fontWeight: FontWeight.w500,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(
+          const Padding(
+            padding: EdgeInsets.only(
               top: 10,
             ),
           ),
@@ -71,11 +71,14 @@ class _TextFormEditProfileState extends State<TextFormEditProfile> {
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderSide: BorderSide(width: 2, color: PicmeColors.grayBlack),
-                borderRadius: BorderRadius.all(
+                borderRadius: const BorderRadius.all(
                   Radius.circular(5),
                 ),
               ),
               hintText: 'aaaaa',
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(width: 2, color: PicmeColors.mainColor),
+              ),
 
               fillColor: const Color.fromARGB(130, 255, 255, 255),
               filled: true,
@@ -100,8 +103,8 @@ class _TextFormEditProfileState extends State<TextFormEditProfile> {
             ),
             cursorColor: Colors.black54,
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20),
+          const Padding(
+            padding: EdgeInsets.only(top: 20),
           ),
           Text(
             // textAlign: TextAlign.start,
@@ -112,8 +115,8 @@ class _TextFormEditProfileState extends State<TextFormEditProfile> {
               fontWeight: FontWeight.w500,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(
+          const Padding(
+            padding: EdgeInsets.only(
               top: 10,
             ),
           ),
@@ -125,11 +128,14 @@ class _TextFormEditProfileState extends State<TextFormEditProfile> {
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderSide: BorderSide(width: 2, color: PicmeColors.grayBlack),
-                borderRadius: BorderRadius.all(
+                borderRadius: const BorderRadius.all(
                   Radius.circular(5),
                 ),
               ),
               hintText: 'illustrator || Story artist || cat lover',
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(width: 2, color: PicmeColors.mainColor),
+              ),
 
               fillColor: const Color.fromARGB(130, 255, 255, 255),
               filled: true,
@@ -154,8 +160,8 @@ class _TextFormEditProfileState extends State<TextFormEditProfile> {
             ),
             cursorColor: Colors.black54,
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20),
+          const Padding(
+            padding: EdgeInsets.only(top: 20),
           ),
           Text(
             // textAlign: TextAlign.start,
@@ -166,8 +172,8 @@ class _TextFormEditProfileState extends State<TextFormEditProfile> {
               fontWeight: FontWeight.w500,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(
+          const Padding(
+            padding: EdgeInsets.only(
               top: 10,
             ),
           ),
@@ -180,11 +186,14 @@ class _TextFormEditProfileState extends State<TextFormEditProfile> {
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderSide: BorderSide(width: 2, color: PicmeColors.grayBlack),
-                borderRadius: BorderRadius.all(
+                borderRadius: const BorderRadius.all(
                   Radius.circular(5),
                 ),
               ),
               hintText: '081-234-5678',
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(width: 2, color: PicmeColors.mainColor),
+              ),
 
               fillColor: const Color.fromARGB(130, 255, 255, 255),
               filled: true,
@@ -209,8 +218,8 @@ class _TextFormEditProfileState extends State<TextFormEditProfile> {
             ),
             cursorColor: Colors.black54,
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20),
+          const Padding(
+            padding: EdgeInsets.only(top: 20),
           ),
         ],
       ),

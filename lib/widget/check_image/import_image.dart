@@ -34,8 +34,8 @@ class _ImportImageState extends State<ImportImage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Delete Image'),
-          content: Text('Are you sure you want to delete this image?'),
+          title: const Text('Delete Image'),
+          content: const Text('Are you sure you want to delete this image?'),
           actions: [
             TextButton(
               onPressed: () {
@@ -96,7 +96,7 @@ class _ImportImageState extends State<ImportImage> {
                 )
               : Image.file(
                   File(_pickedImage!.path),
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                 ),
         ),
       ),
