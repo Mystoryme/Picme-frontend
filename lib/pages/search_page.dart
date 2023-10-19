@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:picme/widget/home/buttonbar.dart';
 import 'package:picme/widget/search/button_search.dart';
+import 'package:picme/widget/search/grid_photo.dart';
 import 'package:picme/widget/search/person_search.dart';
 
 class SearchPage extends StatefulWidget {
@@ -12,18 +14,34 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   final TextEditingController _search = TextEditingController();
+  FocusNode _textFocusNode = FocusNode();
+
+  void reloadState() {
+    setState(() {});
+  }
+
+  // final int _currentIndex = 0;
+  // final ValueChanged<int> _onTap = (value) => print(value);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(15),
-          child: Column(
-            children: [
-              ButtonSearch(search: _search),
-              const PersonSearch(),
-            ],
-          ),
+        child: Column(
+          children: [
+            ButtonSearch(
+              search: _search,
+              textFocusNode: _textFocusNode,
+              reload: reloadState,
+            ),
+            // Text(_textFocusNode.hasFocus.toString()),
+            Visibility(
+              visible: _textFocusNode.hasFocus,
+              child: const PersonSearch(),
+            ),
+            SizedBox(height: 10),
+            GridPhoto(),
+            // Home_bar(currentIndex: _currentIndex, onTap: _onTap)
+          ],
         ),
       ),
     );
