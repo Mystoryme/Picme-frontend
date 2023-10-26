@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:picme/models/profile.dart';
 import 'package:picme/utils/colors.dart';
 
 class TextFormEditProfile extends StatefulWidget {
@@ -7,11 +8,14 @@ class TextFormEditProfile extends StatefulWidget {
       {Key? key,
       required this.username,
       required this.bio,
-      required this.contact})
+      required this.contact,
+      required this.profile})
       : super(key: key);
   final TextEditingController username;
   final TextEditingController bio;
   final TextEditingController contact;
+
+  final Profile profile;
 
   @override
   State<TextFormEditProfile> createState() => _TextFormEditProfileState();
@@ -75,7 +79,7 @@ class _TextFormEditProfileState extends State<TextFormEditProfile> {
                   Radius.circular(5),
                 ),
               ),
-              hintText: 'aaaaa',
+              hintText: widget.profile.username,
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(width: 2, color: PicmeColors.mainColor),
               ),
@@ -132,7 +136,7 @@ class _TextFormEditProfileState extends State<TextFormEditProfile> {
                   Radius.circular(5),
                 ),
               ),
-              hintText: 'illustrator || Story artist || cat lover',
+              hintText: widget.profile.bio,
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(width: 2, color: PicmeColors.mainColor),
               ),
@@ -190,7 +194,7 @@ class _TextFormEditProfileState extends State<TextFormEditProfile> {
                   Radius.circular(5),
                 ),
               ),
-              hintText: '081-234-5678',
+              hintText: widget.profile.contact,
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(width: 2, color: PicmeColors.mainColor),
               ),

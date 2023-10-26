@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:picme/pages/account_insights_page.dart';
+import 'package:picme/pages/account_profile_page.dart';
 import 'package:picme/pages/add_image_page.dart';
 import 'package:picme/pages/boost_post/boost_post_page.dart';
 import 'package:picme/pages/boost_post/review_boost_post_page.dart';
@@ -52,7 +53,8 @@ class MyApp extends StatelessWidget {
         '/payment_success_page': (context) => const PaymentSuccessPage(),
         '/profile_page': (context) => const ProfilePage(),
         '/search_page': (context) => const SearchPage(),
-        '/notification_page': (context) =>   NotificationPage(),
+        '/notification_page': (context) => const NotificationPage(),
+        '/account_profile_page': (context) => const AccountProfilePage(),
       },
     );
   }

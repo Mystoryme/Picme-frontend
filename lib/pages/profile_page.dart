@@ -16,9 +16,9 @@ class ProfilePage extends StatelessWidget {
         body: SafeArea(
             child: SingleChildScrollView(
       child: Container(
-        child: Column(
+        child: const Column(
             mainAxisAlignment: MainAxisAlignment.start,
-            children: [Profile(), ProfileBar()]),
+            children: [ProfileSection(), ProfileBar()]),
       ),
     )));
   }

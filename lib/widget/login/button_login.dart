@@ -6,7 +6,8 @@ import 'package:picme/pages/payment/payment_support_page.dart';
 import 'package:picme/utils/colors.dart';
 
 class ButtonLogin extends StatelessWidget {
-  const ButtonLogin({Key? key}) : super(key: key);
+  final Function callLogin;
+  const ButtonLogin({required this.callLogin, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +21,7 @@ class ButtonLogin extends StatelessWidget {
           style: ElevatedButton.styleFrom(
               backgroundColor: PicmeColors.mainColor, elevation: 0),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const Homepage()),
-            );
+           callLogin();
           },
           child: Container(
             alignment: Alignment.center,

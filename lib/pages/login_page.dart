@@ -1,9 +1,14 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:picme/classes/caller.dart';
+import 'package:picme/models/login.dart';
+import 'package:picme/pages/home_page.dart';
 import 'package:picme/pages/register_page.dart';
 import 'package:picme/utils/colors.dart';
 import 'package:picme/widget/login/button_login.dart';
 import 'package:picme/widget/login/textform_login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -16,6 +21,33 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
+
+  void callLogin() async {
+    Caller.dio.post("/account/login", data: {
+      "email": _email.text,
+      "password": _password.text,
+    }).then((response) async {
+      // * Parse response
+      final data = Login.fromJson(response.data["data"]);
+
+      // * Load shared preferences
+      final prefs = await SharedPreferences
+          .getInstance(); //shared_preferences same as cookies
+      prefs.setString('token', data.token);
+
+      // * Set caller token value
+      Caller.setToken(data.token);
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Homepage()),
+      );
+    }).onError((DioException error, _) {
+      // * Apply default error handling
+      Caller.handle(context, error);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: 25,
                 ),
-                ButtonLogin(),
+                ButtonLogin(callLogin: callLogin),
                 Container(
                   height: 100,
                   // color: Colors.white,

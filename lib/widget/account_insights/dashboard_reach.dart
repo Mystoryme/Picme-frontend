@@ -26,7 +26,7 @@ class DashBoardReach extends StatefulWidget {
 
   final Color barBackgroundColor = PicmeColors.grayWhite; //
   // AppColors.contentColorWhite.darken().withOpacity(0.3);
-  final Color barColor = PicmeColors.mainColor; //
+  final Color barColor = Color(0xffA0A5D8); //
   final Color touchedBarColor = PicmeColors.mainColor;
   @override
   State<StatefulWidget> createState() => DashBoardReachState();
@@ -50,24 +50,42 @@ class DashBoardReachState extends State<DashBoardReach> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                Text(
-                  'Account Reach',
-                  style: TextStyle(
-                    color: PicmeColors.mainColor,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                Text(
-                  'Account Reach per week',
-                  style: TextStyle(
-                    color: PicmeColors.mainColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Account Reach',
+                          style: TextStyle(
+                            color: PicmeColors.mainColor,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                        const Text(
+                          'Account Reach per week',
+                          style: TextStyle(
+                            color: Color(0xffA0A5D8),
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      '51',
+                      style: TextStyle(
+                        color: PicmeColors.mainColor,
+                        fontSize: 50,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )
+                  ],
                 ),
                 const SizedBox(
                   height: 38,

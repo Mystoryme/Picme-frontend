@@ -4,18 +4,13 @@ part 'login.g.dart';
 
 @JsonSerializable()
 class Login {
-  @JsonKey(name: 'email')
-  final String email;
-
-  @JsonKey(name: 'password')
-  final String password;
+  @JsonKey(name: 'token')
+  final String token;
 
   Login({
-    required this.email,
-    required this.password,
+    required this.token,
   });
-  factory Login.fromJson(Map<String, dynamic> json) =>
-      _$LoginFromJson(json);
+  factory Login.fromJson(Map<String, dynamic> json) => _$LoginFromJson(json);
 
   Map<String, dynamic> toJson() => _$LoginToJson(this);
 }

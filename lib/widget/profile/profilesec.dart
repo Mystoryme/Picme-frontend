@@ -7,8 +7,8 @@ import 'package:picme/pages/login_page.dart';
 
 import 'package:picme/utils/colors.dart';
 
-class Profile extends StatelessWidget {
-  const Profile({Key? key}) : super(key: key);
+class ProfileSection extends StatelessWidget {
+  const ProfileSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
