@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:picme/models/profile.dart';
 import 'package:picme/pages/account_insights_page.dart';
 import 'package:picme/pages/edit_profile_page.dart';
 import 'package:picme/pages/login_page.dart';
@@ -8,7 +9,9 @@ import 'package:picme/pages/login_page.dart';
 import 'package:picme/utils/colors.dart';
 
 class ProfileSection extends StatelessWidget {
-  const ProfileSection({Key? key}) : super(key: key);
+  const ProfileSection({required this.profile, Key? key}) : super(key: key);
+
+  final Profile profile;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,7 @@ class ProfileSection extends StatelessWidget {
             children: [
               // alignment: Alignment.center,
               Text(
-                'Username',
+                profile.username,
                 style: GoogleFonts.poppins(
                   color: Colors.black,
                   fontSize: 22,
@@ -86,7 +89,7 @@ class ProfileSection extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Bio',
+                        profile.bio ?? " ",
                         style: GoogleFonts.poppins(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
@@ -110,7 +113,7 @@ class ProfileSection extends StatelessWidget {
                         height: 5,
                       ),
                       Text(
-                        'Contact',
+                        profile.contact ?? " ",
                         style: GoogleFonts.poppins(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
@@ -140,7 +143,8 @@ class ProfileSection extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const AccountInsightsPage()),
+                                builder: (context) =>
+                                    const AccountInsightsPage()),
                           );
                         },
                         child: Container(

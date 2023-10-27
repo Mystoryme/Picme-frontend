@@ -79,8 +79,7 @@ class HeadEditProfile extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => const ProfilePage()),
+                        MaterialPageRoute(builder: (context) => ProfilePage()),
                       );
                     },
                     child: Text(
