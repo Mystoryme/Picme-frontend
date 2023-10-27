@@ -31,10 +31,8 @@ class AccountInsightsPage extends StatelessWidget {
                         alignment: Alignment.bottomLeft,
                         child: IconButton(
                           onPressed: () {
-                            Navigator.push(
+                            Navigator.pop(
                               context,
-                              MaterialPageRoute(
-                                  builder: (context) => ProfilePage()),
                             );
                           },
                           icon: const Icon(

@@ -2,13 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:like_button/like_button.dart';
+import 'package:picme/models/post.dart';
+import 'package:picme/models/posts.dart';
 import 'package:picme/pages/boost_post/boost_post_page.dart';
 import 'package:picme/pages/home_page.dart';
 import 'package:picme/pages/support/support_page.dart';
 import 'package:picme/utils/colors.dart';
 
 class PostCardOwner extends StatefulWidget {
-  const PostCardOwner({super.key});
+  const PostCardOwner({Key? key, required this.post}) : super(key: key);
+
+  final Post post;
 
   @override
   State<PostCardOwner> createState() => _PostCardOwnerState();
@@ -17,23 +21,34 @@ class PostCardOwner extends StatefulWidget {
 class _PostCardOwnerState extends State<PostCardOwner> {
   @override
   Widget build(BuildContext context) {
+    Image img = Image.network(widget.post.imageUrl);
+    // Image img2 = Image.asset(widget.post.application);
+
+    Image applicationImage = Image.asset('assets/procreate.png');
+    if (widget.post.application == "procreate") {
+      applicationImage = Image.asset('assets/procreate.png');
+    }
+    if (widget.post.application == "photoshop") {
+      applicationImage = Image.asset('assets/photoshop.png');
+    }
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
       child: Center(
         child: Container(
-          constraints: BoxConstraints(minHeight: 493, maxWidth: 321),
+          constraints: const BoxConstraints(minHeight: 493, maxWidth: 321),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(13),
               color: Colors.white,
               border: Border.all(width: 1)),
           child: Column(children: [
             Padding(
-              padding: EdgeInsets.only(left: 24, top: 20, bottom: 15),
+              padding: const EdgeInsets.only(left: 24, top: 20, bottom: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Username',
+                    widget.post.ownerUsername,
                     style: GoogleFonts.poppins(
                       color: PicmeColors.grayBlack,
                       fontSize: 16,
@@ -59,7 +74,7 @@ class _PostCardOwnerState extends State<PostCardOwner> {
                         },
                       ),
                       PopupMenuButton(
-                        padding: EdgeInsets.only(right: 3),
+                        padding: const EdgeInsets.only(right: 3),
                         color: PicmeColors.mainColor,
                         elevation: 1,
                         tooltip: "",
@@ -68,7 +83,7 @@ class _PostCardOwnerState extends State<PostCardOwner> {
                           color: PicmeColors.mainColor,
                         ),
                         offset: Offset(-15, 45),
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(6.0),
                             bottomRight: Radius.circular(6.0),
@@ -90,9 +105,9 @@ class _PostCardOwnerState extends State<PostCardOwner> {
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: 321,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/sunset.jpg'),
+                    image: img.image,
                     fit: BoxFit.fitHeight,
                   ),
                 ),
@@ -104,7 +119,7 @@ class _PostCardOwnerState extends State<PostCardOwner> {
                   LikeButton(
                     padding: EdgeInsets.only(left: 24),
                     size: 24,
-                    likeCount: 4,
+                    likeCount: widget.post.likeCount,
                     likeBuilder: (isTapped) {
                       return Icon(
                         isTapped
@@ -129,7 +144,7 @@ class _PostCardOwnerState extends State<PostCardOwner> {
                     iconSize: 24,
                   ),
                   Text(
-                    '4',
+                    widget.post.commentCount.toString(),
                     style: TextStyle(color: Color(0xff9E9E9E)),
                   ),
                   SizedBox(
@@ -138,9 +153,9 @@ class _PostCardOwnerState extends State<PostCardOwner> {
                   Container(
                     width: 24,
                     height: 24,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/procreate.png'),
+                        image: applicationImage.image,
                         fit: BoxFit.fitHeight,
                       ),
                     ),
@@ -186,8 +201,7 @@ class _PostCardOwnerState extends State<PostCardOwner> {
                   top: 5, bottom: 10, left: 24, right: 24),
               child: SizedBox(
                 width: MediaQuery.of(context).size.width,
-                child: Text(
-                    'The perfect picture of the sky will always be sunset kefmwekfknjkgnwrg อะไรยาว ๆ อะไรยาว ๆ อะไรยาว ๆ อะไรยาว ๆ อะไรยาว ๆ อะไรยาว ๆ อะไรยาว ๆ  .',
+                child: Text(widget.post.caption ?? " ",
                     style: GoogleFonts.poppins(
                       color: PicmeColors.grayBlack,
                       fontSize: 12,

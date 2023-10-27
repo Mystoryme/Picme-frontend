@@ -1,21 +1,46 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:like_button/like_button.dart';
+import 'package:picme/classes/caller.dart';
 import 'package:picme/models/post.dart';
+import 'package:picme/models/posts.dart';
+import 'package:picme/models/homepost.dart';
 import 'package:picme/pages/home_page.dart';
 import 'package:picme/pages/support/support_page.dart';
 import 'package:picme/utils/colors.dart';
 
 class PostCard extends StatefulWidget {
   final Post post;
-  const PostCard({super.key, required this.post});
+  const PostCard({
+    super.key,
+    required this.post,
+  });
 
   @override
   State<PostCard> createState() => _PostCardState();
 }
 
 class _PostCardState extends State<PostCard> {
+  HomePost? posts;
+
+  @override
+  void initState() {
+    super.initState();
+    init();
+  }
+
+  init() {
+    Caller.dio.get("/profile/post").then((response) {
+      setState(() {
+        posts = HomePost.fromJson(response.data["data"]);
+      });
+    }).onError((DioException error, _) {
+      Caller.handle(context, error);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(

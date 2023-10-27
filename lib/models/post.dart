@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'post.g.dart';
@@ -14,10 +15,13 @@ class Post {
   final String ownerUsername;
 
   @JsonKey(name: 'caption')
-  final String caption;
+  final String? caption;
 
   @JsonKey(name: 'imageUrl')
   final String imageUrl;
+
+  @JsonKey(name: 'application')
+  final String application;
 
   @JsonKey(name: 'likeCount')
   final int likeCount;
@@ -31,6 +35,7 @@ class Post {
     required this.ownerUsername,
     required this.caption,
     required this.imageUrl,
+    required this.application,
     required this.likeCount,
     required this.commentCount,
   });

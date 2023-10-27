@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
         '/payment_support_page': (context) => const PaymentSupportPage(),
         '/payment_boost_post_page': (context) => const PaymentBoostPostPage(),
         '/payment_success_page': (context) => const PaymentSuccessPage(),
-        '/profile_page': (context) => const ProfilePage(),
+        '/profile_page': (context) =>  ProfilePage(),
         '/search_page': (context) => const SearchPage(),
         '/notification_page': (context) => const NotificationPage(),
         '/account_profile_page': (context) => const AccountProfilePage(),
