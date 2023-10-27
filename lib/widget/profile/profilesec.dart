@@ -45,7 +45,7 @@ class ProfileSection extends StatelessWidget {
                   );
                 },
                 icon: const Icon(
-                  CupertinoIcons.chat_bubble,
+                  Icons.door_front_door_outlined,
                   size: 33,
                   color: Colors.black,
                 ),

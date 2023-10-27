@@ -11,6 +11,7 @@ import 'package:picme/widget/profile/sortby.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
+  static const routeName = "/profile_page";
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -18,6 +19,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   Profile? profile;
+
   @override
   void initState() {
     super.initState();
