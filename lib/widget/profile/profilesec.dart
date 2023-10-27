@@ -89,7 +89,7 @@ class ProfileSection extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        profile.bio ?? " ",
+                        'Bio',
                         style: GoogleFonts.poppins(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
@@ -102,7 +102,7 @@ class ProfileSection extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                           // softWrap: true,
-                          'illustrator || Story artist || cat lover',
+                          profile.bio ?? " ",
                           style: GoogleFonts.poppins(
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
@@ -113,7 +113,7 @@ class ProfileSection extends StatelessWidget {
                         height: 5,
                       ),
                       Text(
-                        profile.contact ?? " ",
+                        'Contact',
                         style: GoogleFonts.poppins(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
@@ -126,7 +126,7 @@ class ProfileSection extends StatelessWidget {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           // softWrap: true,
-                          'Contact 081-xxx-xxxx , Twitter: @abcd',
+                          profile.contact ?? "",
                           style: GoogleFonts.poppins(
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
