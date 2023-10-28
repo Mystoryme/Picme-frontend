@@ -4,7 +4,9 @@ import 'package:picme/pages/login_page.dart';
 import 'package:picme/utils/colors.dart';
 
 class ButtonRegister extends StatelessWidget {
-  const ButtonRegister({Key? key}) : super(key: key);
+  final Function callRegister;
+  const ButtonRegister({required this.callRegister, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +20,7 @@ class ButtonRegister extends StatelessWidget {
           style: ElevatedButton.styleFrom(
               backgroundColor: PicmeColors.mainColor, elevation: 0),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const LoginPage()),
-            );
+            callRegister();
           },
           child: Container(
             alignment: Alignment.center,

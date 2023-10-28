@@ -26,21 +26,29 @@ class HeadEditProfile extends StatelessWidget {
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
                         title: const Text('Cancel'),
-                        content: const Text(
-                            'Are you sure you want to cancel this your change?'),
+                        content: Text(
+                          'Are you sure you want to cancel this your change?',
+                          style: GoogleFonts.poppins(color: Colors.black),
+                        ),
                         actions: <Widget>[
                           TextButton(
-                            onPressed: () => Navigator.pop(context, 'Cancel'),
+                            onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ProfilePage()),
+                            ),
                             child: Text(
                               'Cancel',
-                              style: TextStyle(color: PicmeColors.grayBlack),
+                              style: GoogleFonts.poppins(
+                                  color: PicmeColors.grayBlack),
                             ),
                           ),
                           TextButton(
                             onPressed: () => Navigator.pop(context, 'OK'),
                             child: Text(
                               'OK',
-                              style: TextStyle(color: PicmeColors.mainColor),
+                              style: GoogleFonts.poppins(
+                                  color: PicmeColors.mainColor),
                             ),
                           ),
                         ],
@@ -77,10 +85,8 @@ class HeadEditProfile extends StatelessWidget {
                   // alignment: Alignment.center,
                   child: TextButton(
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pop(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) =>  ProfilePage()),
                       );
                     },
                     child: Text(

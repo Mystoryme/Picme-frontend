@@ -25,12 +25,23 @@ class _PostCardOwnerState extends State<PostCardOwner> {
     // Image img2 = Image.asset(widget.post.application);
 
     Image applicationImage = Image.asset('assets/procreate.png');
+
     if (widget.post.application == "procreate") {
       applicationImage = Image.asset('assets/procreate.png');
     }
     if (widget.post.application == "photoshop") {
       applicationImage = Image.asset('assets/photoshop.png');
     }
+    if (widget.post.application == "ibis_paintX") {
+      applicationImage = Image.asset('assets/ibispaint.jpg');
+    }
+    if (widget.post.application == "clip_studio_paint") {
+      applicationImage = Image.asset('assets/clipstudio.pngg');
+    }
+    if (widget.post.application == "blender") {
+      applicationImage = Image.asset('assets/blender.png');
+    }
+    // if (widget.post.application != "other") {}
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),

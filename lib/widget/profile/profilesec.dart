@@ -13,6 +13,43 @@ class ProfileSection extends StatelessWidget {
 
   final Profile profile;
 
+  Future<void> _showLogoutDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Logout'),
+          content: const Text(
+            'Are you sure you want to log out?',
+            style: TextStyle(color: Colors.black),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Cancel',
+                  style: GoogleFonts.poppins(color: PicmeColors.grayBlack)),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('Logout',
+                  style: GoogleFonts.poppins(color: PicmeColors.mainColor)),
+              onPressed: () {
+                // Perform the logout action here.
+                // For example, you can navigate to the login page.
+                Navigator.of(context).pop(); // Close the dialog
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) =>
+                      LoginPage(), // Navigate to the login page
+                ));
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,13 +76,14 @@ class ProfileSection extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => EditProfilePage()),
-                  );
+                  _showLogoutDialog(context);
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => EditProfilePage()),
+                  // );
                 },
                 icon: const Icon(
-                  Icons.door_front_door_outlined,
+                  Icons.exit_to_app_rounded,
                   size: 33,
                   color: Colors.black,
                 ),
