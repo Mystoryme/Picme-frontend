@@ -101,6 +101,29 @@ class _PostCardState extends State<PostCard> {
                             ? PicmeColors.mainColor
                             : PicmeColors.mainColor,
                       );
+
+                    },
+                    onTap: (isBookmark) async {
+                      if (isBookmark == false) {
+                        Caller.dio
+                            .post("/post/bookmark", data: {
+                          "postid": widget.post.postId,
+                        })
+                            .then((response) {})
+                            .onError((DioException error, _) {
+                          Caller.handle(context, error);
+                        });
+                      } else {
+                        Caller.dio
+                            .delete("/post/unbookmark", data: {
+                          "postid": widget.post.postId,
+                        })
+                            .then((response) {})
+                            .onError((DioException error, _) {
+                          Caller.handle(context, error);
+                        });
+                      }
+                      return !isBookmark;
                     },
                   ),
                 ],
@@ -135,6 +158,29 @@ class _PostCardState extends State<PostCard> {
                             ? Color(0xFFF44336)
                             : PicmeColors.mainColor,
                       );
+                    },
+                    onTap: (isLiked) async {
+
+                      if (isLiked == false) {
+                        Caller.dio
+                            .post("/post/like", data: {
+                          "postid": widget.post.postId,
+                        })
+                            .then((response) {})
+                            .onError((DioException error, _) {
+                          Caller.handle(context, error);
+                        });
+                      } else {
+                        Caller.dio
+                            .delete("/post/unlike", data: {
+                          "postid": widget.post.postId,
+                        })
+                            .then((response) {})
+                            .onError((DioException error, _) {
+                          Caller.handle(context, error);
+                        });
+                      }
+                      return !isLiked;
                     },
                   ),
                   IconButton(

@@ -1,7 +1,11 @@
+import 'dart:developer';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:like_button/like_button.dart';
+import 'package:picme/classes/caller.dart';
 import 'package:picme/models/post.dart';
 import 'package:picme/models/posts.dart';
 import 'package:picme/pages/boost_post/boost_post_page.dart';
@@ -19,6 +23,8 @@ class PostCardOwner extends StatefulWidget {
 }
 
 class _PostCardOwnerState extends State<PostCardOwner> {
+
+
   @override
   Widget build(BuildContext context) {
     Image img = Image.network(widget.post.imageUrl);
@@ -83,6 +89,28 @@ class _PostCardOwnerState extends State<PostCardOwner> {
                                 : PicmeColors.mainColor,
                           );
                         },
+                        onTap: (isBookmark) async {
+                          if (isBookmark == false) {
+                            Caller.dio
+                                .post("/post/bookmark", data: {
+                              "postid": widget.post.postId,
+                            })
+                                .then((response) {})
+                                .onError((DioException error, _) {
+                              Caller.handle(context, error);
+                            });
+                          } else {
+                            Caller.dio
+                                .delete("/post/unbookmark", data: {
+                              "postid": widget.post.postId,
+                            })
+                                .then((response) {})
+                                .onError((DioException error, _) {
+                              Caller.handle(context, error);
+                            });
+                          }
+                          return !isBookmark;
+                        },
                       ),
                       PopupMenuButton(
                         padding: const EdgeInsets.only(right: 3),
@@ -140,6 +168,29 @@ class _PostCardOwnerState extends State<PostCardOwner> {
                             ? Color(0xFFF44336)
                             : PicmeColors.mainColor,
                       );
+                    },
+                    onTap: (isLiked) async {
+                      log(isLiked.toString());
+                      if (isLiked == false) {
+                        Caller.dio
+                            .post("/post/like", data: {
+                              "postid": widget.post.postId,
+                            })
+                            .then((response) {})
+                            .onError((DioException error, _) {
+                              Caller.handle(context, error);
+                            });
+                      } else {
+                        Caller.dio
+                            .delete("/post/unlike", data: {
+                              "postid": widget.post.postId,
+                            })
+                            .then((response) {})
+                            .onError((DioException error, _) {
+                              Caller.handle(context, error);
+                            });
+                      }
+                      return !isLiked;
                     },
                   ),
                   IconButton(

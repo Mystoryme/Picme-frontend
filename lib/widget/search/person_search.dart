@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:picme/pages/account_profile_page.dart';
 import 'package:picme/utils/colors.dart';
 
 class PersonSearch extends StatefulWidget {
@@ -73,8 +74,8 @@ class _PersonSearchState extends State<PersonSearch> {
                   ],
                 )
               else
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 20.0),
                   child: Text(
                     'There are no previously searched items.',
                     style: TextStyle(
@@ -93,21 +94,30 @@ class _PersonSearchState extends State<PersonSearch> {
 
   ListTile buildListTile(String username, VoidCallback onDelete) {
     return ListTile(
-      leading: CircleAvatar(
+      leading: const CircleAvatar(
         backgroundColor: Colors.transparent,
         backgroundImage: AssetImage('assets/profile.jpg'),
       ),
-      title: Text(
-        username,
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 14,
-          fontWeight: FontWeight.normal,
+      title: GestureDetector(
+        onTap: () {
+          // Navigate to the account_profile.dart screen when the text is tapped
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AccountProfilePage()),
+          );
+        },
+        child: Text(
+          username,
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 14,
+            fontWeight: FontWeight.normal,
+          ),
         ),
       ),
       trailing: IconButton(
         disabledColor: Colors.transparent,
-        icon: Icon(
+        icon: const Icon(
           Icons.clear,
           color: Color(0xFFA0A5D8),
         ),

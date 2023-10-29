@@ -29,6 +29,9 @@ class Post {
   @JsonKey(name: 'commentCount')
   final int commentCount;
 
+  // @JsonKey(name: 'category')
+  // final String category;
+
   Post({
     required this.postId,
     required this.ownerId,
@@ -38,6 +41,7 @@ class Post {
     required this.application,
     required this.likeCount,
     required this.commentCount,
+    // required this.category,
   });
 
   factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);

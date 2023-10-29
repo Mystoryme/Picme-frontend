@@ -15,6 +15,7 @@ class HomeTab extends StatefulWidget {
 
 class _HomeTabState extends State<HomeTab> {
   List<Post>? posts;
+  
 
   @override
   void initState() {
@@ -23,7 +24,11 @@ class _HomeTabState extends State<HomeTab> {
   }
 
   load() {
-    Caller.dio.get("/post/list").then((response) {
+    String uri = "/post/list";
+    if(category != ""){
+      uri += "?category=" + category;
+    }
+    Caller.dio.get(uri).then((response) {
       setState(() {
         posts = response.data["data"]["posts"]
             .map<Post>((e) => Post.fromJson(e))
@@ -32,6 +37,14 @@ class _HomeTabState extends State<HomeTab> {
     }).onError((DioException error, _) {
       Caller.handle(context, error);
     });
+  }
+
+  String category = "";
+  void setCategory (String c){
+    setState(() {
+      category = c;
+    });
+    load();
   }
 
   @override
@@ -46,7 +59,9 @@ class _HomeTabState extends State<HomeTab> {
 
     return Column(
       children: [
-        Home_navbar(),
+        Home_navbar(
+          setCategory : setCategory
+        ),
         Expanded(
           child: ListView(
             shrinkWrap: true,
