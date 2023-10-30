@@ -2,11 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:picme/classes/caller.dart';
+import 'package:picme/models/bookposts.dart';
 import 'package:picme/models/gridpost.dart';
 import 'package:picme/models/gridposts.dart';
 import 'package:picme/models/post.dart';
 import 'package:picme/models/posts.dart';
 import 'package:picme/utils/colors.dart';
+import 'package:picme/widget/postcard/postcard_bookmark.dart';
 import 'package:picme/widget/postcard/postcard_grid.dart';
 import 'package:picme/widget/postcard/postcard_owner.dart';
 import 'package:picme/widget/profile/sortby.dart';
@@ -24,6 +26,7 @@ class _ProfileBarState extends State<ProfileBar>
   // List<bool> tabSelected = [true, true, true];
   Posts? posts;
   GridPosts? gridPosts;
+  BookPosts? bookPosts;
 
   String sortby = "like";
 
@@ -46,6 +49,13 @@ class _ProfileBarState extends State<ProfileBar>
     Caller.dio.get("/profile/gridpost").then((response) {
       setState(() {
         gridPosts = GridPosts.fromJson(response.data["data"]);
+      });
+    }).onError((DioException error, _) {
+      Caller.handle(context, error);
+    });
+    Caller.dio.get("/profile/bookmarkpost").then((response) {
+      setState(() {
+        bookPosts = BookPosts.fromJson(response.data["data"]);
       });
     }).onError((DioException error, _) {
       Caller.handle(context, error);
@@ -149,7 +159,7 @@ class _ProfileBarState extends State<ProfileBar>
                 children: [SortBy(), PostCardGrid(posts: gridPosts!)],
               ),
               Column(
-                children: [SortBy()],
+                children: [SortBy(), PostCardBook(posts: bookPosts!)],
               )
             ],
           ),

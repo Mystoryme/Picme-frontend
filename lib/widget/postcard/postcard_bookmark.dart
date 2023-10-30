@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:picme/models/bookposts.dart';
 import 'package:picme/models/gridpost.dart';
 import 'package:picme/models/gridposts.dart';
 
-class PostCardGrid extends StatefulWidget {
-  const PostCardGrid({Key? key, required this.posts}) : super(key: key);
-  final GridPosts posts;
+class PostCardBook extends StatefulWidget {
+  const PostCardBook({Key? key, required this.posts}) : super(key: key);
+  final BookPosts posts;
 
   @override
-  State<PostCardGrid> createState() => _PostCardGridState();
+  State<PostCardBook> createState() => _PostCardBookState();
 }
 
-class _PostCardGridState extends State<PostCardGrid> {
-  GridPost? post;
+class _PostCardBookState extends State<PostCardBook> {
   @override
   Widget build(BuildContext context) {
     return Container(
