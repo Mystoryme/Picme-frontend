@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:picme/models/gridpost.dart';
 
 class PostCardGrid extends StatefulWidget {
-  const PostCardGrid({super.key});
+  const PostCardGrid({Key? key, required this.post, required this.postcount})
+      : super(key: key);
+  final GridPost post;
+  final int postcount;
 
   @override
   State<PostCardGrid> createState() => _PostCardGridState();
@@ -14,7 +18,7 @@ class _PostCardGridState extends State<PostCardGrid> {
       width: double.maxFinite,
       height: double.maxFinite,
       child: GridView.builder(
-          itemCount: 6,
+          itemCount: widget.postcount,
           gridDelegate:
               SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
           itemBuilder: (context, index) {
@@ -23,7 +27,7 @@ class _PostCardGridState extends State<PostCardGrid> {
               child: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/sunset.jpg'),
+                    image: NetworkImage(widget.post.imageUrl),
                     fit: BoxFit.contain,
                   ),
                 ),

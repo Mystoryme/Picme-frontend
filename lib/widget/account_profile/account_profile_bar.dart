@@ -138,11 +138,15 @@ class _AccountProfileBarState extends State<AccountProfileBar>
               Column(
                 children: [
                   SortBy(),
-                  PostCardGrid(),
+
+                  // PostCardGrid(),
                 ],
               ),
               Column(
-                children: [SortBy(), PostCardGrid()],
+                children: [
+                  SortBy(),
+                  // PostCardGrid()
+                ],
               )
             ],
           ),

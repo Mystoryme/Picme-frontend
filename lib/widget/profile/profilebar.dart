@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:picme/classes/caller.dart';
+import 'package:picme/models/gridpost.dart';
+import 'package:picme/models/gridposts.dart';
 import 'package:picme/models/post.dart';
 import 'package:picme/models/posts.dart';
 import 'package:picme/utils/colors.dart';
@@ -21,6 +23,7 @@ class _ProfileBarState extends State<ProfileBar>
   late TabController _tabController;
   // List<bool> tabSelected = [true, true, true];
   Posts? posts;
+  GridPosts? gridPosts;
 
   String sortby = "like";
 
@@ -36,6 +39,13 @@ class _ProfileBarState extends State<ProfileBar>
     Caller.dio.get("/profile/post").then((response) {
       setState(() {
         posts = Posts.fromJson(response.data["data"]);
+      });
+    }).onError((DioException error, _) {
+      Caller.handle(context, error);
+    });
+    Caller.dio.get("/profile/gridpost").then((response) {
+      setState(() {
+        gridPosts = GridPosts.fromJson(response.data["data"]);
       });
     }).onError((DioException error, _) {
       Caller.handle(context, error);
@@ -138,11 +148,18 @@ class _ProfileBarState extends State<ProfileBar>
               Column(
                 children: [
                   SortBy(),
-                  PostCardGrid(),
+                  Column(
+                    children: gridPosts!.posts
+                        .map((e) => PostCardGrid(
+                              post: e,
+                              postcount: gridPosts!.posts.length,
+                            ))
+                        .toList(),
+                  )
                 ],
               ),
               Column(
-                children: [SortBy(), PostCardGrid()],
+                children: [SortBy()],
               )
             ],
           ),
