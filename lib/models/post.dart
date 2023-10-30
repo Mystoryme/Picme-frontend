@@ -29,20 +29,27 @@ class Post {
   @JsonKey(name: 'commentCount')
   final int commentCount;
 
+  @JsonKey(name: 'isLiked')
+  final bool isLiked;
+
+  @JsonKey(name: 'isBooked')
+  final bool isBooked;
   // @JsonKey(name: 'category')
   // final String category;
 
-  Post({
-    required this.postId,
-    required this.ownerId,
-    required this.ownerUsername,
-    required this.caption,
-    required this.imageUrl,
-    required this.application,
-    required this.likeCount,
-    required this.commentCount,
-    // required this.category,
-  });
+  Post(
+      {required this.postId,
+      required this.ownerId,
+      required this.ownerUsername,
+      required this.caption,
+      required this.imageUrl,
+      required this.application,
+      required this.likeCount,
+      required this.commentCount,
+      required this.isLiked,
+      required this.isBooked
+      // required this.category,
+      });
 
   factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);
 

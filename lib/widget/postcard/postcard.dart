@@ -94,34 +94,33 @@ class _PostCardState extends State<PostCard> {
                         end: Color.fromARGB(255, 106, 115, 215)),
                     likeBuilder: (isTapped) {
                       return Icon(
-                        isTapped
+                        widget.post.isBooked
                             ? CupertinoIcons.bookmark_fill
                             : CupertinoIcons.bookmark,
-                        color: isTapped
+                        color: widget.post.isBooked
                             ? PicmeColors.mainColor
                             : PicmeColors.mainColor,
                       );
-
                     },
                     onTap: (isBookmark) async {
                       if (isBookmark == false) {
                         Caller.dio
                             .post("/post/bookmark", data: {
-                          "postid": widget.post.postId,
-                        })
+                              "postid": widget.post.postId,
+                            })
                             .then((response) {})
                             .onError((DioException error, _) {
-                          Caller.handle(context, error);
-                        });
+                              Caller.handle(context, error);
+                            });
                       } else {
                         Caller.dio
                             .delete("/post/unbookmark", data: {
-                          "postid": widget.post.postId,
-                        })
+                              "postid": widget.post.postId,
+                            })
                             .then((response) {})
                             .onError((DioException error, _) {
-                          Caller.handle(context, error);
-                        });
+                              Caller.handle(context, error);
+                            });
                       }
                       return !isBookmark;
                     },
@@ -151,34 +150,33 @@ class _PostCardState extends State<PostCard> {
                     likeCount: widget.post.likeCount,
                     likeBuilder: (isTapped) {
                       return Icon(
-                        isTapped
+                        widget.post.isLiked
                             ? CupertinoIcons.heart_fill
                             : CupertinoIcons.heart,
-                        color: isTapped
+                        color: widget.post.isLiked
                             ? Color(0xFFF44336)
                             : PicmeColors.mainColor,
                       );
                     },
                     onTap: (isLiked) async {
-
                       if (isLiked == false) {
                         Caller.dio
                             .post("/post/like", data: {
-                          "postid": widget.post.postId,
-                        })
+                              "postid": widget.post.postId,
+                            })
                             .then((response) {})
                             .onError((DioException error, _) {
-                          Caller.handle(context, error);
-                        });
+                              Caller.handle(context, error);
+                            });
                       } else {
                         Caller.dio
                             .delete("/post/unlike", data: {
-                          "postid": widget.post.postId,
-                        })
+                              "postid": widget.post.postId,
+                            })
                             .then((response) {})
                             .onError((DioException error, _) {
-                          Caller.handle(context, error);
-                        });
+                              Caller.handle(context, error);
+                            });
                       }
                       return !isLiked;
                     },

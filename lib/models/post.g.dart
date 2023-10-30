@@ -15,6 +15,8 @@ Post _$PostFromJson(Map<String, dynamic> json) => Post(
       application: json['application'] as String,
       likeCount: json['likeCount'] as int,
       commentCount: json['commentCount'] as int,
+      isLiked: json['isLiked'] as bool,
+      isBooked: json['isBooked'] as bool,
     );
 
 Map<String, dynamic> _$PostToJson(Post instance) => <String, dynamic>{
@@ -26,4 +28,6 @@ Map<String, dynamic> _$PostToJson(Post instance) => <String, dynamic>{
       'application': instance.application,
       'likeCount': instance.likeCount,
       'commentCount': instance.commentCount,
+      'isLiked': instance.isLiked,
+      'isBooked': instance.isBooked,
     };
