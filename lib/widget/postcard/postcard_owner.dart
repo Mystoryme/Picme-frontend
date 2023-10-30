@@ -74,15 +74,16 @@ class _PostCardOwnerState extends State<PostCardOwner> {
                       LikeButton(
                         size: 24,
                         bubblesSize: 0,
+                        isLiked: widget.post.isBooked,
                         circleColor: const CircleColor(
                             start: Color.fromARGB(255, 178, 184, 255),
                             end: Color.fromARGB(255, 106, 115, 215)),
-                        likeBuilder: (isTapped) {
+                        likeBuilder: (isLiked) {
                           return Icon(
-                            widget.post.isBooked
+                            isLiked
                                 ? CupertinoIcons.bookmark_fill
                                 : CupertinoIcons.bookmark,
-                            color: widget.post.isBooked
+                            color: isLiked
                                 ? PicmeColors.mainColor
                                 : PicmeColors.mainColor,
                           );
@@ -157,14 +158,14 @@ class _PostCardOwnerState extends State<PostCardOwner> {
                     padding: EdgeInsets.only(left: 24),
                     size: 24,
                     likeCount: widget.post.likeCount,
-                    likeBuilder: (isTapped) {
+                    isLiked: widget.post.isLiked,
+                    likeBuilder: (isLiked) {
                       return Icon(
-                        widget.post.isLiked
+                        isLiked
                             ? CupertinoIcons.heart_fill
                             : CupertinoIcons.heart,
-                        color: widget.post.isLiked
-                            ? Color(0xFFF44336)
-                            : PicmeColors.mainColor,
+                        color:
+                            isLiked ? Color(0xFFF44336) : PicmeColors.mainColor,
                       );
                     },
                     onTap: (isLiked) async {
