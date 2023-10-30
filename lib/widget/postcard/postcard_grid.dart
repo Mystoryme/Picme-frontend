@@ -19,20 +19,17 @@ class _PostCardGridState extends State<PostCardGrid> {
       height: double.maxFinite,
       child: GridView.builder(
           itemCount: widget.postcount,
-          gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2, mainAxisSpacing: 1.5, crossAxisSpacing: 1.5),
           itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.all(1.5),
-              child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(widget.post.imageUrl),
-                    fit: BoxFit.contain,
-                  ),
+            return Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(widget.post.imageUrl),
+                  fit: BoxFit.contain,
                 ),
-                height: 194.5,
               ),
+              height: 194.5,
             );
           }),
     );
