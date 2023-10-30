@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:picme/classes/caller.dart';
 import 'package:picme/models/profile.dart';
+import 'package:picme/pages/profile_page.dart';
 import 'package:picme/widget/editprofile/edit_profile.dart';
 import 'package:picme/widget/editprofile/head_edit_profile.dart';
 import 'package:picme/widget/editprofile/textform_edit_profile.dart';
@@ -26,7 +27,26 @@ class _EditProfilePageState extends State<EditProfilePage> {
       "username": _username.text, // * Change "email" to "username
       "bio": _bio.text,
       "contact": _contact.text,
-    }).onError((DioException error, _) => Caller.handle(context, error));
+    }).then((response) async {
+      // * Parse response
+      // final data = Register.fromJson(response.data["data"]);
+
+      // // // * Load shared preferences
+      // final prefs = await SharedPreferences
+      //     .getInstance(); //shared_preferences same as cookies
+      // prefs.setString('data', data.toString());
+
+      //* Set caller token value
+      // Caller.setToken(data.toString());
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const ProfilePage()),
+      );
+    }).onError((DioException error, _) {
+      // * Apply default error handling
+      Caller.handle(context, error);
+    });
   }
 
   @override
@@ -60,7 +80,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         padding: const EdgeInsets.all(15.0),
         child: Column(
           children: [
-            const HeadEditProfile(),
+            HeadEditProfile(callEdit: callEdit),
             EditProfile(),
             TextFormEditProfile(
               username: _username,

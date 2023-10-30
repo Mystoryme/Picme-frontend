@@ -4,7 +4,8 @@ import 'package:picme/pages/profile_page.dart';
 import 'package:picme/utils/colors.dart';
 
 class HeadEditProfile extends StatelessWidget {
-  const HeadEditProfile({super.key});
+  final Function callEdit;
+  const HeadEditProfile({required this.callEdit, Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -85,9 +86,7 @@ class HeadEditProfile extends StatelessWidget {
                   // alignment: Alignment.center,
                   child: TextButton(
                     onPressed: () {
-                      Navigator.pop(
-                        context,
-                      );
+                      callEdit();
                     },
                     child: Text(
                       'Save',
