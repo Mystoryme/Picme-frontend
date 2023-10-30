@@ -97,9 +97,10 @@ class ProfileSection extends StatelessWidget {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const CircleAvatar(
+                    CircleAvatar(
                       radius: 60.0,
-                      backgroundImage: AssetImage("assets/profile.jpg"),
+                      backgroundImage: NetworkImage(profile.avatarUrl ??
+                          "https://cdn.crispedge.com/5d76cb.png"),
                     ),
                     TextButton(
                       onPressed: () {
