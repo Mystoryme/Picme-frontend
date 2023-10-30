@@ -146,17 +146,7 @@ class _ProfileBarState extends State<ProfileBar>
                 ],
               ),
               Column(
-                children: [
-                  SortBy(),
-                  Column(
-                    children: gridPosts!.posts
-                        .map((e) => PostCardGrid(
-                              post: e,
-                              postcount: gridPosts!.posts.length,
-                            ))
-                        .toList(),
-                  )
-                ],
+                children: [SortBy(), PostCardGrid(posts: gridPosts!)],
               ),
               Column(
                 children: [SortBy()],
