@@ -7,6 +7,7 @@ import 'package:picme/classes/caller.dart';
 import 'package:picme/models/post.dart';
 import 'package:picme/models/posts.dart';
 import 'package:picme/models/homepost.dart';
+import 'package:picme/pages/comment/comment_page.dart';
 import 'package:picme/pages/home_page.dart';
 import 'package:picme/pages/support/support_page.dart';
 import 'package:picme/utils/colors.dart';
@@ -186,7 +187,7 @@ class _PostCardState extends State<PostCard> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const Homepage()),
+                            builder: (context) => const CommentPage()),
                       );
                     },
                     icon: const Icon(CupertinoIcons.bubble_middle_bottom),

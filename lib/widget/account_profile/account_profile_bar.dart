@@ -107,13 +107,13 @@ class _AccountProfileBarState extends State<AccountProfileBar>
                 color: PicmeColors.mainColor,
                 size: 33,
               ),
-              Icon(
-                _tabController.index == 2
-                    ? CupertinoIcons.bookmark_fill
-                    : CupertinoIcons.bookmark,
-                color: PicmeColors.mainColor,
-                size: 33,
-              )
+              // Icon(
+              //   _tabController.index == 2
+              //       ? CupertinoIcons.bookmark_fill
+              //       : CupertinoIcons.bookmark,
+              //   color: PicmeColors.mainColor,
+              //   size: 33,
+              // )
             ],
           ),
         ),
@@ -138,10 +138,18 @@ class _AccountProfileBarState extends State<AccountProfileBar>
               Column(
                 children: [
                   SortBy(),
+                  // Column(
+                  //   children:posts!.posts
+                  //     .map((g) => PostCardGrid(post: g, postcount: postcount,
+                  //   ))
+                  //   .toList()
+                  //
+                  // ),
 
                   // PostCardGrid(),
                 ],
               ),
+
               Column(
                 children: [
                   SortBy(),
