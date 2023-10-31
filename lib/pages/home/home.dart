@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:picme/classes/caller.dart';
 import 'package:picme/models/post.dart';
+import 'package:picme/models/posts.dart';
 import 'package:picme/widget/home/home_dropdown.dart';
 import 'package:picme/widget/postcard/postcard.dart';
 
@@ -14,7 +15,7 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
-  List<Post>? posts;
+  Posts? posts;
 
   @override
   void initState() {
@@ -29,9 +30,7 @@ class _HomeTabState extends State<HomeTab> {
     }
     Caller.dio.get(uri).then((response) {
       setState(() {
-        posts = response.data["data"]["posts"]
-            .map<Post>((e) => Post.fromJson(e))
-            .toList();
+        posts = Posts.fromJson(response.data["data"]);
       });
     }).onError((DioException error, _) {
       Caller.handle(context, error);
@@ -62,7 +61,7 @@ class _HomeTabState extends State<HomeTab> {
         Expanded(
           child: ListView(
             shrinkWrap: true,
-            children: posts!
+            children: posts!.posts
                 .map((el) => PostCard(
                       post: el,
                     ))
