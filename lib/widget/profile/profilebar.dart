@@ -28,38 +28,53 @@ class _ProfileBarState extends State<ProfileBar>
   GridPosts? gridPosts;
   BookPosts? bookPosts;
 
-  String sortby = "like";
-
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
     _tabController.addListener(_handleTabSelection);
-    init();
+
+    load();
   }
 
-  init() {
-    Caller.dio.get("/profile/post").then((response) {
+  load() {
+    String uri = "/profile/post";
+    String uri1 = "/profile/gridpost";
+    String uri2 = "/profile/bookmarkpost";
+    if (sortby != "") {
+      uri += "?sortBy=" + sortby;
+      uri1 += "?sortBy=" + sortby;
+      uri2 += "?sortBy=" + sortby;
+    }
+    Caller.dio.get(uri).then((response) {
       setState(() {
         posts = Posts.fromJson(response.data["data"]);
       });
     }).onError((DioException error, _) {
       Caller.handle(context, error);
     });
-    Caller.dio.get("/profile/gridpost").then((response) {
+    Caller.dio.get(uri1).then((response) {
       setState(() {
         gridPosts = GridPosts.fromJson(response.data["data"]);
       });
     }).onError((DioException error, _) {
       Caller.handle(context, error);
     });
-    Caller.dio.get("/profile/bookmarkpost").then((response) {
+    Caller.dio.get(uri2).then((response) {
       setState(() {
         bookPosts = BookPosts.fromJson(response.data["data"]);
       });
     }).onError((DioException error, _) {
       Caller.handle(context, error);
     });
+  }
+
+  String sortby = "";
+  void setSortby(String c) {
+    setState(() {
+      sortby = c;
+    });
+    load();
   }
 
   void _handleTabSelection() {
@@ -145,7 +160,7 @@ class _ProfileBarState extends State<ProfileBar>
             children: [
               Column(
                 children: [
-                  SortBy(),
+                  SortBy(setSortby: setSortby),
                   Column(
                     children: posts!.posts
                         .map((e) => PostCardOwner(
@@ -156,10 +171,16 @@ class _ProfileBarState extends State<ProfileBar>
                 ],
               ),
               Column(
-                children: [SortBy(), PostCardGrid(posts: gridPosts!)],
+                children: [
+                  SortBy(setSortby: setSortby),
+                  PostCardGrid(posts: gridPosts!)
+                ],
               ),
               Column(
-                children: [SortBy(), PostCardBook(posts: bookPosts!)],
+                children: [
+                  SortBy(setSortby: setSortby),
+                  PostCardBook(posts: bookPosts!)
+                ],
               )
             ],
           ),

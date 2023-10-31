@@ -4,7 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/utils/colors.dart';
 
 class SortBy extends StatefulWidget {
-  const SortBy({super.key});
+  const SortBy({super.key, required this.setSortby});
+  final Function setSortby;
 
   @override
   State<SortBy> createState() => _SortByState();
@@ -41,8 +42,12 @@ class _SortByState extends State<SortBy> {
             ),
           ),
           itemBuilder: (ctx) => [
-            _buildPopupMenuItem('Date', Icons.calendar_today),
-            _buildPopupMenuItem('Liked', CupertinoIcons.heart),
+            _buildPopupMenuItem('Date', Icons.calendar_today, () {
+              widget.setSortby("date");
+            }),
+            _buildPopupMenuItem('Liked', CupertinoIcons.heart, () {
+              widget.setSortby("like");
+            }),
           ],
         ),
       ]),
@@ -50,8 +55,10 @@ class _SortByState extends State<SortBy> {
   }
 }
 
-PopupMenuItem _buildPopupMenuItem(String title, IconData iconData) {
+PopupMenuItem _buildPopupMenuItem(
+    String title, IconData iconData, VoidCallback onTap2) {
   return PopupMenuItem(
+    onTap: onTap2,
     height: 33,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
