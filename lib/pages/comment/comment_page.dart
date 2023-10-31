@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:picme/classes/caller.dart';
 import 'package:picme/models/comments.dart';
 import 'package:picme/models/profile.dart';

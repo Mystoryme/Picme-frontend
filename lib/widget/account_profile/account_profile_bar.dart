@@ -132,6 +132,7 @@ class _AccountProfileBarState extends State<AccountProfileBar>
               Column(
                 children: [
                   // SortBy(),
+                  // SortBy(),
                   Column(
                     children: posts!.posts
                         .map((e) => PostCardOwner(

@@ -56,9 +56,7 @@ class MyApp extends StatelessWidget {
         '/search_page': (context) => const SearchPage(),
         '/notification_page': (context) => const NotificationPage(),
         '/account_profile_page': (context) => const AccountProfilePage(),
-        '/comment_page': (context) => const CommentPage(
-              postId: 1,
-            ),
+        // '/comment_page': (context) => const CommentPage(),
       },
     );
   }

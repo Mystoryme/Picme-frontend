@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/utils/colors.dart';
+import 'package:dio/dio.dart';
+
 
 class CaptionForm extends StatefulWidget {
   const CaptionForm({Key? key, required this.caption}) : super(key: key);
@@ -17,6 +19,33 @@ class _CaptionFormState extends State<CaptionForm> {
     // Call setState to update the UI
     setState(() {});
   }
+
+  // Future<void> uploadImageAndCaption(File imageFile, String caption) async {
+  //   try {
+  //     final dio = Dio();
+  //     final formData = FormData.fromMap({
+  //       'image': await MultipartFile.fromFile(imageFile.path),
+  //       'caption': caption,
+  //     });
+  //
+  //     final response = await dio.post('YOUR_UPLOAD_API_URL',
+  //         data: formData,
+  //         options: Options(headers: {
+  //           'Authorization': 'Bearer YOUR_ACCESS_TOKEN',
+  //         }));
+  //
+  //     if (response.statusCode == 200) {
+  //       // Image and caption uploaded successfully
+  //       // You can handle the response, display a success message, etc.
+  //     } else {
+  //       // Handle error, show a message, etc.
+  //     }
+  //   } catch (e) {
+  //     // Handle exceptions, show an error message, etc.
+  //   }
+  // }
+
+
 
   @override
   Widget build(BuildContext context) {

@@ -46,6 +46,27 @@ class _PostCardOwnerState extends State<PostCardOwner> {
       applicationImage = Image.asset('assets/blender.png');
     }
     // if (widget.post.application != "other") {}
+    //
+
+    // Future<void> deletePost(String postId) async {
+    //   try {
+    //     final response = await Caller.dio.delete("/post/delete", data: {
+    //       "postid": widget.post.postId,
+    //     });
+    //
+    //     if (response.statusCode == 200) {
+    //       // Post deleted successfully
+    //       // You can handle the response, show a success message, etc.
+    //     } else {
+    //       // Handle error, show a message, etc.
+    //   .onError((DioException error, _) {
+    //   Caller.handle(context, error);
+    //   });
+    //     }
+    //   } catch (e) {
+    //     // Handle exceptions, show an error message, etc.
+    //   }
+    // }
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
@@ -293,3 +314,47 @@ PopupMenuItem _buildPopupMenuItem(
     ),
   );
 }
+
+// PopupMenuItem _buildPopupMenuItem(String title) {
+//   if (title == "Delete") {
+//     return PopupMenuItem(
+//       height: 20,
+//       child: Row(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           Text(
+//             title,
+//             style: GoogleFonts.poppins(
+//               fontSize: 12,
+//               fontWeight: FontWeight.normal,
+//               color: Colors.white,
+//             ),
+//           ),
+//         ],
+//       ),
+//       onTap: () {delete(o, property)};
+      //   // Call the `init` method, which triggers the delete operation
+      //   init();
+      //   // Close the menu
+      //   Navigator.pop(context);
+      // },
+//     );
+//   } else {
+//     return PopupMenuItem(
+//       height: 20,
+//       child: Row(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           Text(
+//             title,
+//             style: GoogleFonts.poppins(
+//               fontSize: 12,
+//               fontWeight: FontWeight.normal,
+//               color: Colors.white,
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }

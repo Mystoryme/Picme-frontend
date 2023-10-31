@@ -5,6 +5,7 @@ import 'package:picme/models/profile.dart';
 import 'package:picme/pages/account_insights_page.dart';
 import 'package:picme/pages/edit_profile_page.dart';
 import 'package:picme/pages/login_page.dart';
+import 'package:picme/pages/support/support_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:picme/utils/colors.dart';
@@ -130,7 +131,7 @@ class AccountSection extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    const AccountInsightsPage()),
+                                    const SupportPage()),
                           );
                         },
                         child: Container(
