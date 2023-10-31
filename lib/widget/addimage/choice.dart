@@ -1,10 +1,15 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/utils/colors.dart';
 
 class Choice extends StatefulWidget {
-  const Choice({super.key});
+  const Choice(
+      {Key? key, required this.updateCategory, required this.updateApplication})
+      : super(key: key);
 
+  final Function(String) updateCategory;
+  final Function(String) updateApplication;
   @override
   State<Choice> createState() => _ChoiceState();
 }
@@ -29,6 +34,7 @@ List<String> options2 = [
 class _ChoiceState extends State<Choice> {
   String currentOption = options[0];
   String currentOption2 = options2[0];
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -62,6 +68,7 @@ class _ChoiceState extends State<Choice> {
               onChanged: (value) {
                 setState(() {
                   currentOption = value.toString();
+                  widget.updateCategory(currentOption);
                 });
               },
             ),
@@ -104,6 +111,7 @@ class _ChoiceState extends State<Choice> {
               onChanged: (value) {
                 setState(() {
                   currentOption = value.toString();
+                  widget.updateCategory(currentOption);
                 });
               },
             ),
@@ -125,6 +133,7 @@ class _ChoiceState extends State<Choice> {
               onChanged: (value) {
                 setState(() {
                   currentOption = value.toString();
+                  widget.updateCategory(currentOption);
                 });
               },
             ),
@@ -146,6 +155,7 @@ class _ChoiceState extends State<Choice> {
               onChanged: (value) {
                 setState(() {
                   currentOption = value.toString();
+                  widget.updateCategory(currentOption);
                 });
               },
             ),
@@ -179,6 +189,7 @@ class _ChoiceState extends State<Choice> {
               onChanged: (value) {
                 setState(() {
                   currentOption2 = value.toString();
+                  widget.updateApplication(currentOption2);
                 });
               },
             ),
@@ -200,6 +211,7 @@ class _ChoiceState extends State<Choice> {
               onChanged: (value) {
                 setState(() {
                   currentOption2 = value.toString();
+                  widget.updateApplication(currentOption2);
                 });
               },
             ),
@@ -221,6 +233,7 @@ class _ChoiceState extends State<Choice> {
               onChanged: (value) {
                 setState(() {
                   currentOption2 = value.toString();
+                  widget.updateApplication(currentOption2);
                 });
               },
             ),
@@ -242,6 +255,7 @@ class _ChoiceState extends State<Choice> {
               onChanged: (value) {
                 setState(() {
                   currentOption2 = value.toString();
+                  widget.updateApplication(currentOption2);
                 });
               },
             ),
@@ -263,6 +277,7 @@ class _ChoiceState extends State<Choice> {
               onChanged: (value) {
                 setState(() {
                   currentOption2 = value.toString();
+                  widget.updateApplication(currentOption2);
                 });
               },
             ),
@@ -284,6 +299,7 @@ class _ChoiceState extends State<Choice> {
               onChanged: (value) {
                 setState(() {
                   currentOption2 = value.toString();
+                  widget.updateApplication(currentOption2);
                 });
               },
             ),

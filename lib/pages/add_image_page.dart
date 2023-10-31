@@ -22,12 +22,14 @@ class AddImagePage extends StatefulWidget {
 class _AddImagePageState extends State<AddImagePage> {
   final TextEditingController _caption = TextEditingController();
   XFile? _pickedImage;
+  String category = 'Painting';
+  String application = 'Procreate';
 
   void submit() {
     // Post multipart form using Dio and senf _pickedImage in key of file
     FormData formData = FormData.fromMap({
-      "category": "digital",
-      "application": "photoshop",
+      "category": category,
+      "application": application,
       "caption": _caption.text,
       "file": MultipartFile.fromFileSync(_pickedImage!.path,
           filename: _pickedImage!.path.split("/").last)
@@ -111,7 +113,18 @@ class _AddImagePageState extends State<AddImagePage> {
           CaptionForm(
             caption: _caption,
           ),
-          const Choice()
+          Choice(
+            updateCategory: (value) {
+              setState(() {
+                category = value;
+              });
+            },
+            updateApplication: (value) {
+              setState(() {
+                application = value;
+              });
+            },
+          ),
         ]),
       ),
     )));
