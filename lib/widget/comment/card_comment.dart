@@ -1,9 +1,13 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:picme/models/comment.dart';
 import 'package:picme/utils/colors.dart';
 
 class CardComment extends StatelessWidget {
-  const CardComment({Key? key});
+  const CardComment({Key? key, required this.comment}) : super(key: key);
+  final CommentPost comment;
 
   @override
   Widget build(BuildContext context) {
@@ -13,41 +17,12 @@ class CardComment extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           buildNotificationRow(
-            'ra_rabitty',
-            'This image is so cute! I love it!',
-            'assets/ra_rabitty.jpeg',
+            comment.username,
+            comment.message,
+            comment.avatarUrl,
           ),
           const SizedBox(
             height: 20,
-          ),
-          buildNotificationRow(
-            'yuri_iii',
-            'how long did it take you to make this?',
-            'assets/yuri_iii.jpeg',
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          buildNotificationRow(
-            'arisu.t',
-            'It looks so good!',
-            'assets/arisu.t.jpeg',
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          buildNotificationRow(
-            'esterbunny',
-            'It not bad, but it could be better.',
-            'assets/esterbunny.jpeg',
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          buildNotificationRow(
-            'pudding',
-            'what program did you use to make this?',
-            'assets/pudding.jpeg',
           ),
         ],
       ),
