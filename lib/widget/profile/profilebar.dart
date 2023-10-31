@@ -68,7 +68,7 @@ class _ProfileBarState extends State<ProfileBar>
 
   @override
   Widget build(BuildContext context) {
-    if (posts == null) {
+    if (posts == null || gridPosts == null || bookPosts == null) {
       return Container(
         padding: EdgeInsets.only(top: 10),
         child: TabBar(

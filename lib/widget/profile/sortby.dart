@@ -27,12 +27,12 @@ class _SortByState extends State<SortBy> {
         PopupMenuButton(
           elevation: 1,
           tooltip: "",
-          icon: Icon(
+          icon: const Icon(
             Icons.keyboard_arrow_down_rounded,
             color: Colors.black,
           ),
           offset: Offset(-15, 40),
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(10.0),
               bottomRight: Radius.circular(10.0),

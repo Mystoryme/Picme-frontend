@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../pages/account_profile_page.dart';
+
 class GridPhoto extends StatelessWidget {
   final List<Image> myImagesAdapted = [
     Image(
@@ -59,14 +61,23 @@ class GridPhoto extends StatelessWidget {
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio:
-              1.0, // You can adjust this value to change aspect ratio
+          1.0, // You can adjust this value to change aspect ratio
         ),
-        itemCount: myImagesAdapted.length,
         itemBuilder: (context, index) {
-          return myImagesAdapted[index];
+          return GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) =>
+                      AccountProfilePage(), // Replace with your page
+                ),
+              );
+            },
+            child: myImagesAdapted[index],
+          );
         },
       ),
     );
   }
-}
 
+}

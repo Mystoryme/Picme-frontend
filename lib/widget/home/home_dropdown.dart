@@ -86,23 +86,23 @@ class _Home_dropdownState extends State<Home_navbar> {
         ),
         Row(
           children: [
-            Padding(
-              padding: EdgeInsets.only(right: 5.0),
-              child: IconButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const CheckImagePage()),
-                  );
-                },
-                icon: const Icon(
-                  CupertinoIcons.checkmark_alt_circle,
-                  size: 33,
-                  color: Colors.black,
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: EdgeInsets.only(right: 5.0),
+            //   child: IconButton(
+            //     onPressed: () {
+            //       Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //             builder: (context) => const CheckImagePage()),
+            //       );
+            //     },
+            //     icon: const Icon(
+            //       CupertinoIcons.checkmark_alt_circle,
+            //       size: 33,
+            //       color: Colors.black,
+            //     ),
+            //   ),
+            // ),
             Padding(
               padding: EdgeInsets.only(right: 34.0),
               child: IconButton(
