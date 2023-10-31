@@ -72,26 +72,37 @@ class _CommentPageState extends State<CommentPage> {
         child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                children: [
-                  SingleChildScrollView(
-                    child: Container(
-                      child: Column(
-                        children: [
-                          Column(
-                            children: comments!.posts
-                                .map((e) => CardComment(
-                                      comment: e,
-                                    ))
-                                .toList(),
-                          )
-                        ],
-                        mainAxisAlignment: MainAxisAlignment.start,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              Expanded(
+                child: ListView(
+                  shrinkWrap: true,
+                  children: comments!.posts
+                      .map((el) => CardComment(
+                            comment: el,
+                          ))
+                      .toList(),
+                ),
+              )
+              // Column(
+              //   children: [
+              //     SingleChildScrollView(
+              //       child: Container(
+              //         child: Column(
+              //           children: [
+              //             Column(
+              //               children: comments!.posts
+              //                   .map((e) => CardComment(
+              //                         comment: e,
+              //                       ))
+              //                   .toList(),
+              //             )
+              //           ],
+              //           mainAxisAlignment: MainAxisAlignment.start,
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              ,
               TextComment(
                   search: _search,
                   textFocusNode: _textFocusNode,
