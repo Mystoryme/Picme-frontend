@@ -49,10 +49,10 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
         body: SafeArea(
             child: SingleChildScrollView(
-      child: Container(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [ProfileSection(profile: profile!), ProfileBar()]),
+              child: Container(
+               child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [ProfileSection(profile: profile!), ProfileBar()]),
       ),
     )));
   }

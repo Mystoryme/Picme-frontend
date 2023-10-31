@@ -10,7 +10,7 @@ import 'package:picme/widget/profile/profilesec.dart';
 class AccountProfilePage extends StatefulWidget {
   const AccountProfilePage({super.key});
 
-  static const routeName = "/profile_page";
+  static const routeName = "/account_profile_page";
 
   @override
   State<AccountProfilePage> createState() => _AccountProfilePageState();

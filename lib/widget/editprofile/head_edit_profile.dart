@@ -33,10 +33,10 @@ class HeadEditProfile extends StatelessWidget {
                         ),
                         actions: <Widget>[
                           TextButton(
-                            onPressed: () => Navigator.push(
+                            onPressed: () => Navigator.pop(
                               context,
-                              MaterialPageRoute(
-                                  builder: (context) => const ProfilePage()),
+                              // MaterialPageRoute(
+                              //     builder: (context) => const ProfilePage()),
                             ),
                             child: Text(
                               'Cancel',
@@ -45,9 +45,16 @@ class HeadEditProfile extends StatelessWidget {
                             ),
                           ),
                           TextButton(
-                            onPressed: () => Navigator.pop(context, 'OK'),
+                            onPressed: () {
+                              Navigator.of(context).pop(); // Close the AlertDialog
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (context) => const ProfilePage(),
+                                ),
+                              );
+                            },
                             child: Text(
-                              'OK',
+                              'Yes',
                               style: GoogleFonts.poppins(
                                   color: PicmeColors.mainColor),
                             ),
