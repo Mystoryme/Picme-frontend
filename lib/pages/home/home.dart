@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:picme/classes/caller.dart';
+import 'package:picme/models/homepost.dart';
 import 'package:picme/models/post.dart';
 import 'package:picme/models/posts.dart';
 import 'package:picme/widget/home/home_dropdown.dart';
@@ -15,7 +16,7 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
-  Posts? posts;
+  HomePost? posts;
 
   @override
   void initState() {
@@ -30,7 +31,7 @@ class _HomeTabState extends State<HomeTab> {
     }
     Caller.dio.get(uri).then((response) {
       setState(() {
-        posts = Posts.fromJson(response.data["data"]);
+        posts = HomePost.fromJson(response.data["data"]);
       });
     }).onError((DioException error, _) {
       Caller.handle(context, error);
