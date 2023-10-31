@@ -1,9 +1,9 @@
-import 'package:hexcolor/hexcolor.dart';
+import 'package:flutter/material.dart';
 
 class PicmeColors {
-  static HexColor mainColor = HexColor('#414BB2');
-  static HexColor grayBlack = HexColor('#808080');
-  static HexColor grayWhite = HexColor('#D9D9D9');
-  static HexColor red = HexColor('#D21919');
-  static HexColor purpleWhite = HexColor('#A0A5D8');
+  static Color mainColor = const Color(0xFF414BB2);
+  static Color grayBlack = const Color(0xFF808080);
+  static Color grayWhite = const Color(0xffD9D9D9);
+  static Color red = const Color(0xffD21919);
+  static Color purpleWhite = const Color(0xFFA0A5D8);
 }

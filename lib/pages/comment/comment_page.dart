@@ -60,10 +60,14 @@ class _CommentPageState extends State<CommentPage> {
   @override
   Widget build(BuildContext context) {
     if (comments == null) {
-      return const Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [CircularProgressIndicator()],
+      return Scaffold(
+        body: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [CircularProgressIndicator()],
+          ),
+        ),
       );
     }
     return Scaffold(

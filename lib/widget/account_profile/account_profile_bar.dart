@@ -131,7 +131,7 @@ class _AccountProfileBarState extends State<AccountProfileBar>
             children: [
               Column(
                 children: [
-                  SortBy(),
+                  // SortBy(),
                   Column(
                     children: posts!.posts
                         .map((e) => PostCardOwner(
@@ -142,7 +142,10 @@ class _AccountProfileBarState extends State<AccountProfileBar>
                 ],
               ),
               Column(
-                children: [SortBy(), PostCardGrid(posts: gridPosts!)],
+                children: [
+                  //SortBy(),
+                  //PostCardGrid(posts: gridPosts!)
+                ],
               ),
             ],
           ),
