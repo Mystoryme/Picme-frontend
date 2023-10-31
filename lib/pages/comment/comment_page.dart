@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:picme/classes/caller.dart';
 import 'package:picme/models/comments.dart';
+import 'package:picme/models/profile.dart';
 import 'package:picme/widget/comment/card_comment.dart';
 import 'package:picme/widget/comment/head_comment.dart';
 import 'package:picme/widget/comment/text_comment.dart';
@@ -18,6 +19,14 @@ class _CommentPageState extends State<CommentPage> {
   final TextEditingController _search = TextEditingController();
   FocusNode _textFocusNode = FocusNode();
   CommentPosts? comments;
+  Profile? profile;
+
+  void callComment() async {
+    Caller.dio.post("/comment/create", data: {
+      "postId": _postId.text,
+      "message": _search.text,
+    }).onError((DioException error, _) => Caller.handle(context, error));
+  }
 
   @override
   void initState() {
@@ -33,10 +42,24 @@ class _CommentPageState extends State<CommentPage> {
     }).onError((DioException error, _) {
       Caller.handle(context, error);
     });
+    Caller.dio.get("/profile/info").then((response) {
+      setState(() {
+        profile = Profile.fromJson(response.data["data"]);
+      });
+    }).onError((DioException error, _) {
+      Caller.handle(context, error);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    if (comments == null) {
+      return const Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [CircularProgressIndicator()],
+      );
+    }
     return Scaffold(
         body: SafeArea(
       child: Padding(
@@ -64,7 +87,10 @@ class _CommentPageState extends State<CommentPage> {
                   ),
                 ],
               ),
-              TextComment(search: _search, textFocusNode: _textFocusNode)
+              TextComment(
+                  search: _search,
+                  textFocusNode: _textFocusNode,
+                  profile: profile!)
             ]),
       ),
     ));
