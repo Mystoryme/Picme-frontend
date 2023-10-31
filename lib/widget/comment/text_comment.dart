@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:picme/models/profile.dart';
 import 'package:picme/pages/home_page.dart';
 import 'package:picme/utils/colors.dart';
 
 class TextComment extends StatefulWidget {
-  const TextComment({
-    Key? key,
-    required this.search,
-    required this.textFocusNode,
-  }) : super(key: key);
+  const TextComment(
+      {Key? key,
+      required this.search,
+      required this.textFocusNode,
+      required this.profile})
+      : super(key: key);
   final TextEditingController search;
   final FocusNode textFocusNode;
+  final Profile profile;
 
   @override
   State<TextComment> createState() => _TextCommentState();
@@ -39,9 +42,10 @@ class _TextCommentState extends State<TextComment> {
         child: Row(
           children: [
             // Replace Icon with CircleAvatar
-            const CircleAvatar(
+            CircleAvatar(
               radius: 20,
-              backgroundImage: AssetImage('assets/profile.jpg'),
+              backgroundImage: NetworkImage(widget.profile.avatarUrl ??
+                  "https://cdn.crispedge.com/5d76cb.png"),
             ),
             const SizedBox(width: 8), // Add some spacing
             Expanded(
