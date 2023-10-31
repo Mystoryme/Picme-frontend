@@ -188,7 +188,9 @@ class _PostCardState extends State<PostCard> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const CommentPage()),
+                            builder: (context) => CommentPage(
+                                  postId: widget.post.postId,
+                                )),
                       );
                     },
                     icon: const Icon(CupertinoIcons.bubble_middle_bottom),
