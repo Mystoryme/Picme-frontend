@@ -8,8 +8,13 @@ import 'package:picme/widget/comment/head_comment.dart';
 import 'package:picme/widget/comment/text_comment.dart';
 
 class CommentPage extends StatefulWidget {
-  const CommentPage({super.key});
+  const CommentPage({
+    Key? key,
+    required this.postId,
+  }) : super(key: key);
+
   static const routeName = "/comment_page";
+  final int postId;
 
   @override
   State<CommentPage> createState() => _CommentPageState();
@@ -23,7 +28,7 @@ class _CommentPageState extends State<CommentPage> {
 
   void callComment() async {
     Caller.dio.post("/comment/create", data: {
-      "postId": _postId.text,
+      "postId": widget.postId,
       "message": _search.text,
     }).onError((DioException error, _) => Caller.handle(context, error));
   }
@@ -35,7 +40,8 @@ class _CommentPageState extends State<CommentPage> {
   }
 
   init() {
-    Caller.dio.get("/comment/list").then((response) {
+    Caller.dio.get("/comment/list",
+        queryParameters: {"postId": widget.postId}).then((response) {
       setState(() {
         comments = CommentPosts.fromJson(response.data["data"]);
       });
