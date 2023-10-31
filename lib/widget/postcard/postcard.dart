@@ -33,7 +33,7 @@ class _PostCardState extends State<PostCard> {
   }
 
   init() {
-    Caller.dio.get("/profile/post").then((response) {
+    Caller.dio.get("/post/list").then((response) {
       setState(() {
         posts = HomePost.fromJson(response.data["data"]);
       });

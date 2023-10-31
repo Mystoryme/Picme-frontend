@@ -9,6 +9,7 @@ import 'package:picme/classes/caller.dart';
 import 'package:picme/models/post.dart';
 import 'package:picme/models/posts.dart';
 import 'package:picme/pages/boost_post/boost_post_page.dart';
+import 'package:picme/pages/comment/comment_page.dart';
 import 'package:picme/pages/home_page.dart';
 import 'package:picme/pages/support/support_page.dart';
 import 'package:picme/utils/colors.dart';
@@ -218,7 +219,9 @@ class _PostCardOwnerState extends State<PostCardOwner> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const Homepage()),
+                            builder: (context) => CommentPage(
+                                  postId: widget.post.postId,
+                                )),
                       );
                     },
                     icon: const Icon(CupertinoIcons.bubble_middle_bottom),

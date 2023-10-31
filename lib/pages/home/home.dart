@@ -15,7 +15,6 @@ class HomeTab extends StatefulWidget {
 
 class _HomeTabState extends State<HomeTab> {
   List<Post>? posts;
-  
 
   @override
   void initState() {
@@ -25,7 +24,7 @@ class _HomeTabState extends State<HomeTab> {
 
   load() {
     String uri = "/post/list";
-    if(category != ""){
+    if (category != "") {
       uri += "?category=" + category;
     }
     Caller.dio.get(uri).then((response) {
@@ -40,7 +39,7 @@ class _HomeTabState extends State<HomeTab> {
   }
 
   String category = "";
-  void setCategory (String c){
+  void setCategory(String c) {
     setState(() {
       category = c;
     });
@@ -59,9 +58,7 @@ class _HomeTabState extends State<HomeTab> {
 
     return Column(
       children: [
-        Home_navbar(
-          setCategory : setCategory
-        ),
+        Home_navbar(setCategory: setCategory),
         Expanded(
           child: ListView(
             shrinkWrap: true,

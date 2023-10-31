@@ -34,13 +34,13 @@ class CardComment extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 35.0,
-          backgroundImage: AssetImage(avatarImage),
+          backgroundImage: NetworkImage(avatarImage),
         ),
         const SizedBox(width: 15.0),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [ 
+            children: [
               RichText(
                 maxLines: 2, // Set max lines to allow wrapping
                 softWrap: true, // Enable text wrapping

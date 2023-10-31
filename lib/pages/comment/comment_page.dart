@@ -36,12 +36,14 @@ class _CommentPageState extends State<CommentPage> {
 
   @override
   void initState() {
+    print('CommentPage is initialized.');
     super.initState();
     init();
   }
 
   init() {
-    Caller.dio.get("/comment/list",
+    print('CommentPage is initialized.');
+    Caller.dio.post("/comment/list",
         queryParameters: {"postId": widget.postId}).then((response) {
       setState(() {
         comments = CommentPosts.fromJson(response.data["data"]);
@@ -61,15 +63,7 @@ class _CommentPageState extends State<CommentPage> {
   @override
   Widget build(BuildContext context) {
     if (comments == null) {
-      return Scaffold(
-        body: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [CircularProgressIndicator()],
-          ),
-        ),
-      );
+      return CircularProgressIndicator();
     }
     return Scaffold(
         body: SafeArea(
