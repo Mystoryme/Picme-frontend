@@ -23,7 +23,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final TextEditingController _contact = TextEditingController();
 
   void callEdit() async {
-    Caller.dio.post("profile/edit", data: {
+    Caller.dio.post("/profile/edit", data: {
       "username": _username.text, // * Change "email" to "username
       "bio": _bio.text,
       "contact": _contact.text,

@@ -33,7 +33,7 @@ class _TextCommentState extends State<TextComment> {
         height: 80,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: PicmeColors.grayWhite,
+          color: Color.fromARGB(255, 235, 235, 235),
           borderRadius: BorderRadius.circular(15), // Set the border radius
         ),
         child: Row(
@@ -47,6 +47,9 @@ class _TextCommentState extends State<TextComment> {
             Expanded(
               child: Container(
                 child: TextFormField(
+                  onChanged: ((value) {
+                    setState(() {});
+                  }),
                   focusNode: widget.textFocusNode,
                   controller: widget.search,
                   decoration: InputDecoration(
@@ -60,12 +63,12 @@ class _TextCommentState extends State<TextComment> {
                       ),
                     ),
                     hintText: 'Add a comment...',
-                    hintStyle: const TextStyle(
-                      color: Color(0xFFA0A5D8),
+                    hintStyle: TextStyle(
+                      color: PicmeColors.grayBlack,
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
                     ),
-                    fillColor: const Color.fromRGBO(243, 242, 242, 1),
+                    fillColor: Color.fromARGB(255, 255, 255, 255),
                     filled: true,
                     suffixIcon: widget.search.text.isEmpty
                         ? null
@@ -97,7 +100,6 @@ class _TextCommentState extends State<TextComment> {
                 backgroundColor:
                     MaterialStateProperty.all(PicmeColors.mainColor),
               ),
-              
             ),
           ],
         ),

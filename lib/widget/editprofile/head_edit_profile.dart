@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/pages/profile_page.dart';
 import 'package:picme/utils/colors.dart';
@@ -93,7 +94,8 @@ class HeadEditProfile extends StatelessWidget {
                   // alignment: Alignment.center,
                   child: TextButton(
                     onPressed: () {
-                      callEdit();
+                      Navigator.of(callEdit()).pop();
+                      // callEdit();
                     },
                     child: Text(
                       'Save',
