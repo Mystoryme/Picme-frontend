@@ -4,15 +4,18 @@ import 'package:image_picker/image_picker.dart';
 import 'package:picme/utils/colors.dart';
 
 class ImportImage extends StatefulWidget {
-  const ImportImage({Key? key}) : super(key: key);
+  final XFile? pickedImage;
+  final Function setPickedImage;
+
+  const ImportImage(
+      {Key? key, required this.pickedImage, required this.setPickedImage})
+      : super(key: key);
 
   @override
   _ImportImageState createState() => _ImportImageState();
 }
 
 class _ImportImageState extends State<ImportImage> {
-  XFile? _pickedImage;
-
   Future<void> _pickImageFromGallery(BuildContext context) async {
     final ImagePicker _picker = ImagePicker();
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
@@ -22,13 +25,11 @@ class _ImportImageState extends State<ImportImage> {
       return;
     }
 
-    setState(() {
-      _pickedImage = image;
-    });
+    widget.setPickedImage(image);
   }
 
   Future<void> _deletePickedImage() async {
-    if (_pickedImage == null) return;
+    if (widget.pickedImage == null) return;
 
     return showDialog(
       context: context,
@@ -48,9 +49,7 @@ class _ImportImageState extends State<ImportImage> {
             ),
             TextButton(
               onPressed: () {
-                setState(() {
-                  _pickedImage = null;
-                });
+                widget.setPickedImage(null);
                 Navigator.pop(context);
               },
               child: Text(
@@ -70,7 +69,7 @@ class _ImportImageState extends State<ImportImage> {
       padding: const EdgeInsets.only(top: 30, bottom: 20),
       child: GestureDetector(
         onTap: () {
-          if (_pickedImage != null) {
+          if (widget.pickedImage != null) {
             _deletePickedImage();
           } else {
             _pickImageFromGallery(context);
@@ -83,7 +82,7 @@ class _ImportImageState extends State<ImportImage> {
             borderRadius: BorderRadius.circular(10),
             color: PicmeColors.grayWhite,
           ),
-          child: _pickedImage == null
+          child: widget.pickedImage == null
               ? IconButton(
                   icon: const Icon(
                     Icons.add_photo_alternate,
@@ -95,7 +94,7 @@ class _ImportImageState extends State<ImportImage> {
                   },
                 )
               : Image.file(
-                  File(_pickedImage!.path),
+                  File(widget.pickedImage!.path),
                   fit: BoxFit.contain,
                 ),
         ),

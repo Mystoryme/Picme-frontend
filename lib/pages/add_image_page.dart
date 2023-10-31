@@ -1,34 +1,48 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:picme/classes/caller.dart';
 import 'package:picme/pages/home_page.dart';
-
 import 'package:image_picker/image_picker.dart';
 import 'package:picme/pages/payment_success_page.dart';
 import 'package:picme/utils/colors.dart';
 import 'package:picme/widget/addimage/captionform.dart';
 import 'package:picme/widget/addimage/choice.dart';
 import 'dart:io';
-
 import 'package:picme/widget/check_image/import_image.dart';
 
-class AddImagePage extends StatelessWidget {
+class AddImagePage extends StatefulWidget {
   AddImagePage({Key? key}) : super(key: key);
   static const routeName = "/add_image_page";
 
+  @override
+  State<AddImagePage> createState() => _AddImagePageState();
+}
+
+class _AddImagePageState extends State<AddImagePage> {
   final TextEditingController _caption = TextEditingController();
+  XFile? _pickedImage;
 
-  Future<void> _pickImageFromGallery(BuildContext context) async {
-    final ImagePicker _picker = ImagePicker();
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+  void submit() {
+    // Post multipart form using Dio and senf _pickedImage in key of file
+    FormData formData = FormData.fromMap({
+      "category": "digital",
+      "application": "photoshop",
+      "caption": _caption.text,
+      "file": MultipartFile.fromFileSync(_pickedImage!.path,
+          filename: _pickedImage!.path.split("/").last)
+    });
 
-    if (image == null) {
-      // User cancelled image selection
-      return;
-    }
+    Caller.dio.post("/post/create", data: formData).then((response) {
+      SnackBar snackBar = const SnackBar(
+        content: Text('Successfully posted!'),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-    // Process the picked image, for example, display it
-    // For demonstration purposes, we'll just print the image path.
-    print('Image path: ${image.path}');
+      Navigator.pop(context);
+    }).onError((DioException error, _) {
+      Caller.handle(context, error);
+    });
   }
 
   @override
@@ -66,11 +80,7 @@ class AddImagePage extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                           elevation: 0, backgroundColor: PicmeColors.mainColor),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Homepage()),
-                        );
+                        submit();
                       },
                       child: Container(
                         alignment: Alignment.center,
@@ -90,7 +100,14 @@ class AddImagePage extends StatelessWidget {
                   ),
                 ]),
           ),
-          ImportImage(),
+          ImportImage(
+            pickedImage: _pickedImage,
+            setPickedImage: (XFile f) {
+              setState(() {
+                _pickedImage = f;
+              });
+            },
+          ),
           CaptionForm(
             caption: _caption,
           ),

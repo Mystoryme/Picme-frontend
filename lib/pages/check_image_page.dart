@@ -102,7 +102,7 @@ class CheckImagePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 // crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  ImportImage(),
+                  // ImportImage(),
                 ],
               ),
               const Row(
