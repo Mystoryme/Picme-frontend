@@ -24,21 +24,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   void callEdit() async {
     Caller.dio.post("/profile/edit", data: {
-      "username": _username.text, // * Change "email" to "username
+      "username": _username.text,
       "bio": _bio.text,
       "contact": _contact.text,
     }).then((response) async {
-      // * Parse response
-      // final data = Register.fromJson(response.data["data"]);
-
-      // // // * Load shared preferences
-      // final prefs = await SharedPreferences
-      //     .getInstance(); //shared_preferences same as cookies
-      // prefs.setString('data', data.toString());
-
-      //* Set caller token value
-      // Caller.setToken(data.toString());
-
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const ProfilePage()),
