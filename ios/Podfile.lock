@@ -36,13 +36,13 @@ PODS:
   - Flutter (1.0.0)
   - flutter_platform_alert (0.0.1):
     - Flutter
-  - hexcolor (0.0.1):
-    - Flutter
   - image_picker_ios (0.0.1):
     - Flutter
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
+  - saver_gallery (0.0.1):
+    - Flutter
   - SDWebImage (5.18.2):
     - SDWebImage/Core (= 5.18.2)
   - SDWebImage/Core (5.18.2)
@@ -55,9 +55,9 @@ DEPENDENCIES:
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - Flutter (from `Flutter`)
   - flutter_platform_alert (from `.symlinks/plugins/flutter_platform_alert/ios`)
-  - hexcolor (from `.symlinks/plugins/hexcolor/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - saver_gallery (from `.symlinks/plugins/saver_gallery/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
 
 SPEC REPOS:
@@ -74,12 +74,12 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_platform_alert:
     :path: ".symlinks/plugins/flutter_platform_alert/ios"
-  hexcolor:
-    :path: ".symlinks/plugins/hexcolor/ios"
   image_picker_ios:
     :path: ".symlinks/plugins/image_picker_ios/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  saver_gallery:
+    :path: ".symlinks/plugins/saver_gallery/ios"
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
 
@@ -89,9 +89,9 @@ SPEC CHECKSUMS:
   file_picker: ce3938a0df3cc1ef404671531facef740d03f920
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_platform_alert: 6a241c90f3cc350d0286deeefee9f52bee957019
-  hexcolor: fdfb9c4258ad96e949c2dbcdf790a62194b8aa89
   image_picker_ios: 4a8aadfbb6dc30ad5141a2ce3832af9214a705b5
   path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
+  saver_gallery: 2b4e584106fde2407ab51560f3851564963e6b78
   SDWebImage: c0de394d7cf7f9838aed1fd6bb6037654a4572e4
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
   SwiftyGif: 93a1cc87bf3a51916001cf8f3d63835fb64c819f

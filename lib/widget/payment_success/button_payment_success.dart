@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:picme/pages/home_page.dart';
 import 'package:picme/pages/payment_success_page.dart';
 import 'package:picme/utils/colors.dart';
 
@@ -21,7 +22,7 @@ class ButtonPaymentSuccess extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => const PaymentSuccessPage()),
+                  builder: (context) => const Homepage()),
             );
           },
           child: Container(

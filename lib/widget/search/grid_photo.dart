@@ -66,12 +66,12 @@ class GridPhoto extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) =>
-                      AccountProfilePage(), // Replace with your page
-                ),
-              );
+              // Navigator.of(context).push(
+              //   MaterialPageRoute(
+              //     builder: (context) =>
+              //         AccountProfilePage(), // Replace with your page
+              //   ),
+              // );
             },
             child: myImagesAdapted[index],
           );

@@ -5,8 +5,8 @@ import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 class Caller {
   static BaseOptions options = BaseOptions(
     baseUrl: "http://localhost:3000/api",
-    connectTimeout: const Duration(seconds: 5),
-    receiveTimeout: const Duration(seconds: 5),
+    connectTimeout: const Duration(seconds: 60),
+    receiveTimeout: const Duration(seconds: 60),
   );
 
   static Dio dio = Dio(options);

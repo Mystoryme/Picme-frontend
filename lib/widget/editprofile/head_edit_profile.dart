@@ -94,8 +94,7 @@ class HeadEditProfile extends StatelessWidget {
                   // alignment: Alignment.center,
                   child: TextButton(
                     onPressed: () {
-                      Navigator.of(callEdit()).pop();
-                      // callEdit();
+                      callEdit();
                     },
                     child: Text(
                       'Save',

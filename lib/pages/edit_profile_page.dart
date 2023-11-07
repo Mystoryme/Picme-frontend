@@ -28,10 +28,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       "bio": _bio.text,
       "contact": _contact.text,
     }).then((response) async {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const ProfilePage()),
-      );
+      Navigator.pop(context);
     }).onError((DioException error, _) {
       // * Apply default error handling
       Caller.handle(context, error);

@@ -52,7 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Container(
                child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: [ProfileSection(profile: profile!), ProfileBar()]),
+                  children: [ProfileSection(init: init, profile: profile!), ProfileBar()]),
       ),
     )));
   }

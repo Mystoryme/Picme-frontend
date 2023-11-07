@@ -10,8 +10,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:picme/utils/colors.dart';
 
 class ProfileSection extends StatelessWidget {
-   ProfileSection({ Key? key, required this.profile}) : super(key: key);
+  ProfileSection({
+    Key? key,
+    required this.init,
+    required this.profile,
+  }) : super(key: key);
 
+  final Function init;
   final Profile profile;
 
   Future<void> _showLogoutDialog(BuildContext context) async {
@@ -50,6 +55,7 @@ class ProfileSection extends StatelessWidget {
       },
     );
   }
+
   late SharedPreferences prefs;
 
   // logout() async {
@@ -63,7 +69,6 @@ class ProfileSection extends StatelessWidget {
   //     );
   //   }
   // }
-
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +128,9 @@ class ProfileSection extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => EditProfilePage()),
-                        );
+                        ).then((value) {
+                          init();
+                        });
                       },
                       child: Text(
                         'Edit Profile',
@@ -197,7 +204,7 @@ class ProfileSection extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => 
+                                builder: (context) =>
                                     const AccountInsightsPage()),
                           );
                         },

@@ -11,6 +11,7 @@ import 'package:picme/pages/comment/comment_page.dart';
 import 'package:picme/pages/home_page.dart';
 import 'package:picme/pages/support/support_page.dart';
 import 'package:picme/utils/colors.dart';
+import 'package:saver_gallery/saver_gallery.dart';
 
 class PostCard extends StatefulWidget {
   final Post post;
@@ -260,7 +261,9 @@ class _PostCardState extends State<PostCard> {
                                   color: PicmeColors.mainColor,
                                   borderRadius: BorderRadius.circular(10)),
                               child: TextButton(
-                                onPressed: () => Navigator.pop(context, 'OK'),
+                                onPressed: () async {
+                                  // await SaverGallery.saveImage(100, name: name)
+                                },
                                 child: Text(
                                   'Yes',
                                   style: TextStyle(
