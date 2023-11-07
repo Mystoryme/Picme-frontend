@@ -24,6 +24,12 @@ class PostCardOwner extends StatefulWidget {
 }
 
 class _PostCardOwnerState extends State<PostCardOwner> {
+  void deletePost() async {
+    Caller.dio.delete("/post/delete", data: {
+      "postId": widget.post.postId
+    }).onError((DioException error, _) => Caller.handle(context, error));
+  }
+
   @override
   Widget build(BuildContext context) {
     Image img = Image.network(widget.post.imageUrl);
@@ -151,9 +157,8 @@ class _PostCardOwnerState extends State<PostCardOwner> {
                             topRight: Radius.circular(6.0),
                           ),
                         ),
-                        itemBuilder: (ctx) => [
-                          _buildPopupMenuItem('Delete'),
-                        ],
+                        itemBuilder: (ctx) =>
+                            [_buildPopupMenuItem('Delete', deletePost)],
                       ),
                     ],
                   ),
@@ -302,9 +307,11 @@ class _PostCardOwnerState extends State<PostCardOwner> {
 
 PopupMenuItem _buildPopupMenuItem(
   String title,
+  void Function() deletePost,
 ) {
   return PopupMenuItem(
     height: 20,
+    onTap: deletePost,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
