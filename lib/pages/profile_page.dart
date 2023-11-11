@@ -36,6 +36,10 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
 
+  void reloadProfile() {
+    init();
+  }
+
   @override
   Widget build(BuildContext context) {
     if (profile == null) {
@@ -49,10 +53,11 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
         body: SafeArea(
             child: SingleChildScrollView(
-              child: Container(
-               child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [ProfileSection(init: init, profile: profile!), ProfileBar()]),
+      child: Container(
+        child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+          ProfileSection(init: init, profile: profile!),
+          ProfileBar(reloadProfile: reloadProfile)
+        ]),
       ),
     )));
   }

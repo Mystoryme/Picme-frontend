@@ -14,7 +14,8 @@ import 'package:picme/widget/postcard/postcard_owner.dart';
 import 'package:picme/widget/profile/sortby.dart';
 
 class ProfileBar extends StatefulWidget {
-  const ProfileBar({Key? key}) : super(key: key);
+  const ProfileBar({Key? key, required this.reloadProfile}) : super(key: key);
+  final VoidCallback reloadProfile;
 
   @override
   _ProfileBarState createState() => _ProfileBarState();
@@ -165,6 +166,7 @@ class _ProfileBarState extends State<ProfileBar>
                     children: posts!.posts
                         .map((e) => PostCardOwner(
                               post: e,
+                              onDelete: widget.reloadProfile,
                             ))
                         .toList(),
                   )

@@ -696,6 +696,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.3"
+  saver_gallery:
+    dependency: "direct main"
+    description:
+      name: saver_gallery
+      sha256: "8ca31aaf560104578d519ea541f4d122255dd68a290a81c9d93006a332a31a3f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.8"
   shared_preferences:
     dependency: "direct main"
     description:

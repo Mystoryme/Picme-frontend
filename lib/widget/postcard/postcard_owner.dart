@@ -15,9 +15,11 @@ import 'package:picme/pages/support/support_page.dart';
 import 'package:picme/utils/colors.dart';
 
 class PostCardOwner extends StatefulWidget {
-  const PostCardOwner({Key? key, required this.post}) : super(key: key);
+  const PostCardOwner({Key? key, required this.post, required this.onDelete})
+      : super(key: key);
 
   final Post post;
+  final VoidCallback onDelete;
 
   @override
   State<PostCardOwner> createState() => _PostCardOwnerState();
@@ -28,6 +30,7 @@ class _PostCardOwnerState extends State<PostCardOwner> {
     Caller.dio.delete("/post/delete", data: {
       "postId": widget.post.postId
     }).onError((DioException error, _) => Caller.handle(context, error));
+    widget.onDelete();
   }
 
   @override
