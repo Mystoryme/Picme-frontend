@@ -15,20 +15,20 @@ class Choice extends StatefulWidget {
 }
 
 List<String> options = [
-  'Painting',
-  'Drawing & Illustrations',
-  'Mixed Media & Collage',
-  'Digital / Graphic',
-  'Other',
+  'painting',
+  'drawing',
+  'mixedmedia',
+  'digital',
+  'other',
 ];
 
 List<String> options2 = [
-  'Procreate',
-  'ibis PaintX',
-  'Clip Studio Paint',
-  'Blender',
-  'Photoshop',
-  'Other'
+  'procreate',
+  'ibis_paintX',
+  'clip_studio_paint',
+  'blender',
+  'photoshop',
+  'other'
 ];
 
 class _ChoiceState extends State<Choice> {

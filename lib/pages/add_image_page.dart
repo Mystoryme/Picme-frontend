@@ -22,8 +22,8 @@ class AddImagePage extends StatefulWidget {
 class _AddImagePageState extends State<AddImagePage> {
   final TextEditingController _caption = TextEditingController();
   XFile? _pickedImage;
-  String category = 'Painting';
-  String application = 'Procreate';
+  String category = 'painting';
+  String application = 'procreate';
 
   void submit() {
     // Post multipart form using Dio and senf _pickedImage in key of file
