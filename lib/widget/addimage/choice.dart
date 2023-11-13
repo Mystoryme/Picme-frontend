@@ -164,7 +164,7 @@ class _ChoiceState extends State<Choice> {
         Padding(
           padding: const EdgeInsets.only(bottom: 16, left: 9, top: 16),
           child: Text(
-            'Appication used',
+            'Application used',
             style:
                 GoogleFonts.poppins(fontWeight: FontWeight.w600, fontSize: 18),
           ),

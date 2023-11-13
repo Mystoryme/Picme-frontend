@@ -50,7 +50,7 @@ class _PostCardOwnerState extends State<PostCardOwner> {
       applicationImage = Image.asset('assets/ibispaint.jpg');
     }
     if (widget.post.application == "clip_studio_paint") {
-      applicationImage = Image.asset('assets/clipstudio.pngg');
+      applicationImage = Image.asset('assets/clipstudio.png');
     }
     if (widget.post.application == "blender") {
       applicationImage = Image.asset('assets/blender.png');

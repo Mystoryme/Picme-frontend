@@ -11,7 +11,7 @@ import 'package:picme/pages/comment/comment_page.dart';
 import 'package:picme/pages/home_page.dart';
 import 'package:picme/pages/support/support_page.dart';
 import 'package:picme/utils/colors.dart';
-import 'package:saver_gallery/saver_gallery.dart';
+// import 'package:saver_gallery/saver_gallery.dart';
 
 class PostCard extends StatefulWidget {
   final Post post;
@@ -30,18 +30,18 @@ class _PostCardState extends State<PostCard> {
   @override
   void initState() {
     super.initState();
-    init();
+    // init();
   }
 
-  init() {
-    Caller.dio.get("/post/list").then((response) {
-      setState(() {
-        posts = HomePost.fromJson(response.data["data"]);
-      });
-    }).onError((DioException error, _) {
-      Caller.handle(context, error);
-    });
-  }
+  // init() {
+  //   Caller.dio.get("/post/list").then((response) {
+  //     setState(() {
+  //       posts = HomePost.fromJson(response.data["data"]);
+  //     });
+  //   }).onError((DioException error, _) {
+  //     Caller.handle(context, error);
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {

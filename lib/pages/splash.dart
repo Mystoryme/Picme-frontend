@@ -31,7 +31,7 @@ class Splash extends StatelessWidget {
   Widget build(BuildContext context) {
     Timer(const Duration(seconds: 1), () async {
       Widget target = await navigate();
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => target),
       );

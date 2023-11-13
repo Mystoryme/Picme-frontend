@@ -15,18 +15,12 @@ class Home_bar extends StatefulWidget {
 }
 
 class _BottomNavigationState extends State<Home_bar> {
-  int _selectedIndex = 0;
-
   @override
   void initState() {
     super.initState();
-    _selectedIndex = widget.currentIndex; // Initialize selectedIndex
   }
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
     widget.onTap(index); // Notify the parent widget about the change
   }
 
@@ -41,7 +35,7 @@ class _BottomNavigationState extends State<Home_bar> {
       elevation: 0,
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      currentIndex: _selectedIndex,
+      currentIndex: widget.currentIndex,
       onTap: _onItemTapped,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(

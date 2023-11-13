@@ -37,7 +37,7 @@ class _HomepageState extends State<Homepage> {
       body: SafeArea(
         child: Container(
             constraints: BoxConstraints.expand(),
-            child: _buildPage(_currentIndex)),
+            child: _buildPage(_currentIndex, _onItemTapped)),
       ),
       bottomNavigationBar: Home_bar(
         currentIndex: _currentIndex,
@@ -47,12 +47,12 @@ class _HomepageState extends State<Homepage> {
   }
 }
 
-Widget _buildPage(int index) {
+Widget _buildPage(int index, void Function(int) onTap) {
   switch (index) {
     case 0:
       return HomeTab();
     case 1:
-      return AddImagePage();
+      return AddImagePage(onItemTapped: onTap);
     case 2:
       return const NotificationPage();
     case 3:

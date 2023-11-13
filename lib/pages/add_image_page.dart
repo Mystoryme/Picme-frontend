@@ -12,8 +12,10 @@ import 'dart:io';
 import 'package:picme/widget/check_image/import_image.dart';
 
 class AddImagePage extends StatefulWidget {
-  AddImagePage({Key? key}) : super(key: key);
+  AddImagePage({Key? key, required this.onItemTapped}) : super(key: key);
   static const routeName = "/add_image_page";
+
+  final void Function(int) onItemTapped;
 
   @override
   State<AddImagePage> createState() => _AddImagePageState();
@@ -40,8 +42,7 @@ class _AddImagePageState extends State<AddImagePage> {
         content: Text('Successfully posted!'),
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-
-      Navigator.pop(context);
+      widget.onItemTapped(0);
     }).onError((DioException error, _) {
       Caller.handle(context, error);
     });
