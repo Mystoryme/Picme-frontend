@@ -15,7 +15,7 @@ class CommentPost {
   final int postId;
 
   @JsonKey(name: 'avatarUrl')
-  final String avatarUrl;
+  final String? avatarUrl;
 
   @JsonKey(name: 'message')
   final String message;

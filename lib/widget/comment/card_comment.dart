@@ -20,7 +20,7 @@ class CardComment extends StatelessWidget {
             buildNotificationRow(
               comment.username,
               comment.message,
-              comment.avatarUrl,
+              comment.avatarUrl ?? "https://cdn.crispedge.com/5d76cb.png",
             ),
             const SizedBox(
               height: 20,
@@ -55,7 +55,7 @@ class CardComment extends StatelessWidget {
                   ),
                   children: [
                     TextSpan(
-                      text: ' $action',
+                      text: action,
                       style: GoogleFonts.poppins(
                         color: Colors.black,
                         fontSize: 16,

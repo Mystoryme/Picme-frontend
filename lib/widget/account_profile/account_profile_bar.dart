@@ -136,7 +136,8 @@ class _AccountProfileBarState extends State<AccountProfileBar>
                   Column(
                     children: posts!.posts
                         .map((e) => PostCardOwner(
-                              post: e, onDelete: () {  },
+                              post: e,
+                              onDelete: () {},
                             ))
                         .toList(),
                   )
