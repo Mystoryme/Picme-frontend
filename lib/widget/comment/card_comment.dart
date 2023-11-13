@@ -11,22 +11,20 @@ class CardComment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.only(top: 10, left: 19, right: 19),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            buildNotificationRow(
-              comment.username,
-              comment.message,
-              comment.avatarUrl ?? "https://cdn.crispedge.com/5d76cb.png",
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-          ],
-        ),
+    return Container(
+      padding: const EdgeInsets.only(top: 10, left: 19, right: 19),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          buildNotificationRow(
+            comment.username,
+            comment.message,
+            comment.avatarUrl ?? "https://cdn.crispedge.com/5d76cb.png",
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+        ],
       ),
     );
   }
