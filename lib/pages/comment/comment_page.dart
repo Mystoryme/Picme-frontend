@@ -62,9 +62,9 @@ class _CommentPageState extends State<CommentPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (comments == null) {
-      return Scaffold(body: CircularProgressIndicator());
-    }
+    // if (comments == null) {
+    //   return Scaffold(body: CircularProgressIndicator());
+    // }
     return Scaffold(
         body: SafeArea(
       child: Padding(
