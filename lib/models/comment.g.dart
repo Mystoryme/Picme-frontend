@@ -10,7 +10,7 @@ CommentPost _$CommentPostFromJson(Map<String, dynamic> json) => CommentPost(
       username: json['username'] as String,
       userId: json['userId'] as int,
       postId: json['postId'] as int,
-      avatarUrl: json['avatarUrl'] as String,
+      avatarUrl: json['avatarUrl'] as String?,
       message: json['message'] as String,
     );
 
