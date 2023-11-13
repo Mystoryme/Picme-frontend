@@ -30,9 +30,11 @@ class _HomeTabState extends State<HomeTab> {
       uri += "?category=" + category;
     }
     Caller.dio.get(uri).then((response) {
-      setState(() {
-        posts = HomePost.fromJson(response.data["data"]);
-      });
+      if (mounted) {
+        setState(() {
+          posts = HomePost.fromJson(response.data["data"]);
+        });
+      }
     }).onError((DioException error, _) {
       Caller.handle(context, error);
     });
