@@ -47,7 +47,7 @@ class CardComment extends StatelessWidget {
                 maxLines: 2, // Set max lines to allow wrapping
                 softWrap: true, // Enable text wrapping
                 text: TextSpan(
-                  text: username + ' : ',
+                  text: '$username : ',
                   style: GoogleFonts.poppins(
                     color: Colors.black,
                     fontSize: 16,

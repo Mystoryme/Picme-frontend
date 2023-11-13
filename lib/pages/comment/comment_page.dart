@@ -43,8 +43,8 @@ class _CommentPageState extends State<CommentPage> {
 
   init() {
     print('CommentPage is initialized.');
-    Caller.dio.post("/comment/list",
-        data: {"postId": widget.postId}).then((response) {
+    Caller.dio.post("/comment/list", data: {"postId": widget.postId}).then(
+        (response) {
       setState(() {
         comments = CommentPosts.fromJson(response.data["data"]);
       });
@@ -74,13 +74,11 @@ class _CommentPageState extends State<CommentPage> {
             children: [
               Expanded(
                 child: ListView(
-                  shrinkWrap: true,
-                  children: comments!.posts
-                      .map((el) => CardComment(
-                            comment: el,
-                          ))
-                      .toList(),
-                ),
+                    shrinkWrap: true,
+                    children: comments?.posts
+                            .map((el) => CardComment(comment: el))
+                            .toList() ??
+                        []),
               )
               // Column(
               //   children: [
