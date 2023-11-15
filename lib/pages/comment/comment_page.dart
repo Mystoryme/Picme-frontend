@@ -28,6 +28,7 @@ class _CommentPageState extends State<CommentPage> {
   Profile? profile;
 
   void callComment() async {
+    print("callComment function is invoked");
     Caller.dio.post("/comment/create", data: {
       "postId": widget.postId,
       "message": _search.text,
