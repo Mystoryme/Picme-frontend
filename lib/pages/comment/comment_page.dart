@@ -32,7 +32,7 @@ class _CommentPageState extends State<CommentPage> {
       "postId": widget.postId,
       "message": _search.text,
     }).then((response) async {
-      //init();
+      init();
 
       //  Navigator.push(
       //   context,
