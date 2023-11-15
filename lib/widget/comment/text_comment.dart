@@ -8,12 +8,12 @@ class TextComment extends StatefulWidget {
   const TextComment(
       {Key? key,
       required this.search,
-      required this.textFocusNode,
+      // required this.textFocusNode,
       required this.profile,
       required this.callComment})
       : super(key: key);
   final TextEditingController search;
-  final FocusNode textFocusNode;
+  //final FocusNode textFocusNode;
   final Profile profile;
   final Function callComment;
   @override
@@ -38,29 +38,27 @@ class _TextCommentState extends State<TextComment> {
         width: double.infinity,
         decoration: BoxDecoration(
           color: Color.fromARGB(255, 235, 235, 235),
-          borderRadius: BorderRadius.circular(15), // Set the border radius
+          borderRadius: BorderRadius.circular(15),
         ),
         child: Row(
           children: [
-            // Replace Icon with CircleAvatar
             CircleAvatar(
               radius: 20,
               backgroundImage: NetworkImage(widget.profile.avatarUrl ??
                   "https://cdn.crispedge.com/5d76cb.png"),
             ),
-            const SizedBox(width: 8), // Add some spacing
+            const SizedBox(width: 8),
             Expanded(
               child: Container(
                 child: TextFormField(
                   onChanged: ((value) {
                     setState(() {});
                   }),
-                  focusNode: widget.textFocusNode,
+                  //focusNode: widget.textFocusNode,
                   controller: widget.search,
                   decoration: InputDecoration(
-                    contentPadding:
-                        EdgeInsets.all(10.0), // Set the content padding
-                    prefixIcon: null, // Remove the prefix Icon
+                    contentPadding: EdgeInsets.all(10.0),
+                    prefixIcon: null,
                     border: const OutlineInputBorder(
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.all(
@@ -114,14 +112,12 @@ class _TextCommentState extends State<TextComment> {
                   backgroundColor: PicmeColors.mainColor, elevation: 0),
               onPressed: () {
                 widget.callComment();
-                print("button press");
               },
               child: Container(
                 alignment: Alignment.center,
                 height: 35,
                 decoration: BoxDecoration(
-                  // color: PicmeColors.mainColor,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(15),
                 ),
                 child: Text(
                   'Post',
