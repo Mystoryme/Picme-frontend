@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:picme/classes/caller.dart';
 import 'package:picme/models/profile.dart';
 import 'package:picme/pages/profile_page.dart';
@@ -17,6 +18,7 @@ class EditProfilePage extends StatefulWidget {
 
 class _EditProfilePageState extends State<EditProfilePage> {
   Profile? profile;
+  XFile? _pickedImage;
 
   final TextEditingController _username = TextEditingController();
   final TextEditingController _bio = TextEditingController();
@@ -31,6 +33,23 @@ class _EditProfilePageState extends State<EditProfilePage> {
       Navigator.pop(context);
     }).onError((DioException error, _) {
       // * Apply default error handling
+      Caller.handle(context, error);
+    });
+  }
+
+  void callEditAvatar() {
+    // Post multipart form using Dio and senf _pickedImage in key of file
+    FormData formData = FormData.fromMap({
+      "file": MultipartFile.fromFileSync(_pickedImage!.path,
+          filename: _pickedImage!.path.split("/").last)
+    });
+
+    Caller.dio.post("/profile/avatar", data: formData).then((response) {
+      SnackBar snackBar = const SnackBar(
+        content: Text('Successfully edited!'),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }).onError((DioException error, _) {
       Caller.handle(context, error);
     });
   }
@@ -67,7 +86,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
         child: Column(
           children: [
             HeadEditProfile(callEdit: callEdit),
-            EditProfile(),
+            EditProfile(
+                pickedImage: _pickedImage,
+                setPickedImage: (XFile f) {
+                  setState(() {
+                    _pickedImage = f;
+                  });
+                },
+                profile: profile!),
             TextFormEditProfile(
               username: _username,
               bio: _bio,
