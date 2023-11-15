@@ -8,12 +8,12 @@ class TextComment extends StatefulWidget {
   const TextComment(
       {Key? key,
       required this.search,
-      // required this.textFocusNode,
+      required this.textFocusNode,
       required this.profile,
       required this.callComment})
       : super(key: key);
   final TextEditingController search;
-  //final FocusNode textFocusNode;
+  final FocusNode textFocusNode;
   final Profile profile;
   final Function callComment;
   @override
@@ -54,7 +54,7 @@ class _TextCommentState extends State<TextComment> {
                   onChanged: ((value) {
                     setState(() {});
                   }),
-                  //focusNode: widget.textFocusNode,
+                  focusNode: widget.textFocusNode,
                   controller: widget.search,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(10.0),
@@ -76,7 +76,7 @@ class _TextCommentState extends State<TextComment> {
                     suffixIcon: widget.search.text.isEmpty
                         ? null
                         : IconButton(
-                            onPressed: () => _clearTextField(widget.search),
+                            onPressed: (() => _clearTextField(widget.search)),
                             icon: const Icon(
                               Icons.clear,
                               color: Colors.black54,
@@ -107,23 +107,26 @@ class _TextCommentState extends State<TextComment> {
             //         MaterialStateProperty.all(PicmeColors.mainColor),
             //   ),
             // ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: PicmeColors.mainColor, elevation: 0),
-              onPressed: () {
-                widget.callComment();
-              },
-              child: Container(
-                alignment: Alignment.center,
-                height: 35,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Text(
-                  'Post',
-                  style: GoogleFonts.poppins(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w400,
+            InkWell(
+              onTap: () {},
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: PicmeColors.mainColor, elevation: 0),
+                onPressed: () {
+                  widget.callComment();
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 35,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Text(
+                    'Post',
+                    style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
               ),

@@ -113,7 +113,7 @@ class _CommentPageState extends State<CommentPage> {
               ,
               TextComment(
                 search: _search,
-                // textFocusNode: _textFocusNode,
+                textFocusNode: _textFocusNode,
                 profile: profile!,
                 callComment: callComment,
               )
