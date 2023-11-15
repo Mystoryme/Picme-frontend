@@ -85,7 +85,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
         padding: const EdgeInsets.all(15.0),
         child: Column(
           children: [
-            HeadEditProfile(callEdit: callEdit),
+            HeadEditProfile(
+              callEdit: callEdit,
+              callEditAvatar: callEditAvatar,
+            ),
             EditProfile(
                 pickedImage: _pickedImage,
                 setPickedImage: (XFile f) {

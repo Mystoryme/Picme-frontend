@@ -6,7 +6,9 @@ import 'package:picme/utils/colors.dart';
 
 class HeadEditProfile extends StatelessWidget {
   final Function callEdit;
-  const HeadEditProfile({required this.callEdit, Key? key});
+  final Function callEditAvatar;
+  const HeadEditProfile(
+      {required this.callEdit, required this.callEditAvatar, Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +49,8 @@ class HeadEditProfile extends StatelessWidget {
                           ),
                           TextButton(
                             onPressed: () {
-                              Navigator.of(context).pop(); // Close the AlertDialog
+                              Navigator.of(context)
+                                  .pop(); // Close the AlertDialog
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                   builder: (context) => const ProfilePage(),
@@ -95,6 +98,7 @@ class HeadEditProfile extends StatelessWidget {
                   child: TextButton(
                     onPressed: () {
                       callEdit();
+                      callEditAvatar();
                     },
                     child: Text(
                       'Save',
