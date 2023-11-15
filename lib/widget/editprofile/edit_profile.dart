@@ -28,6 +28,7 @@ class EditProfile extends StatefulWidget {
 
 class _EditProfileState extends State<EditProfile> {
   late Future<String?> imageURL;
+
   Future<void> _pickImageFromGallery(BuildContext context) async {
     final ImagePicker _picker = ImagePicker();
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
@@ -80,8 +81,8 @@ class _EditProfileState extends State<EditProfile> {
     return Stack(
       children: [
         Container(
-          height: 110,
-          width: 110,
+          height: 100,
+          width: 100,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             borderRadius: BorderRadius.circular(80),
