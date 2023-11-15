@@ -9,12 +9,13 @@ class TextComment extends StatefulWidget {
       {Key? key,
       required this.search,
       required this.textFocusNode,
-      required this.profile})
+      required this.profile,
+      required this.callComment})
       : super(key: key);
   final TextEditingController search;
   final FocusNode textFocusNode;
   final Profile profile;
-
+  final Function callComment;
   @override
   State<TextComment> createState() => _TextCommentState();
 }
@@ -95,7 +96,9 @@ class _TextCommentState extends State<TextComment> {
             ),
             const SizedBox(width: 8),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                widget.callComment();
+              },
               child: Text(
                 'Post',
                 style: TextStyle(color: Colors.white),

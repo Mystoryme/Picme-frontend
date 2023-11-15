@@ -31,7 +31,16 @@ class _CommentPageState extends State<CommentPage> {
     Caller.dio.post("/comment/create", data: {
       "postId": widget.postId,
       "message": _search.text,
-    }).onError((DioException error, _) => Caller.handle(context, error));
+    }).then((response) async {
+      init();
+      //  Navigator.push(
+      //   context,
+      //    MaterialPageRoute(builder: (context) => const CommentPage()),
+      //  );
+    }).onError((DioException error, _) {
+      // * Apply default error handling
+      Caller.handle(context, error);
+    });
   }
 
   @override
@@ -102,9 +111,11 @@ class _CommentPageState extends State<CommentPage> {
               // ),
               ,
               TextComment(
-                  search: _search,
-                  textFocusNode: _textFocusNode,
-                  profile: profile!)
+                search: _search,
+                textFocusNode: _textFocusNode,
+                profile: profile!,
+                callComment: callComment,
+              )
             ]),
       ),
     ));
