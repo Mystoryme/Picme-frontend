@@ -98,6 +98,7 @@ class _TextCommentState extends State<TextComment> {
             TextButton(
               onPressed: () {
                 widget.callComment();
+                print("wow");
               },
               child: Text(
                 'Post',
