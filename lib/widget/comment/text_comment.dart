@@ -95,18 +95,40 @@ class _TextCommentState extends State<TextComment> {
               ),
             ),
             const SizedBox(width: 8),
-            TextButton(
+            // TextButton(
+            //   onPressed: () {
+            //     widget.callComment();
+            //     print("wow");
+            //   },
+            //   child: Text(
+            //     'Post',
+            //     style: TextStyle(color: Colors.white),
+            //   ),
+            //   style: ButtonStyle(
+            //     backgroundColor:
+            //         MaterialStateProperty.all(PicmeColors.mainColor),
+            //   ),
+            // ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: PicmeColors.mainColor, elevation: 0),
               onPressed: () {
                 widget.callComment();
-                print("wow");
               },
-              child: Text(
-                'Post',
-                style: TextStyle(color: Colors.white),
-              ),
-              style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all(PicmeColors.mainColor),
+              child: Container(
+                alignment: Alignment.center,
+                height: 35,
+                decoration: BoxDecoration(
+                  // color: PicmeColors.mainColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  'Post',
+                  style: GoogleFonts.poppins(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
               ),
             ),
           ],
