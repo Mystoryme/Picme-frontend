@@ -72,6 +72,8 @@ class ProfileSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Image img = Image.network(
+        profile.avatarUrl ?? "https://cdn.crispedge.com/5d76cb.png");
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.only(top: 15.0, right: 34, left: 34),
@@ -119,8 +121,7 @@ class ProfileSection extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 60.0,
-                      backgroundImage: NetworkImage(profile.avatarUrl ??
-                          "https://cdn.crispedge.com/5d76cb.png"),
+                      backgroundImage: img.image,
                     ),
                     TextButton(
                       onPressed: () {

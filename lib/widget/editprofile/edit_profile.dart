@@ -78,6 +78,9 @@ class _EditProfileState extends State<EditProfile> {
 
   @override
   Widget build(BuildContext context) {
+    Image img = Image.network(
+        widget.profile.avatarUrl ?? "https://cdn.crispedge.com/5d76cb.png");
+
     return Stack(
       children: [
         ClipOval(
@@ -86,16 +89,17 @@ class _EditProfileState extends State<EditProfile> {
             width: 110,
             color: PicmeColors.grayWhite,
             child: widget.pickedImage == null
-                ? Image.network(
-                    widget.profile.avatarUrl ??
-                        "https://cdn.crispedge.com/5d76cb.png",
-                    fit: BoxFit
-                        .cover, // Use BoxFit.cover to maintain aspect ratio
+                ? DecoratedBox(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: img.image,
+                        fit: BoxFit.fitHeight,
+                      ),
+                    ),
                   )
                 : Image.file(
                     File(widget.pickedImage!.path),
-                    fit: BoxFit
-                        .cover, // Use BoxFit.cover to maintain aspect ratio
+                    fit: BoxFit.cover,
                   ),
           ),
         ),
