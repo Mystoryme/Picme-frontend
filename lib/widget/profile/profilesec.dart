@@ -119,9 +119,16 @@ class ProfileSection extends StatelessWidget {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircleAvatar(
-                      radius: 60.0,
-                      backgroundImage: img.image,
+                    Container(
+                      width: 90,
+                      height: 90,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: img.image,
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ),
                     ),
                     TextButton(
                       onPressed: () {
