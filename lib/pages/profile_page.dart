@@ -55,7 +55,8 @@ class _ProfilePageState extends State<ProfilePage> {
             child: SingleChildScrollView(
       child: Container(
         child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-          ProfileSection(init: init, profile: profile!),
+          ProfileSection(
+              init: init, profile: profile!, reloadProfile: reloadProfile),
           ProfileBar(reloadProfile: reloadProfile)
         ]),
       ),

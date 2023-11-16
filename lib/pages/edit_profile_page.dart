@@ -9,9 +9,9 @@ import 'package:picme/widget/editprofile/head_edit_profile.dart';
 import 'package:picme/widget/editprofile/textform_edit_profile.dart';
 
 class EditProfilePage extends StatefulWidget {
-  EditProfilePage({Key? key}) : super(key: key);
+  EditProfilePage({Key? key, required this.reloadProfile}) : super(key: key);
   static const routeName = "/edit_profile_page";
-
+  final VoidCallback reloadProfile;
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
 }
@@ -30,8 +30,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
       "bio": _bio.text,
       "contact": _contact.text,
     }).then((response) async {
-      init();
       Navigator.pop(context);
+      widget.reloadProfile();
     }).onError((DioException error, _) {
       // * Apply default error handling
       Caller.handle(context, error);

@@ -10,14 +10,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:picme/utils/colors.dart';
 
 class ProfileSection extends StatelessWidget {
-  ProfileSection({
-    Key? key,
-    required this.init,
-    required this.profile,
-  }) : super(key: key);
+  ProfileSection(
+      {Key? key,
+      required this.init,
+      required this.profile,
+      required this.reloadProfile})
+      : super(key: key);
 
   final Function init;
   final Profile profile;
+  final VoidCallback reloadProfile;
 
   Future<void> _showLogoutDialog(BuildContext context) async {
     return showDialog<void>(
@@ -135,7 +137,8 @@ class ProfileSection extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => EditProfilePage()),
+                              builder: (context) => EditProfilePage(
+                                  reloadProfile: reloadProfile)),
                         ).then((value) {
                           init();
                         });
