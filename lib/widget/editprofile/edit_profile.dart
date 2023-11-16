@@ -82,8 +82,8 @@ class _EditProfileState extends State<EditProfile> {
       children: [
         ClipOval(
           child: Container(
-            height: 100,
-            width: 100,
+            height: 110,
+            width: 110,
             color: PicmeColors.grayWhite,
             child: widget.pickedImage == null
                 ? Image.network(
@@ -100,8 +100,8 @@ class _EditProfileState extends State<EditProfile> {
           ),
         ),
         Positioned(
-          bottom: 10.0,
-          right: 12.0,
+          bottom: 0.0,
+          right: 6.0,
           child: InkWell(
             onTap: () {
               if (widget.pickedImage != null) {
