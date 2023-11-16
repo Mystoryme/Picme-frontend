@@ -31,6 +31,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       "contact": _contact.text,
     }).then((response) async {
       Navigator.pop(context, true);
+      widget.reloadProfile();
     }).onError((DioException error, _) {
       // * Apply default error handling
       Caller.handle(context, error);

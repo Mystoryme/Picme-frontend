@@ -39,6 +39,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   void reloadProfile() {
     init();
+    print("kkkkkk");
   }
 
   void openEditProfilePage() async {
