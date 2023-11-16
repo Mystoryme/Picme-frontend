@@ -30,8 +30,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
       "bio": _bio.text,
       "contact": _contact.text,
     }).then((response) async {
-      Navigator.pop(context, true);
       widget.reloadProfile();
+      Navigator.pop(context);
     }).onError((DioException error, _) {
       // * Apply default error handling
       Caller.handle(context, error);
@@ -50,6 +50,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
         content: Text('Successfully edited!'),
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }).then((response) async {
+      widget.reloadProfile();
     }).onError((DioException error, _) {
       Caller.handle(context, error);
     });

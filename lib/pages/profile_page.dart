@@ -42,22 +42,6 @@ class _ProfilePageState extends State<ProfilePage> {
     print("kkkkkk");
   }
 
-  void openEditProfilePage() async {
-    final result = await Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => EditProfilePage(
-          reloadProfile: reloadProfile,
-        ),
-      ),
-    );
-
-    // Check if the result is true, then call init
-    if (result == true) {
-      reloadProfile();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     if (profile == null) {
