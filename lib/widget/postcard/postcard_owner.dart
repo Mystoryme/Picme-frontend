@@ -27,8 +27,9 @@ class PostCardOwner extends StatefulWidget {
 
 class _PostCardOwnerState extends State<PostCardOwner> {
   void deletePost() async {
-    Caller.dio.delete("/post/delete", data: {
-      "postId": widget.post.postId
+    Caller.dio.delete("/post/delete",
+        data: {"postId": widget.post.postId}).then((response) async {
+      widget.onDelete();
     }).onError((DioException error, _) => Caller.handle(context, error));
     widget.onDelete();
   }
