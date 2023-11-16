@@ -119,17 +119,24 @@ class ProfileSection extends StatelessWidget {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      width: 90,
-                      height: 90,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: NetworkImage(profile.avatarUrl ??
-                              "https://cdn.crispedge.com/5d76cb.png"),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                    Image.network(
+                      profile.avatarUrl ??
+                          "https://cdn.crispedge.com/5d76cb.png",
+                      loadingBuilder: (BuildContext context, Widget child,
+                          ImageChunkEvent? loadingProgress) {
+                        if (loadingProgress == null) {
+                          return child;
+                        } else {
+                          return Center(
+                            child: CircularProgressIndicator(
+                              value: loadingProgress.expectedTotalBytes != null
+                                  ? loadingProgress.cumulativeBytesLoaded /
+                                      (loadingProgress.expectedTotalBytes ?? 1)
+                                  : null,
+                            ),
+                          );
+                        }
+                      },
                     ),
                     TextButton(
                       onPressed: () {
