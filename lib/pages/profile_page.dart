@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:picme/classes/caller.dart';
 import 'package:picme/models/profile.dart';
+import 'package:picme/pages/edit_profile_page.dart';
 import 'package:picme/widget/postcard/postcard.dart';
 import 'package:picme/widget/postcard/postcard_grid.dart';
 import 'package:picme/widget/postcard/postcard_owner.dart';
@@ -38,6 +39,22 @@ class _ProfilePageState extends State<ProfilePage> {
 
   void reloadProfile() {
     init();
+  }
+
+  void openEditProfilePage() async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => EditProfilePage(
+          reloadProfile: reloadProfile,
+        ),
+      ),
+    );
+
+    // Check if the result is true, then call init
+    if (result == true) {
+      reloadProfile();
+    }
   }
 
   @override

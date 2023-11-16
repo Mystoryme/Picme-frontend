@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
         // '/add_image_page': (context) => AddImagePage(),
         '/check_image_page': (context) => const CheckImagePage(),
         '/direct_message_page': (context) => const DirectMessagePage(),
-        '/edit_profile_page': (context) => EditProfilePage(),
+        //'/edit_profile_page': (context) => EditProfilePage(),
         '/explore_page': (context) => const ExplorePage(),
         '/home_page': (context) => const Homepage(),
         '/payment_support_page': (context) => const PaymentSupportPage(),
