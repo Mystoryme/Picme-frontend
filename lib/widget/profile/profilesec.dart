@@ -11,7 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:picme/utils/colors.dart';
 
-class ProfileSection extends StatelessWidget {
+class ProfileSection extends StatefulWidget {
   ProfileSection(
       {Key? key,
       required this.init,
@@ -23,6 +23,11 @@ class ProfileSection extends StatelessWidget {
   final Profile profile;
   final VoidCallback reloadProfile;
 
+  @override
+  State<ProfileSection> createState() => _ProfileSectionState();
+}
+
+class _ProfileSectionState extends State<ProfileSection> {
   Future<void> _showLogoutDialog(BuildContext context) async {
     return showDialog<void>(
       context: context,
@@ -63,21 +68,10 @@ class ProfileSection extends StatelessWidget {
   late SharedPreferences prefs;
 
   // logout() async {
-  //   prefs = await SharedPreferences.getInstance();
-  //   await prefs.remove('token');
-  //   if (logout) {
-  //     Navigator.pushAndRemoveUntil(
-  //       context,
-  //       MaterialPageRoute(builder: (context) => const LoginPage()),
-  //           (route) => false,
-  //     );
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     Image img = Image.network(
-      profile.avatarUrl ?? "https://cdn.crispedge.com/5d76cb.png",
+      widget.profile.avatarUrl ?? "https://cdn.crispedge.com/5d76cb.png",
       key: ValueKey(new Random().nextInt(100)),
     );
     return Container(
@@ -95,7 +89,7 @@ class ProfileSection extends StatelessWidget {
             children: [
               // alignment: Alignment.center,
               Text(
-                profile.username,
+                widget.profile.username,
                 style: GoogleFonts.poppins(
                   color: Colors.black,
                   fontSize: 22,
@@ -142,9 +136,9 @@ class ProfileSection extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => EditProfilePage(
-                                  reloadProfile: reloadProfile)),
+                                  reloadProfile: widget.reloadProfile)),
                         ).then((value) {
-                          init();
+                          widget.init();
                         });
                       },
                       child: Text(
@@ -178,7 +172,7 @@ class ProfileSection extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                           // softWrap: true,
-                          profile.bio ?? " ",
+                          widget.profile.bio ?? " ",
                           style: GoogleFonts.poppins(
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
@@ -202,7 +196,7 @@ class ProfileSection extends StatelessWidget {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           // softWrap: true,
-                          profile.contact ?? "",
+                          widget.profile.contact ?? "",
                           style: GoogleFonts.poppins(
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
