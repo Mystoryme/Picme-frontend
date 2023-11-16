@@ -80,27 +80,27 @@ class _EditProfileState extends State<EditProfile> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          height: 100,
-          width: 100,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            borderRadius: BorderRadius.circular(80),
+        ClipOval(
+          child: Container(
+            height: 100,
+            width: 100,
             color: PicmeColors.grayWhite,
+            child: widget.pickedImage == null
+                ? Image.network(
+                    widget.profile.avatarUrl ??
+                        "https://cdn.crispedge.com/5d76cb.png",
+                    fit: BoxFit
+                        .cover, // Use BoxFit.cover to maintain aspect ratio
+                  )
+                : Image.file(
+                    File(widget.pickedImage!.path),
+                    fit: BoxFit
+                        .cover, // Use BoxFit.cover to maintain aspect ratio
+                  ),
           ),
-          child: widget.pickedImage == null
-              ? Image.network(
-                  widget.profile.avatarUrl ??
-                      "https://cdn.crispedge.com/5d76cb.png",
-                  fit: BoxFit.contain,
-                )
-              : Image.file(
-                  File(widget.pickedImage!.path),
-                  fit: BoxFit.contain,
-                ),
         ),
         Positioned(
-          bottom: 8.0,
+          bottom: 10.0,
           right: 12.0,
           child: InkWell(
             onTap: () {
