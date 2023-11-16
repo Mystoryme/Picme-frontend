@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -75,7 +77,9 @@ class ProfileSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Image img = Image.network(
-        profile.avatarUrl ?? "https://cdn.crispedge.com/5d76cb.png");
+      profile.avatarUrl ?? "https://cdn.crispedge.com/5d76cb.png",
+      key: ValueKey(new Random().nextInt(100)),
+    );
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.only(top: 15.0, right: 34, left: 34),
