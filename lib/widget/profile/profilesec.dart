@@ -125,8 +125,9 @@ class ProfileSection extends StatelessWidget {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                          image: img.image,
-                          fit: BoxFit.fitHeight,
+                          image: NetworkImage(profile.avatarUrl ??
+                              "https://cdn.crispedge.com/5d76cb.png"),
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
