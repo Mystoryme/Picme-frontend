@@ -7,8 +7,12 @@ import 'package:picme/utils/colors.dart';
 class HeadEditProfile extends StatelessWidget {
   final Function callEdit;
   final Function callEditAvatar;
+  final Function onCancelEdit;
   const HeadEditProfile(
-      {required this.callEdit, required this.callEditAvatar, Key? key});
+      {required this.callEdit,
+      required this.callEditAvatar,
+      required this.onCancelEdit,
+      Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,45 +31,51 @@ class HeadEditProfile extends StatelessWidget {
                   // alignment: Alignment.center,
                   child: TextButton(
                     onPressed: () => showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        title: const Text('Cancel'),
-                        content: Text(
-                          'Are you sure you want to cancel this your change?',
-                          style: GoogleFonts.poppins(color: Colors.black),
-                        ),
-                        actions: <Widget>[
-                          TextButton(
-                            onPressed: () => Navigator.pop(
-                              context,
-                              // MaterialPageRoute(
-                              //     builder: (context) => const ProfilePage()),
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text('Cancel'),
+                            content: Text(
+                              'Are you sure you want to cancel this your change?',
+                              style: GoogleFonts.poppins(color: Colors.black),
                             ),
-                            child: Text(
-                              'Cancel',
-                              style: GoogleFonts.poppins(
-                                  color: PicmeColors.grayBlack),
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context)
-                                  .pop(); // Close the AlertDialog
-                              Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                  builder: (context) => const ProfilePage(),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () => Navigator.pop(
+                                  context,
+                                  // MaterialPageRoute(
+                                  //     builder: (context) => const ProfilePage()),
                                 ),
-                              );
-                            },
-                            child: Text(
-                              'Yes',
-                              style: GoogleFonts.poppins(
-                                  color: PicmeColors.mainColor),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                                child: Text(
+                                  'Cancel',
+                                  style: GoogleFonts.poppins(
+                                      color: PicmeColors.grayBlack),
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                   Navigator.of(context)
+                                       .pop();
+                                   Navigator.of(context)
+                                       .pop();
+                                  // onCancelEdit();
+                                  // Navigator.of(context)
+                                  //     .pop(); // Close the AlertDialog
+                                  // Navigator.of(context).pushReplacement(
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) => const ProfilePage(),
+                                  //   ),
+                                  // );
+                                },
+                                child: Text(
+                                  'Yes',
+                                  style: GoogleFonts.poppins(
+                                      color: PicmeColors.mainColor),
+                                ),
+                              ),
+                            ],
+                          );
+                        }),
                     child: Text(
                       'Cancel',
                       textAlign: TextAlign.center,
