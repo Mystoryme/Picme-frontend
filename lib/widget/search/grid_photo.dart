@@ -1,68 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:picme/models/boost.dart';
+import 'package:picme/models/boosts.dart';
 
-import '../../pages/account_profile_page.dart';
+class GridPhoto extends StatefulWidget {
+  const GridPhoto({Key? key, required this.posts}) : super(key: key);
+  final Boosts posts;
 
-class GridPhoto extends StatelessWidget {
-  final List<Image> myImagesAdapted = [
-    Image(
-      image: AssetImage('assets/arisu.t.jpeg'),
-      fit: BoxFit.cover,
-    ),
-    Image(
-      image: AssetImage('assets/esterbunny.jpeg'),
-      fit: BoxFit.cover,
-    ),
-    Image(
-      image: AssetImage('assets/pudding.jpeg'),
-      fit: BoxFit.cover,
-    ),
-    Image(
-      image: AssetImage('assets/ra_rabitty.jpeg'),
-      fit: BoxFit.cover,
-    ),
-    Image(
-      image: AssetImage('assets/sunset.jpg'),
-      fit: BoxFit.cover,
-    ),
-    Image(
-      image: AssetImage('assets/yuri_iii.jpeg'),
-      fit: BoxFit.cover,
-    ),
-    Image(
-      image: AssetImage('assets/arisu.t.jpeg'),
-      fit: BoxFit.cover,
-    ),
-    Image(
-      image: AssetImage('assets/esterbunny.jpeg'),
-      fit: BoxFit.cover,
-    ),
-    Image(
-      image: AssetImage('assets/pudding.jpeg'),
-      fit: BoxFit.cover,
-    ),
-    Image(
-      image: AssetImage('assets/ra_rabitty.jpeg'),
-      fit: BoxFit.cover,
-    ),
-    Image(
-      image: AssetImage('assets/sunset.jpg'),
-      fit: BoxFit.cover,
-    ),
-    Image(
-      image: AssetImage('assets/yuri_iii.jpeg'),
-      fit: BoxFit.cover,
-    ),
-  ];
+  @override
+  State<GridPhoto> createState() => _GridPhotoState();
+}
 
+class _GridPhotoState extends State<GridPhoto> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          childAspectRatio:
-          1.0, // You can adjust this value to change aspect ratio
+          childAspectRatio: 1.0,
         ),
+        itemCount: widget.posts.posts?.length ?? 0,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
@@ -73,11 +30,13 @@ class GridPhoto extends StatelessWidget {
               //   ),
               // );
             },
-            child: myImagesAdapted[index],
+            child: Image.network(
+              widget.posts.posts?[index]?.imageUrl ?? '',
+              fit: BoxFit.cover,
+            ),
           );
         },
       ),
     );
   }
-
 }
