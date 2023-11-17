@@ -5,9 +5,10 @@ import 'package:picme/models/gridposts.dart';
 import 'package:picme/models/posts.dart';
 import 'package:picme/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:picme/widget/postcard/postcard.dart';
 import 'package:picme/widget/postcard/postcard_grid.dart';
 import 'package:picme/widget/postcard/postcard_owner.dart';
-import 'package:picme/widget/profile/sortby.dart';
+import 'package:picme/widget/account_profile/sortby_account.dart';
 
 class AccountProfileBar extends StatefulWidget {
   const AccountProfileBar({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class AccountProfileBar extends StatefulWidget {
   @override
   _AccountProfileBarState createState() => _AccountProfileBarState();
 }
-
+ 
 class _AccountProfileBarState extends State<AccountProfileBar>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
@@ -27,29 +28,63 @@ class _AccountProfileBarState extends State<AccountProfileBar>
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
     _tabController.addListener(_handleTabSelection);
-    init();
-    // load();
+    // init();
+    load();
   }
 
   void _handleTabSelection() {
     setState(() {});
   }
 
-  init() {
-    Caller.dio.get("/profile/post").then((response) {
+  load() {
+    String uri = "/profile/post";
+    String uri1 = "/profile/gridpost";
+    if (sortby != "") {
+      uri += "?sortBy=" + sortby;
+      uri1 += "?sortBy=" + sortby;
+    }
+    Caller.dio.get(uri).then((response) {
       setState(() {
         posts = Posts.fromJson(response.data["data"]);
       });
     }).onError((DioException error, _) {
       Caller.handle(context, error);
     });
-    Caller.dio.get("/profile/gridpost").then((response) {
+    Caller.dio.get(uri1).then((response) {
       setState(() {
         gridPosts = GridPosts.fromJson(response.data["data"]);
       });
     }).onError((DioException error, _) {
       Caller.handle(context, error);
     });
+  }
+  // void _handleTabSelection() {
+  //   setState(() {});
+  // }
+
+  // init() {
+  //   Caller.dio.get("/profile/post").then((response) {
+  //     setState(() {
+  //       posts = Posts.fromJson(response.data["data"]);
+  //     });
+  //   }).onError((DioException error, _) {
+  //     Caller.handle(context, error);
+  //   });
+  //   Caller.dio.get("/profile/gridpost").then((response) {
+  //     setState(() {
+  //       gridPosts = GridPosts.fromJson(response.data["data"]);
+  //     });
+  //   }).onError((DioException error, _) {
+  //     Caller.handle(context, error);
+  //   });
+  // }
+
+  String sortby = "";
+  void setSortby(String c) {
+    setState(() {
+      sortby = c;
+    });
+    load();
   }
 
   @override
@@ -133,11 +168,12 @@ class _AccountProfileBarState extends State<AccountProfileBar>
                 children: [
                   // SortBy(),
                   // SortBy(),
+                  SortByAccount(setSortbyAccount: setSortby),
                   Column(
                     children: posts!.posts
-                        .map((e) => PostCardOwner(
+                        .map((e) => PostCard(
                               post: e,
-                              onDelete: () {},
+
                             ))
                         .toList(),
                   )
@@ -145,8 +181,10 @@ class _AccountProfileBarState extends State<AccountProfileBar>
               ),
               Column(
                 children: [
-                  //SortBy(),
-                  //PostCardGrid(posts: gridPosts!)
+                  SortByAccount(
+                    setSortbyAccount: setSortby,
+                  ),
+                  PostCardGrid(posts: gridPosts!)
                 ],
               ),
             ],
