@@ -64,6 +64,9 @@ class _PostCardState extends State<PostCard> {
     if (widget.post.application == "blender") {
       applicationImage = Image.asset('assets/blender.png');
     }
+    if (widget.post.application == "other") {
+      applicationImage = Image.asset('assets/other.png');
+    }
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),

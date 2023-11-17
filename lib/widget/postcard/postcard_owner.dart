@@ -56,6 +56,9 @@ class _PostCardOwnerState extends State<PostCardOwner> {
     if (widget.post.application == "blender") {
       applicationImage = Image.asset('assets/blender.png');
     }
+    if (widget.post.application == "other") {
+      applicationImage = Image.asset('assets/other.png');
+    }
     // if (widget.post.application != "other") {}
     //
 

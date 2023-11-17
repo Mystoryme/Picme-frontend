@@ -6,7 +6,7 @@ class PostCardGrid extends StatefulWidget {
   const PostCardGrid({Key? key, required this.posts}) : super(key: key);
   final GridPosts posts;
 
-  @override
+  @override 
   State<PostCardGrid> createState() => _PostCardGridState();
 }
 
