@@ -82,6 +82,8 @@ class _CommentPageState extends State<CommentPage> {
         child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              HeadComment(),
+              SizedBox(height: 10),
               Expanded(
                 child: ListView(
                     shrinkWrap: true,

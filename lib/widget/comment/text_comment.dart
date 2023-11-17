@@ -7,10 +7,10 @@ import 'package:picme/utils/colors.dart';
 class TextComment extends StatefulWidget {
   const TextComment(
       {Key? key,
-      required this.search,
-      required this.textFocusNode,
-      required this.profile,
-      required this.callComment})
+        required this.search,
+        required this.textFocusNode,
+        required this.profile,
+        required this.callComment})
       : super(key: key);
   final TextEditingController search;
   final FocusNode textFocusNode;
@@ -76,12 +76,12 @@ class _TextCommentState extends State<TextComment> {
                     suffixIcon: widget.search.text.isEmpty
                         ? null
                         : IconButton(
-                            onPressed: (() => _clearTextField(widget.search)),
-                            icon: const Icon(
-                              Icons.clear,
-                              color: Colors.black54,
-                            ),
-                          ),
+                      onPressed: (() => _clearTextField(widget.search)),
+                      icon: const Icon(
+                        Icons.clear,
+                        color: Colors.black54,
+                      ),
+                    ),
                   ),
                   style: GoogleFonts.poppins(
                     fontSize: 14,

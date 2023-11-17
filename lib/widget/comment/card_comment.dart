@@ -41,36 +41,41 @@ class CardComment extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              RichText(
-                maxLines: 2, // Set max lines to allow wrapping
-                softWrap: true, // Enable text wrapping
-                text: TextSpan(
-                  text: '$username : ',
-                  style: GoogleFonts.poppins(
-                    color: Colors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: action,
+              Row(
+                children: [
+                  RichText(
+                    maxLines: 2, // Set max lines to allow wrapping
+                    softWrap: true, // Enable text wrapping
+                    text: TextSpan(
+                      text: '$username : ',
                       style: GoogleFonts.poppins(
                         color: Colors.black,
                         fontSize: 16,
-                        fontWeight: FontWeight.normal,
+                        fontWeight: FontWeight.bold,
                       ),
+                      children: [
+                        TextSpan(
+                          text: action,
+                          style: GoogleFonts.poppins(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  
+                ],
               ),
-              const SizedBox(height: 10), // Add some spacing
-              Text(
-                'Reply',
-                style: GoogleFonts.poppins(
-                  color: PicmeColors.grayBlack, // You can set the desired color
-                  fontSize: 12,
-                ),
-              ),
+              // const SizedBox(height: 10), // Add some spacing
+              // Text(
+              //   'Reply',
+              //   style: GoogleFonts.poppins(
+              //     color: PicmeColors.grayBlack, // You can set the desired color
+              //     fontSize: 12,
+              //   ),
+              // ),
             ],
           ),
         ),
