@@ -114,6 +114,7 @@ class _TextCommentState extends State<TextComment> {
                     backgroundColor: PicmeColors.mainColor, elevation: 0),
                 onPressed: () {
                   widget.callComment();
+                  _clearTextField(widget.search);
                 },
                 child: Container(
                   alignment: Alignment.center,

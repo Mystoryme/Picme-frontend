@@ -88,8 +88,8 @@ class _CommentPageState extends State<CommentPage> {
                 child: ListView(
                     shrinkWrap: true,
                     children: comments?.posts
-                            .map((el) => CardComment(comment: el))
-                            .toList() ??
+                            ?.map((el) => CardComment(comment: el))
+                            ?.toList() ??
                         []),
               )
               // Column(
@@ -113,12 +113,12 @@ class _CommentPageState extends State<CommentPage> {
               //   ],
               // ),
               ,
-              TextComment(
+              profile != null ? TextComment(
                 search: _search,
                 textFocusNode: _textFocusNode,
                 profile: profile!,
                 callComment: callComment,
-              )
+              ) : SizedBox()
             ]),
       ),
     ));
