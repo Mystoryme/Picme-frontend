@@ -4,14 +4,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/classes/caller.dart';
 import 'package:picme/models/notifications.dart';
 
-class CardlikeNotification extends StatefulWidget {
-  const CardlikeNotification({super.key});
+class CardNotification extends StatefulWidget {
+  const CardNotification({super.key});
 
   @override
-  State<CardlikeNotification> createState() => _CardlikeNotificationState();
+  State<CardNotification> createState() => _CardNotificationState();
 }
 
-class _CardlikeNotificationState extends State<CardlikeNotification> {
+class _CardNotificationState extends State<CardNotification> {
   Notifications? notifications;
   @override
   void initState() {
@@ -64,11 +64,11 @@ class _CardlikeNotificationState extends State<CardlikeNotification> {
     return InkWell(
       onTap: () {
         if (type == "comment" || type == "like" || type == "post_donate") {
-          Navigator.pushNamed(context, "/postcard", arguments: {
+          Navigator.pushNamed(context, "/post/list", arguments: {
             "id": username,
           });
         } else if (type == "user_donate") {
-          Navigator.pushNamed(context, "/profile", arguments: {
+          Navigator.pushNamed(context, "/profile/info", arguments: {
             "id": username,
           });
         }

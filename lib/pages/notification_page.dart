@@ -23,7 +23,7 @@ class _NotificationPageState extends State<NotificationPage> {
           children: [
             HeadNotification(),
             SizedBox(height: 10),
-            CardlikeNotification(),
+            CardNotification(),
           ],
         ),
       ),
