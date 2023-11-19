@@ -15,16 +15,18 @@ class _NotificationPageState extends State<NotificationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.all(15.0),
-        child: const Column(
-          // mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            HeadNotification(),
-            SizedBox(height: 10),
-            CardNotification(),
-          ],
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(15.0),
+          child: const Column(
+            // mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              HeadNotification(),
+              SizedBox(height: 10),
+              CardNotification(),
+            ],
+          ),
         ),
       ),
     );

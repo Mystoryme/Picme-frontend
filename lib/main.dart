@@ -16,6 +16,7 @@ import 'package:picme/pages/login_page.dart';
 import 'package:picme/pages/payment/payment_boost_post_page.dart';
 import 'package:picme/pages/payment_success_page.dart';
 import 'package:picme/pages/payment/payment_support_page.dart';
+import 'package:picme/pages/post_click_page.dart';
 import 'package:picme/pages/profile_page.dart';
 import 'package:picme/pages/register_page.dart';
 import 'package:picme/pages/search_page.dart';
@@ -56,6 +57,8 @@ class MyApp extends StatelessWidget {
         '/search_page': (context) => const SearchPage(),
         '/notification_page': (context) => const NotificationPage(),
         '/account_profile_page': (context) => const AccountProfilePage(),
+        // '/post_click_page': (context) => const PostClickPage(),
+
         // '/comment_page': (context) => const CommentPage(),
       },
     );
