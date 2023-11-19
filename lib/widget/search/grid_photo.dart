@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:picme/models/boost.dart';
 import 'package:picme/models/boosts.dart';
+import 'package:picme/models/post.dart';
+import 'package:picme/pages/post_click_page.dart';
 
 class GridPhoto extends StatefulWidget {
   const GridPhoto({Key? key, required this.posts}) : super(key: key);
@@ -15,7 +17,7 @@ class _GridPhotoState extends State<GridPhoto> {
   Widget build(BuildContext context) {
     return Expanded(
       child: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 1.0,
         ),
@@ -23,12 +25,12 @@ class _GridPhotoState extends State<GridPhoto> {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              // Navigator.of(context).push(
-              //   MaterialPageRoute(
-              //     builder: (context) =>
-              //         AccountProfilePage(), // Replace with your page
-              //   ),
-              // );
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) =>
+                      PostClickPage(postId: widget.posts.posts[index].postId), // Replace with your page
+                ),
+              );
             },
             child: Image.network(
               widget.posts.posts?[index]?.imageUrl ?? '',
