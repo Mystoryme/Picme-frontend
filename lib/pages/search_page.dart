@@ -51,7 +51,7 @@ load(){
   @override
   Widget build(BuildContext context) {
     if (posts == null) {
-      return Scaffold(
+      return const Scaffold(
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -74,7 +74,7 @@ load(){
               visible: _textFocusNode.hasFocus,
               child:  PersonSearch(),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             GridPhoto( posts: posts!),
             // Home_bar(currentIndex: _currentIndex, onTap: _onTap)
           ],
