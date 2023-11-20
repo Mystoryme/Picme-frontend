@@ -1,10 +1,16 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:picme/classes/caller.dart';
+import 'package:picme/models/insight.dart';
+import 'package:picme/models/insights.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class AccountInsightsPage extends StatefulWidget {
-  const AccountInsightsPage({super.key});
+  const AccountInsightsPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<AccountInsightsPage> createState() => _AccountInsightsPageState();
@@ -13,12 +19,33 @@ class AccountInsightsPage extends StatefulWidget {
 class _AccountInsightsPageState extends State<AccountInsightsPage> {
   late List<ExpenseData> _chartData;
   late TooltipBehavior _tooltipBehavior;
+  Insights insights = Insights(insights: [Insight(views: 0, likes: 0),Insight(views: 0, likes: 0),Insight(views: 0, likes: 0),Insight(views: 0, likes: 0)]);
 
   @override
   void initState() {
     _chartData = getChartData();
     _tooltipBehavior = TooltipBehavior(enable: true);
     super.initState();
+    load();
+  }
+
+  load() async {
+    // String uri = "/post/post_get";
+
+    Caller.dio
+        .get(
+      "/insight/",
+    )
+        .then((response) {
+      print('aaaaa');
+      setState(() {
+        print(response.data["data"]);
+        insights = Insights.fromJson(response.data["data"]);
+        _chartData = getChartData();
+      });
+    }).onError((DioException error, _) {
+      Caller.handle(context, error);
+    });
   }
 
   @override
@@ -75,14 +102,14 @@ class _AccountInsightsPageState extends State<AccountInsightsPage> {
                     isVisible: true, position: LegendPosition.bottom),
                 tooltipBehavior: _tooltipBehavior,
                 series: <ChartSeries>[
-                  StackedLineSeries<ExpenseData, String>(
+                  LineSeries<ExpenseData, String>(
                     dataSource: _chartData,
                     xValueMapper: (ExpenseData exp, _) => exp.expenseWeek,
                     yValueMapper: (ExpenseData exp, _) => exp.reach,
                     name: 'Reach',
                     markerSettings: const MarkerSettings(isVisible: true),
                   ),
-                  StackedLineSeries<ExpenseData, String>(
+                  LineSeries<ExpenseData, String>(
                     dataSource: _chartData,
                     xValueMapper: (ExpenseData exp, _) => exp.expenseWeek,
                     yValueMapper: (ExpenseData exp, _) => exp.engaged,
@@ -100,11 +127,16 @@ class _AccountInsightsPageState extends State<AccountInsightsPage> {
   }
 
   List<ExpenseData> getChartData() {
+    print(insights?.insights);
     final List<ExpenseData> chartData = [
-      ExpenseData('Week 1', 32, 50),
-      ExpenseData('Week 2', 55, 80),
-      ExpenseData('Week 3', 24, 44),
-      ExpenseData('Week 4', 36, 56),
+      ExpenseData('Week 1', insights?.insights[0].views ?? 0,
+          insights?.insights[0].likes ?? 0),
+      ExpenseData('Week 2', insights?.insights[1].views ?? 0,
+          insights?.insights[1].likes ?? 0),
+      ExpenseData('Week 3', insights?.insights[2].views ?? 0,
+          insights?.insights[2].likes ?? 0),
+      ExpenseData('Week 4', insights?.insights[3].views ?? 0,
+          insights?.insights[3].likes ?? 0),
     ];
     return chartData;
   }
