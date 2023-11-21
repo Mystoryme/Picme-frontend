@@ -5,17 +5,27 @@ part 'search.g.dart';
 
 @JsonSerializable()
 class Search {
-  @JsonKey(name: 'userId')
-  final int userId;
+  @JsonKey(name: 'id')
+  final int id;
 
   @JsonKey(name: 'username')
   final String username;
 
+  @JsonKey(name: 'bio')
+  final String? bio;
+
+  @JsonKey(name: 'contact')
+  final String? contact;
+
   @JsonKey(name: 'avatarUrl')
   final String? avatarUrl;
 
-  Search({required this.userId, required this.username, required this.avatarUrl
-      // required this.category,
+  Search({required this.id,
+          required this.username,
+          required this.bio, 
+          required this.contact,
+          required this.avatarUrl
+      
       });
 
   factory Search.fromJson(Map<String, dynamic> json) => _$SearchFromJson(json);
