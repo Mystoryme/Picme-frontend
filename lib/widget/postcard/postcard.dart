@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_downloader/image_downloader.dart';
 import 'package:like_button/like_button.dart';
 import 'package:picme/classes/caller.dart';
 import 'package:picme/models/post.dart';
@@ -11,7 +12,7 @@ import 'package:picme/pages/comment/comment_page.dart';
 import 'package:picme/pages/home_page.dart';
 import 'package:picme/pages/support/support_page.dart';
 import 'package:picme/utils/colors.dart';
-// import 'package:saver_gallery/saver_gallery.dart';
+import 'package:saver_gallery/saver_gallery.dart';
 
 class PostCard extends StatefulWidget {
   final Post post;
@@ -225,35 +226,27 @@ class _PostCardState extends State<PostCard> {
                   IconButton(
                     hoverColor: Colors.white,
                     color: PicmeColors.grayBlack,
-                    onPressed: () {
+                    onPressed: () async {
                       showDialog<String>(
                         context: context,
                         builder: (BuildContext context) => AlertDialog(
-                          titleTextStyle: GoogleFonts.poppins(
-                              fontSize: 20, color: Colors.black),
-                          titlePadding: EdgeInsets.only(
-                              right: 20, left: 20, top: 20, bottom: 20),
-                          title: const Text(
-                            'You need to download this picture?',
-                          ),
-                          actionsPadding:
-                              EdgeInsets.only(bottom: 20, right: 20),
+                          titleTextStyle: GoogleFonts.poppins(fontSize: 20, color: Colors.black),
+                          titlePadding: EdgeInsets.only(right: 20, left: 20, top: 20, bottom: 20),
+                          title: const Text('You need to download this picture?'),
+                          actionsPadding: EdgeInsets.only(bottom: 20, right: 20),
                           actions: <Widget>[
                             Container(
                               height: 40,
                               width: 70,
                               decoration: BoxDecoration(
-                                  border:
-                                      Border.all(color: PicmeColors.grayWhite),
-                                  borderRadius: BorderRadius.circular(10)),
+                                border: Border.all(color: PicmeColors.grayWhite),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                               child: TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(context, 'Cancel'),
+                                onPressed: () => Navigator.pop(context, 'Cancel'),
                                 child: Text(
                                   'No',
-                                  style: TextStyle(
-                                      color: PicmeColors.grayBlack,
-                                      fontSize: 18),
+                                  style: TextStyle(color: PicmeColors.grayBlack, fontSize: 18),
                                 ),
                               ),
                             ),
@@ -261,16 +254,19 @@ class _PostCardState extends State<PostCard> {
                               height: 40,
                               width: 70,
                               decoration: BoxDecoration(
-                                  color: PicmeColors.mainColor,
-                                  borderRadius: BorderRadius.circular(10)),
+                                color: PicmeColors.mainColor,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                               child: TextButton(
                                 onPressed: () async {
-                                  // await SaverGallery.saveImage(100, name: name)
+                                  // Save the image to the gallery
+                                  await ImageDownloader.downloadImage(widget.post.imageUrl);
+
+                                  Navigator.pop(context, 'Yes');
                                 },
                                 child: Text(
                                   'Yes',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 18),
+                                  style: TextStyle(color: Colors.white, fontSize: 18),
                                 ),
                               ),
                             ),
@@ -281,6 +277,65 @@ class _PostCardState extends State<PostCard> {
                     icon: Icon(Icons.save_alt_rounded),
                     iconSize: 24,
                   ),
+                  // IconButton(
+                  //   hoverColor: Colors.white,
+                  //   color: PicmeColors.grayBlack,
+                  //   onPressed: () {
+                  //     showDialog<String>(
+                  //       context: context,
+                  //       builder: (BuildContext context) => AlertDialog(
+                  //         titleTextStyle: GoogleFonts.poppins(
+                  //             fontSize: 20, color: Colors.black),
+                  //         titlePadding: EdgeInsets.only(
+                  //             right: 20, left: 20, top: 20, bottom: 20),
+                  //         title: const Text(
+                  //           'You need to download this picture?',
+                  //         ),
+                  //         actionsPadding:
+                  //             EdgeInsets.only(bottom: 20, right: 20),
+                  //         actions: <Widget>[
+                  //           Container(
+                  //             height: 40,
+                  //             width: 70,
+                  //             decoration: BoxDecoration(
+                  //                 border:
+                  //                     Border.all(color: PicmeColors.grayWhite),
+                  //                 borderRadius: BorderRadius.circular(10)),
+                  //             child: TextButton(
+                  //               onPressed: () =>
+                  //                   Navigator.pop(context, 'Cancel'),
+                  //               child: Text(
+                  //                 'No',
+                  //                 style: TextStyle(
+                  //                     color: PicmeColors.grayBlack,
+                  //                     fontSize: 18),
+                  //               ),
+                  //             ),
+                  //           ),
+                  //           Container(
+                  //             height: 40,
+                  //             width: 70,
+                  //             decoration: BoxDecoration(
+                  //                 color: PicmeColors.mainColor,
+                  //                 borderRadius: BorderRadius.circular(10)),
+                  //             child: TextButton(
+                  //               onPressed: () async {
+                  //                 // await SaverGallery.saveImage(100, name: name)
+                  //               },
+                  //               child: Text(
+                  //                 'Yes',
+                  //                 style: TextStyle(
+                  //                     color: Colors.white, fontSize: 18),
+                  //               ),
+                  //             ),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     );
+                  //   },
+                  //   icon: Icon(Icons.save_alt_rounded),
+                  //   iconSize: 24,
+                  // ),
                   IconButton(
                     hoverColor: Colors.white,
                     padding: EdgeInsets.only(right: 24),

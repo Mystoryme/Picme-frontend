@@ -34,13 +34,21 @@ PODS:
     - DKImagePickerController/PhotoGallery
     - Flutter
   - Flutter (1.0.0)
+  - flutter_downloader (0.0.1):
+    - Flutter
   - flutter_platform_alert (0.0.1):
+    - Flutter
+  - image_downloader (0.0.1):
+    - Flutter
+  - image_gallery_saver (2.0.2):
     - Flutter
   - image_picker_ios (0.0.1):
     - Flutter
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
+  - permission_handler_apple (9.1.1):
+    - Flutter
   - saver_gallery (0.0.1):
     - Flutter
   - SDWebImage (5.18.2):
@@ -54,9 +62,13 @@ PODS:
 DEPENDENCIES:
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - Flutter (from `Flutter`)
+  - flutter_downloader (from `.symlinks/plugins/flutter_downloader/ios`)
   - flutter_platform_alert (from `.symlinks/plugins/flutter_platform_alert/ios`)
+  - image_downloader (from `.symlinks/plugins/image_downloader/ios`)
+  - image_gallery_saver (from `.symlinks/plugins/image_gallery_saver/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - saver_gallery (from `.symlinks/plugins/saver_gallery/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
 
@@ -72,12 +84,20 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/file_picker/ios"
   Flutter:
     :path: Flutter
+  flutter_downloader:
+    :path: ".symlinks/plugins/flutter_downloader/ios"
   flutter_platform_alert:
     :path: ".symlinks/plugins/flutter_platform_alert/ios"
+  image_downloader:
+    :path: ".symlinks/plugins/image_downloader/ios"
+  image_gallery_saver:
+    :path: ".symlinks/plugins/image_gallery_saver/ios"
   image_picker_ios:
     :path: ".symlinks/plugins/image_picker_ios/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  permission_handler_apple:
+    :path: ".symlinks/plugins/permission_handler_apple/ios"
   saver_gallery:
     :path: ".symlinks/plugins/saver_gallery/ios"
   shared_preferences_foundation:
@@ -88,9 +108,13 @@ SPEC CHECKSUMS:
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
   file_picker: ce3938a0df3cc1ef404671531facef740d03f920
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  flutter_downloader: b7301ae057deadd4b1650dc7c05375f10ff12c39
   flutter_platform_alert: 6a241c90f3cc350d0286deeefee9f52bee957019
+  image_downloader: 73e190d6c9f286f2649554051348d9cb319cd4b3
+  image_gallery_saver: cb43cc43141711190510e92c460eb1655cd343cb
   image_picker_ios: 4a8aadfbb6dc30ad5141a2ce3832af9214a705b5
   path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
+  permission_handler_apple: e76247795d700c14ea09e3a2d8855d41ee80a2e6
   saver_gallery: 2b4e584106fde2407ab51560f3851564963e6b78
   SDWebImage: c0de394d7cf7f9838aed1fd6bb6037654a4572e4
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
