@@ -4,6 +4,7 @@ import 'package:picme/classes/caller.dart';
 import 'package:picme/models/boost.dart';
 import 'package:picme/models/boosts.dart';
 import 'package:picme/models/search.dart';
+import 'package:picme/models/searches.dart';
 import 'package:picme/widget/home/buttonbar.dart';
 import 'package:picme/widget/search/button_search.dart';
 import 'package:picme/widget/search/grid_photo.dart';
@@ -12,7 +13,6 @@ import 'package:picme/widget/search/person_search.dart';
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
   static const routeName = "/search_page";
-  
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -22,8 +22,10 @@ class _SearchPageState extends State<SearchPage> {
   final TextEditingController _search = TextEditingController();
   FocusNode _textFocusNode = FocusNode();
   Boosts? posts;
+  String username = '';
+  Searches? searches;
 
-@override
+  @override
   void reloadState() {
     setState(() {});
   }
@@ -34,17 +36,35 @@ class _SearchPageState extends State<SearchPage> {
     load();
   }
 
-load(){
+  load() {
     String uri = "/post/listboost";
 
-  Caller.dio.get(uri).then((response) {
+    Caller.dio.get(uri).then((response) {
       setState(() {
         posts = Boosts.fromJson(response.data["data"]);
       });
     }).onError((DioException error, _) {
       Caller.handle(context, error);
     });
-}
+  }
+
+  void submit() {
+    // Post multipart form using Dio and senf _pickedImage in key of file
+    FormData formData = FormData.fromMap({
+      "username": username,
+    });
+
+    Caller.dio.post("/insight/search", data: {
+      "username": _search.text,
+    }).then((response) {
+      setState(() {
+        print(response.data["data"]);
+        searches = Searches.fromJson(response.data["data"]);
+      });
+    }).onError((DioException error, _) {
+      Caller.handle(context, error);
+    });
+  }
 
   // final int _currentIndex = 0;
   // final ValueChanged<int> _onTap = (value) => print(value);
@@ -64,18 +84,14 @@ load(){
       body: SafeArea(
         child: Column(
           children: [
-            ButtonSearch(
-              search: _search,
+            PersonSearch(
+              searches: searches ?? Searches(users: []),
               textFocusNode: _textFocusNode,
               reload: reloadState,
-            ),
-            // Text(_textFocusNode.hasFocus.toString()),
-            Visibility(
-              visible: _textFocusNode.hasFocus,
-              child:  PersonSearch(),
+              search: _search,
             ),
             const SizedBox(height: 10),
-            GridPhoto( posts: posts!),
+            GridPhoto(posts: posts!),
             // Home_bar(currentIndex: _currentIndex, onTap: _onTap)
           ],
         ),

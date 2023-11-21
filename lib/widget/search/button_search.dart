@@ -1,5 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:picme/classes/caller.dart';
+import 'package:picme/models/searches.dart';
 import 'package:picme/pages/home_page.dart';
 import 'package:picme/utils/colors.dart';
 
@@ -24,6 +27,16 @@ class _ButtonSearchState extends State<ButtonSearch> {
     controller.clear();
     // Call setState to update the UI
     setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    load();
+  }
+
+  load() async {
+    // String uri = "/post/post_get";
   }
 
   @override
