@@ -14,6 +14,7 @@ class BoostPostPage extends StatefulWidget {
 
 class _BoostPostPageState extends State<BoostPostPage> {
   final TextEditingController _boostpost = TextEditingController();
+  int currentAmount = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,6 +86,11 @@ class _BoostPostPageState extends State<BoostPostPage> {
                 ),
                 TextFormBoostPost(
                   boostpost: _boostpost,
+                  onAmountSelected: (int amount) {
+                    setState(() {
+                      currentAmount = amount;
+                    });
+                  },
                 ),
               ],
             ),
@@ -92,7 +98,7 @@ class _BoostPostPageState extends State<BoostPostPage> {
             // const SizedBox(
             //   height: 570,
             // ),
-            const ButtonBoostPost(),
+            ButtonBoostPost(amount: currentAmount),
           ],
         ),
       ),
