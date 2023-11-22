@@ -19,6 +19,14 @@ class ButtonSupport extends StatelessWidget {
           style: ElevatedButton.styleFrom(
               backgroundColor: PicmeColors.mainColor, elevation: 0),
           onPressed: () {
+            if (supportController.text.isEmpty) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Please enter your tips'),
+                ),
+              );
+              return;
+            }
             Navigator.push(
               context,
               MaterialPageRoute(
