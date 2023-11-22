@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/utils/colors.dart';
 
@@ -12,9 +13,25 @@ const List<String> list = <String>[
 ];
 
 class TextFormBoostPost extends StatefulWidget {
-  const TextFormBoostPost({Key? key, required this.boostpost})
-      : super(key: key);
+  TextFormBoostPost({
+    Key? key,
+    required this.boostpost,
+    required this.onAmountSelected,
+  }) : super(key: key);
   final TextEditingController boostpost;
+  final ValueChanged<int> onAmountSelected;
+
+  String dropdownValue = list.first;
+  int getCurrentAmount() {
+    RegExp regex = RegExp(r'(\d+)');
+    Match? match = regex.firstMatch(dropdownValue);
+    String numericPart = match?.group(0) ?? '0';
+
+    // Convert the numeric part to an integer
+    int amount = int.tryParse(numericPart) ?? 0;
+
+    return amount;
+  }
 
   @override
   State<TextFormBoostPost> createState() => _TextFormBoostPostState();
@@ -148,8 +165,9 @@ class _TextFormBoostPostState extends State<TextFormBoostPost> {
             onSelected: (String? value) {
               // This is called when the user selects an item.
               setState(() {
-                dropdownValue = value!;
+                widget.dropdownValue = value!;
               });
+              widget.onAmountSelected(widget.getCurrentAmount());
               InputDecoration(
                 border: OutlineInputBorder(
                   borderSide:

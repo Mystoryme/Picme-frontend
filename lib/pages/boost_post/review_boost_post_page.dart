@@ -6,9 +6,10 @@ import 'package:picme/widget/boost_post/button_review_boost_post.dart';
 import 'package:picme/widget/boost_post/detail_review_boost_post.dart';
 
 class ReviewBoostPostPage extends StatefulWidget {
-  const ReviewBoostPostPage({Key? key}) : super(key: key);
+  const ReviewBoostPostPage({Key? key, required this.amount}) : super(key: key);
   static const routeName = "/review_boost_post_page";
 
+  final int amount;
   @override
   State<ReviewBoostPostPage> createState() => _ReviewBoostPostPageState();
 }
@@ -85,7 +86,9 @@ class _ReviewBoostPostPageState extends State<ReviewBoostPostPage> {
                     ],
                   ),
                 ),
-                const DetailReviewBoostPost(),
+                DetailReviewBoostPost(
+                  amount: widget.amount,
+                ),
                 // TextFormSupport(
                 //   support: _support,
                 // ),

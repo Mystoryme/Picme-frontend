@@ -3,10 +3,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/utils/colors.dart';
 
 class DetailReviewBoostPost extends StatelessWidget {
-  const DetailReviewBoostPost({super.key});
+  DetailReviewBoostPost({
+    Key? key,
+    required this.amount,
+  }) : super(key: key);
 
+  final int amount;
   @override
   Widget build(BuildContext context) {
+    int total = amount * 69;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -76,7 +81,7 @@ class DetailReviewBoostPost extends StatelessWidget {
               ),
               Text(
                 textAlign: TextAlign.right,
-                '7',
+                amount.toString(),
                 style: GoogleFonts.poppins(
                   color: PicmeColors.grayBlack,
                   fontSize: 16,
@@ -193,7 +198,7 @@ class DetailReviewBoostPost extends StatelessWidget {
                   ),
                   Text(
                     // textAlign: TextAlign.right,
-                    '7',
+                    amount.toString(),
                     style: GoogleFonts.poppins(
                       color: PicmeColors.grayBlack,
                       fontSize: 16,
@@ -216,7 +221,7 @@ class DetailReviewBoostPost extends StatelessWidget {
                   ),
                   Text(
                     // textAlign: TextAlign.right,
-                    '483.00 THB',
+                    '${total} THB',
                     style: GoogleFonts.poppins(
                       color: Colors.black,
                       fontSize: 16,
