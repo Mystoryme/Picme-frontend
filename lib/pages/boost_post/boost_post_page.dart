@@ -14,7 +14,7 @@ class BoostPostPage extends StatefulWidget {
 
 class _BoostPostPageState extends State<BoostPostPage> {
   final TextEditingController _boostpost = TextEditingController();
-  int currentAmount = 0;
+  int currentAmount = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
