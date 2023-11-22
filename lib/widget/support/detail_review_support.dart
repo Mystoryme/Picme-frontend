@@ -41,7 +41,7 @@ class DetailReviewSupport extends StatelessWidget {
               ),
               Text(
                 textAlign: TextAlign.right,
-                '$amount THB',
+                amount.text + ' THB',
                 style: GoogleFonts.poppins(
                   color: PicmeColors.grayBlack,
                   fontSize: 16,
