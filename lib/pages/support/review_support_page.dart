@@ -6,9 +6,11 @@ import 'package:picme/widget/support/button_review_support.dart';
 import 'package:picme/widget/support/detail_review_support.dart';
 
 class ReviewSupportPage extends StatefulWidget {
-  const ReviewSupportPage({Key? key, required this.amount}) : super(key: key);
+  const ReviewSupportPage({Key? key, required this.amount, this.postId, this.userId}) : super(key: key);
   static const routeName = "/review_support_page";
   final TextEditingController amount;
+  final int? postId;
+  final int? userId;
 
   @override
   State<ReviewSupportPage> createState() => _ReviewSupportPageState();
@@ -43,7 +45,7 @@ class _ReviewSupportPageState extends State<ReviewSupportPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const SupportPage()),
+                                  builder: (context) => SupportPage(postId: widget.postId,userId: widget.userId,)),
                             );
                           },
                           icon: const Icon(
@@ -111,7 +113,7 @@ class _ReviewSupportPageState extends State<ReviewSupportPage> {
                   ),
                 ),
                 const Padding(padding: EdgeInsets.only(bottom: 10)),
-                const ButtonReviewSupport(),
+                ButtonReviewSupport(postId: widget.postId,amount: widget.amount,userId: widget.userId,),
               ],
             ),
           ],

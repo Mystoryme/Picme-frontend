@@ -3,7 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/utils/colors.dart';
 
 class DetailPaymentSupport extends StatelessWidget {
-  const DetailPaymentSupport({super.key});
+  const DetailPaymentSupport({Key? key, required this.rawQr}) : super(key: key);
+  final String rawQr;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,10 @@ class DetailPaymentSupport extends StatelessWidget {
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.start,
             // crossAxisAlignment: CrossAxisAlignment.start,
-            children: [Image.asset('assets/qrcode.png')],
+            children: [
+              Image.network(
+                  "https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=${rawQr}")
+            ],
           ),
         ),
       ],

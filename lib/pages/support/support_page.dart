@@ -5,8 +5,10 @@ import 'package:picme/widget/support/button_support.dart';
 import 'package:picme/widget/support/textform_support.dart';
 
 class SupportPage extends StatefulWidget {
-  const SupportPage({Key? key}) : super(key: key);
+   const SupportPage({this.postId, this.userId});
   static const routeName = "/support_page";
+  final int? postId;
+  final int? userId;
 
   @override
   State<SupportPage> createState() => _SupportPageState();
@@ -89,7 +91,8 @@ class _SupportPageState extends State<SupportPage> {
                 ),
               ],
             ),
-            ButtonSupport(
+            ButtonSupport(postId: widget.postId,
+              userId: widget.userId,
               supportController: _support,
             ),
           ],

@@ -1,5 +1,10 @@
+import 'dart:math';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:picme/classes/caller.dart';
+import 'package:picme/models/payment.dart';
 import 'package:picme/pages/home_page.dart';
 import 'package:picme/utils/colors.dart';
 import 'package:picme/widget/payment_support/button_payment_support.dart';
@@ -8,8 +13,13 @@ import 'package:picme/widget/support/button_support.dart';
 import 'package:picme/widget/support/textform_support.dart';
 
 class PaymentSupportPage extends StatefulWidget {
-  const PaymentSupportPage({Key? key}) : super(key: key);
+  const PaymentSupportPage(
+      {Key? key, required this.amount, this.postId, this.userId})
+      : super(key: key);
   static const routeName = "/payment_support_page";
+  final int? postId;
+  final int? userId;
+  final TextEditingController amount;
 
   @override
   State<PaymentSupportPage> createState() => _PaymentSupportPageState();
@@ -17,8 +27,55 @@ class PaymentSupportPage extends StatefulWidget {
 
 class _PaymentSupportPageState extends State<PaymentSupportPage> {
   final TextEditingController _support = TextEditingController();
+  Payment? payment;
+
+  @override
+  void initState() {
+    super.initState();
+    load();
+  }
+
+  load() async {
+    // String uri = "/post/post_get";
+    if (widget.postId != null) {
+      Caller.dio.post("/post/donate", data: {
+        "postId": widget.postId,
+        "donateAmount": int.parse(widget.amount.text),
+      }).then((response) {
+        setState(() {
+          payment = Payment.fromJson(response.data["data"]);
+        });
+        // handle the response
+      }).onError((DioException error, _) {
+        Caller.handle(context, error);
+      });
+    } else if (widget.userId != null) {
+      Caller.dio.post("/profile/donate", data: {
+        "userId": widget.userId,
+        "donateAmount": int.parse(widget.amount.text),
+      }).then((response) {
+        setState(() {
+          payment = Payment.fromJson(response.data["data"]);
+        });
+        // handle the response
+      }).onError((DioException error, _) {
+        Caller.handle(context, error);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (payment == null) {
+      return const Scaffold(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [CircularProgressIndicator()],
+        ),
+      );
+    }
+
     return Scaffold(
         body: SafeArea(
       child: Container(
@@ -71,7 +128,9 @@ class _PaymentSupportPageState extends State<PaymentSupportPage> {
                     ),
                   ],
                 ),
-                DetailPaymentSupport(),
+                DetailPaymentSupport(
+                  rawQr: payment!.qrRawData,
+                ),
               ],
             ),
             Column(

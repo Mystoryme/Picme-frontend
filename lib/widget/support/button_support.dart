@@ -4,8 +4,10 @@ import 'package:picme/pages/support/review_support_page.dart';
 import 'package:picme/utils/colors.dart';
 
 class ButtonSupport extends StatelessWidget {
-  const ButtonSupport({Key? key, required this.supportController})
+  const ButtonSupport({Key? key, required this.supportController, this.postId, this.userId})
       : super(key: key);
+      final int? postId;
+      final int? userId;
   final TextEditingController supportController;
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,9 @@ class ButtonSupport extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) => ReviewSupportPage(
+                    postId: postId,
                         amount: supportController,
+                    userId: userId,
                       )),
             );
           },
