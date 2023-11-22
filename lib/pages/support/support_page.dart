@@ -14,6 +14,7 @@ class SupportPage extends StatefulWidget {
 
 class _SupportPageState extends State<SupportPage> {
   final TextEditingController _support = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,7 +89,9 @@ class _SupportPageState extends State<SupportPage> {
                 ),
               ],
             ),
-            const ButtonSupport(),
+            ButtonSupport(
+              supportController: _support,
+            ),
           ],
         ),
       ),

@@ -108,7 +108,7 @@ class _TextFormSupportState extends State<TextFormSupport> {
     setState(() {});
   }
 
-  int amount = 0; // Variable to store the numeric value
+  // int amount = 0; // Variable to store the numeric value
 
   @override
   Widget build(BuildContext context) {
@@ -136,13 +136,13 @@ class _TextFormSupportState extends State<TextFormSupport> {
             ),
           ),
           TextFormField(
-            onChanged: (value) {
-              // Parse the entered text to an integer and assign it to the amount variable
-              
-              setState(() {
-                amount = int.tryParse(value) ?? 0;
-              });
-            },
+            // onChanged: (value) {
+            //   // Parse the entered text to an integer and assign it to the amount variable
+
+            //   setState(() {
+            //     amount = int.tryParse(value) ?? 0;
+            //   });
+            // },
             controller: widget.support,
             decoration: InputDecoration(
               border: OutlineInputBorder(

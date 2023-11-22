@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         '/register_page': (context) => const RegisterPage(),
         '/boost_page': (context) => const BoostPostPage(),
         '/review_boost_post_page': (context) => const ReviewBoostPostPage(),
-        '/review_support_page': (context) => const ReviewSupportPage(),
+        //'/review_support_page': (context) => const ReviewSupportPage(),
         '/support_page': (context) => const SupportPage(),
         '/account_insights_page': (context) => const AccountInsightsPage(),
         // '/add_image_page': (context) => AddImagePage(),
