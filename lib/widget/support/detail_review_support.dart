@@ -3,7 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/utils/colors.dart';
 
 class DetailReviewSupport extends StatelessWidget {
-  const DetailReviewSupport({super.key});
+  const DetailReviewSupport({Key? key, required this.amount}) : super(key: key);
+   final int amount;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class DetailReviewSupport extends StatelessWidget {
               ),
               Text(
                 textAlign: TextAlign.right,
-                '100 THB',
+                '$amount THB',
                 style: GoogleFonts.poppins(
                   color: PicmeColors.grayBlack,
                   fontSize: 16,

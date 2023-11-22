@@ -42,10 +42,10 @@ class _PersonSearchState extends State<PersonSearch> {
 
   void onTriggerSearch(String actualSearch) {
     if (actualSearch.isEmpty) {
-       setState(() {
+      setState(() {
         searches = null;
       });
-      
+
       return;
     }
     if (debounce?.isActive ?? false) debounce!.cancel();
@@ -174,64 +174,66 @@ class _PersonSearchState extends State<PersonSearch> {
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Column(
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 20, right: 20, bottom: 5),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: searches != null ? [] : [
-                        Text(
-                          'Recent',
-                          style: TextStyle(
-                            color: PicmeColors.mainColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                children: searches != null
+                    ? []
+                    : [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 20, right: 20, bottom: 5),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Recent',
+                                style: TextStyle(
+                                  color: PicmeColors.mainColor,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    widget.searches.users.clear();
+                                  });
+                                },
+                                child: Text(
+                                  'Delete all',
+                                  style: TextStyle(
+                                    color: PicmeColors.mainColor,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        InkWell(
-                          onTap: () {
-                            setState(() {
-                              widget.searches.users.clear();
-                            });
-                          },
-                          child: Text(
-                            'Delete all',
-                            style: TextStyle(
-                              color: PicmeColors.mainColor,
-                              fontSize: 16,
-                              fontWeight: FontWeight.normal,
+                        if (widget.searches.users.isNotEmpty)
+                          Column(
+                            children: widget.searches.users != null
+                                ? widget.searches.users
+                                    .map((e) => buildListTile(e, () {
+                                          setState(() {
+                                            widget.searches.users.remove(e);
+                                          });
+                                        }))
+                                    .toList()
+                                : [],
+                          )
+                        else
+                          const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 20.0),
+                            child: Text(
+                              'There are no previously searched items.',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
+                              ),
                             ),
                           ),
-                        ),
                       ],
-                    ),
-                  ),
-                  if (widget.searches.users.isNotEmpty)
-                    Column(
-                      children: widget.searches.users != null
-                          ? widget.searches.users!
-                              .map((e) => buildListTile(e, () {
-                                    setState(() {
-                                      widget.searches.users.remove(e);
-                                    });
-                                  }))
-                              .toList()
-                          : [],
-                    )
-                  else
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 20.0),
-                      child: Text(
-                        'There are no previously searched items.',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 14,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
-                    ),
-                ],
               ),
             ),
           ),

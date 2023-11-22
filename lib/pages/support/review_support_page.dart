@@ -6,8 +6,9 @@ import 'package:picme/widget/support/button_review_support.dart';
 import 'package:picme/widget/support/detail_review_support.dart';
 
 class ReviewSupportPage extends StatefulWidget {
-  const ReviewSupportPage({Key? key}) : super(key: key);
+  const ReviewSupportPage({Key? key, required this.amount}) : super(key: key);
   static const routeName = "/review_support_page";
+  final int amount;
 
   @override
   State<ReviewSupportPage> createState() => _ReviewSupportPageState();
@@ -87,7 +88,7 @@ class _ReviewSupportPageState extends State<ReviewSupportPage> {
                     ],
                   ),
                 ),
-                DetailReviewSupport(),
+                DetailReviewSupport(amount: ),
                 // TextFormSupport(
                 //   support: _support,
                 // ),

@@ -21,7 +21,7 @@ class ButtonSupport extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => const ReviewSupportPage()),
+                  builder: (context) => const ReviewSupportPage(amount: 0,)),
             );
           },
           child: Container(
