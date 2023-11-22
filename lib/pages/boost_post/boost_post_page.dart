@@ -86,9 +86,9 @@ class _BoostPostPageState extends State<BoostPostPage> {
                 ),
                 TextFormBoostPost(
                   boostpost: _boostpost,
-                  onAmountSelected: (int amount) {
+                  onAmountSelected: (onAmountSelected) {
                     setState(() {
-                      currentAmount = amount;
+                      currentAmount = onAmountSelected;
                     });
                   },
                 ),

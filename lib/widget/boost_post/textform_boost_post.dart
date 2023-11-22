@@ -3,14 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/utils/colors.dart';
 
-const List<String> list = <String>[
-  '1',
-  '3',
-  '5',
-  '7',
-  '14',
-  '28'
-];
+const List<String> list = <String>['1', '3', '5', '7', '14', '28'];
 
 class TextFormBoostPost extends StatefulWidget {
   TextFormBoostPost({
@@ -19,19 +12,9 @@ class TextFormBoostPost extends StatefulWidget {
     required this.onAmountSelected,
   }) : super(key: key);
   final TextEditingController boostpost;
-  final ValueChanged<int> onAmountSelected;
+  final Function(int) onAmountSelected;
 
   String dropdownValue = list.first;
-  int getCurrentAmount() {
-    RegExp regex = RegExp(r'(\d+)');
-    Match? match = regex.firstMatch(dropdownValue);
-    String numericPart = match?.group(0) ?? '0';
-
-    // Convert the numeric part to an integer
-    int amount = int.tryParse(numericPart) ?? 0;
-
-    return amount;
-  }
 
   @override
   State<TextFormBoostPost> createState() => _TextFormBoostPostState();
@@ -166,8 +149,9 @@ class _TextFormBoostPostState extends State<TextFormBoostPost> {
               // This is called when the user selects an item.
               setState(() {
                 widget.dropdownValue = value!;
+                widget.onAmountSelected(int.parse(value!));
               });
-              widget.onAmountSelected(widget.getCurrentAmount());
+
               InputDecoration(
                 border: OutlineInputBorder(
                   borderSide:
