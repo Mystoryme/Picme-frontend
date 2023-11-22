@@ -343,7 +343,7 @@ class _PostCardState extends State<PostCard> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const SupportPage()),
+                            builder: (context) => SupportPage(postId: widget.post.postId, )),
                       );
                     },
                     icon: Icon(CupertinoIcons.gift),

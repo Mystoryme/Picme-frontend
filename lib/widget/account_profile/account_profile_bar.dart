@@ -11,12 +11,13 @@ import 'package:picme/widget/postcard/postcard_owner.dart';
 import 'package:picme/widget/account_profile/sortby_account.dart';
 
 class AccountProfileBar extends StatefulWidget {
-  const AccountProfileBar({Key? key}) : super(key: key);
+  const AccountProfileBar({Key? key, required this.userId}) : super(key: key);
+  final int userId;
 
   @override
   _AccountProfileBarState createState() => _AccountProfileBarState();
 }
- 
+
 class _AccountProfileBarState extends State<AccountProfileBar>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
@@ -26,7 +27,7 @@ class _AccountProfileBarState extends State<AccountProfileBar>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
     _tabController.addListener(_handleTabSelection);
     // init();
     load();
@@ -37,20 +38,24 @@ class _AccountProfileBarState extends State<AccountProfileBar>
   }
 
   load() {
-    String uri = "/profile/post";
-    String uri1 = "/profile/gridpost";
+    String uri = "/profile/post_search";
+    String uri1 = "/profile/grid_search";
     if (sortby != "") {
       uri += "?sortBy=" + sortby;
       uri1 += "?sortBy=" + sortby;
     }
-    Caller.dio.get(uri).then((response) {
+    Caller.dio.post(uri, data: {
+      "userId" : widget.userId
+    }).then((response) {
       setState(() {
         posts = Posts.fromJson(response.data["data"]);
       });
     }).onError((DioException error, _) {
       Caller.handle(context, error);
     });
-    Caller.dio.get(uri1).then((response) {
+    Caller.dio.post(uri1,  data: {
+      "userId" : widget.userId
+    }).then((response) {
       setState(() {
         gridPosts = GridPosts.fromJson(response.data["data"]);
       });
@@ -112,13 +117,6 @@ class _AccountProfileBarState extends State<AccountProfileBar>
               color: PicmeColors.mainColor,
               size: 33,
             ),
-            // Icon(
-            //   _tabController.index == 2
-            //       ? CupertinoIcons.bookmark_fill
-            //       : CupertinoIcons.bookmark,
-            //   color: PicmeColors.mainColor,
-            //   size: 33,
-            // )
           ],
         ),
       );

@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,10 +11,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:picme/utils/colors.dart';
 
+import '../../classes/caller.dart';
+
 class AccountSection extends StatelessWidget {
   AccountSection({Key? key, required this.profile}) : super(key: key);
 
-  final Profile profile;
+  Profile? profile;
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +48,7 @@ class AccountSection extends StatelessWidget {
                 children: [
                   // alignment: Alignment.center,
                   Text(
-                    profile.username,
+                    profile?.username ?? "",
                     style: GoogleFonts.poppins(
                       color: Colors.black,
                       fontSize: 22,
@@ -64,7 +70,7 @@ class AccountSection extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 60.0,
-                      backgroundImage: NetworkImage(profile.avatarUrl ??
+                      backgroundImage: NetworkImage(profile?.avatarUrl ??
                           "https://cdn.crispedge.com/5d76cb.png"),
                     ),
                   ],
@@ -89,7 +95,7 @@ class AccountSection extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                           // softWrap: true,
-                          profile.bio ?? " ",
+                          profile?.bio ?? " ",
                           style: GoogleFonts.poppins(
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
@@ -113,7 +119,7 @@ class AccountSection extends StatelessWidget {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           // softWrap: true,
-                          profile.contact ?? "",
+                          profile?.contact ?? "",
                           style: GoogleFonts.poppins(
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
@@ -131,7 +137,7 @@ class AccountSection extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    const SupportPage()),
+                                     SupportPage(userId: profile?.id,)),
                           );
                         },
                         child: Container(

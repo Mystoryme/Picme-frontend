@@ -8,7 +8,8 @@ import 'package:picme/widget/profile/profilebar.dart';
 import 'package:picme/widget/profile/profilesec.dart';
 
 class AccountProfilePage extends StatefulWidget {
-  const AccountProfilePage({super.key});
+  const AccountProfilePage({Key? key, required this.userId}) : super(key: key);
+  final int userId;
 
   static const routeName = "/account_profile_page";
 
@@ -26,7 +27,17 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
   }
 
   init() {
-    Caller.dio.get("/profile/info").then((response) {
+    Caller.dio.post("/insight/view_profile", data: {
+      "userId": widget.userId,
+    }).then((response) {
+
+    }).onError((DioException error, _) {
+      Caller.handle(context, error);
+    });
+
+    Caller.dio.post("/profile/profile_search", data: {
+      "userId": widget.userId,
+    }).then((response) {
       setState(() {
         profile = Profile.fromJson(response.data["data"]);
       });
@@ -53,7 +64,7 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                  AccountSection(profile: profile!),
-                 AccountProfileBar(),
+                 AccountProfileBar(userId: widget.userId,),
           ],
         ),
       ),
