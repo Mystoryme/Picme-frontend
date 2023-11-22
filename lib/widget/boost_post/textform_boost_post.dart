@@ -4,12 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/utils/colors.dart';
 
 const List<String> list = <String>[
-  '1 day',
-  '3 days',
-  '5 days',
-  '7 days',
-  '14 days',
-  '28 days'
+  '1',
+  '3',
+  '5',
+  '7',
+  '14',
+  '28'
 ];
 
 class TextFormBoostPost extends StatefulWidget {
@@ -112,7 +112,7 @@ class _TextFormBoostPostState extends State<TextFormBoostPost> {
           Padding(padding: EdgeInsets.only(top: 20)),
           Text(
             textAlign: TextAlign.right,
-            'Duration',
+            'Duration (Days)',
             style: GoogleFonts.poppins(
               color: Colors.black,
               fontSize: 16,
