@@ -166,6 +166,7 @@ class _PersonSearchState extends State<PersonSearch> {
             height: 5,
           ),
           Card(
+            key: UniqueKey(),
             color: const Color(0xFFF3F2F2),
             elevation: 0.0,
             shape: RoundedRectangleBorder(
@@ -175,7 +176,15 @@ class _PersonSearchState extends State<PersonSearch> {
               padding: const EdgeInsets.all(15.0),
               child: Column(
                 children: searches != null
-                    ? []
+                    ? [Column(
+                  children: searches!.users
+                      .map((e) => buildListTile(e, () {
+                    setState(() {
+                      widget.searches.users.remove(e);
+                    });
+                  }))
+                      .toList(),
+                )]
                     : [
                         Padding(
                           padding: const EdgeInsets.only(
@@ -209,17 +218,19 @@ class _PersonSearchState extends State<PersonSearch> {
                             ],
                           ),
                         ),
-                        if (widget.searches.users.isNotEmpty)
+                        if(searches == null)
+                        Text("abc"),
+                        if(searches != null)
+                          Text("def"),
+                        if (searches != null && searches!.users.isNotEmpty)
                           Column(
-                            children: widget.searches.users != null
-                                ? widget.searches.users
-                                    .map((e) => buildListTile(e, () {
-                                          setState(() {
-                                            widget.searches.users.remove(e);
-                                          });
-                                        }))
-                                    .toList()
-                                : [],
+                            children: searches!.users
+                                .map((e) => buildListTile(e, () {
+                                      setState(() {
+                                        widget.searches.users.remove(e);
+                                      });
+                                    }))
+                                .toList(),
                           )
                         else
                           const Padding(
@@ -236,13 +247,14 @@ class _PersonSearchState extends State<PersonSearch> {
                       ],
               ),
             ),
-          ),
+          )
         ],
       ),
     );
   }
 
   Widget buildListTile(Search? info, VoidCallback onDelete) {
+    print("Info: $info");
     return info != null
         ? ListTile(
             leading: CircleAvatar(
@@ -273,9 +285,12 @@ class _PersonSearchState extends State<PersonSearch> {
                 Icons.clear,
                 color: Color(0xFFA0A5D8),
               ),
-              onPressed: onDelete,
+              onPressed: () {
+                print("onDelete is called");
+                onDelete();
+              },
             ),
           )
-        : SizedBox();
+        : Text("aaaaa");
   }
 }
