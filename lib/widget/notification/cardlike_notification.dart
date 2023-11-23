@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/classes/caller.dart';
 import 'package:picme/models/notifications.dart';
+import 'package:picme/pages/account_profile_page.dart';
 import 'package:picme/pages/grid_click_page.dart';
 
 class CardNotification extends StatefulWidget {
@@ -49,7 +50,8 @@ class _CardNotificationState extends State<CardNotification> {
                           notificationTypes[e.type] ?? " notified you.",
                           e.trigger!.avatarUrl!,
                           e.type!,
-                          e.postId!),
+                          e.postId!,
+                          e.triggerId!),
                       const SizedBox(
                         height: 20,
                       ),
@@ -62,7 +64,7 @@ class _CardNotificationState extends State<CardNotification> {
   }
 
   Widget buildNotificationRow(String username, String action,
-      String avatarImage, String type, int postId) {
+      String avatarImage, String type, int postId, int userId) {
     return InkWell(
       onTap: () {
         if (type == "comment" || type == "like" || type == "post_donate") {
@@ -75,9 +77,13 @@ class _CardNotificationState extends State<CardNotification> {
                     )),
           );
         } else if (type == "user_donate") {
-          Navigator.pushNamed(context, "/profile/info", arguments: {
-            "id": username,
-          });
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => AccountProfilePage(
+                      userId: userId,
+                    )),
+          );
         }
       },
       child: Row(
