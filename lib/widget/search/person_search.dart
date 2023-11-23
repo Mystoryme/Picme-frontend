@@ -176,15 +176,17 @@ class _PersonSearchState extends State<PersonSearch> {
               padding: const EdgeInsets.all(15.0),
               child: Column(
                 children: searches != null
-                    ? [Column(
-                  children: searches!.users
-                      .map((e) => buildListTile(e, () {
-                    setState(() {
-                      widget.searches.users.remove(e);
-                    });
-                  }))
-                      .toList(),
-                )]
+                    ? [
+                        Column(
+                          children: searches!.users
+                              .map((e) => buildListTile(e, () {
+                                    setState(() {
+                                      widget.searches.users.remove(e);
+                                    });
+                                  }))
+                              .toList(),
+                        )
+                      ]
                     : [
                         Padding(
                           padding: const EdgeInsets.only(
@@ -218,10 +220,6 @@ class _PersonSearchState extends State<PersonSearch> {
                             ],
                           ),
                         ),
-                        if(searches == null)
-                        Text("abc"),
-                        if(searches != null)
-                          Text("def"),
                         if (searches != null && searches!.users.isNotEmpty)
                           Column(
                             children: searches!.users
@@ -267,7 +265,10 @@ class _PersonSearchState extends State<PersonSearch> {
                 // Navigate to the account_profile.dart screen when the text is tapped
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => AccountProfilePage()),
+                  MaterialPageRoute(
+                      builder: (context) => AccountProfilePage(
+                            userId: info.id,
+                          )),
                 );
               },
               child: Text(

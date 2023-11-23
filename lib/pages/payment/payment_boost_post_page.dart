@@ -151,7 +151,7 @@ class _PaymentBoostPostPageState extends State<PaymentBoostPostPage> {
                   ),
                 ),
                 const Padding(padding: EdgeInsets.only(bottom: 10)),
-                //const ButtonPaymentSupport(),
+                ButtonPaymentSupport(transactionId: payment!.transactionId),
               ],
             ),
           ],
