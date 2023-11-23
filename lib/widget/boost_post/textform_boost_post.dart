@@ -107,42 +107,6 @@ class _TextFormBoostPostState extends State<TextFormBoostPost> {
               top: 10,
             ),
           ),
-          // TextFormField(
-          //   // readOnly: true,
-          //   // enabled: false,
-          //   // controller: widget.boostpost..text = '69 THB',
-          //   decoration: InputDecoration(
-          //     border: OutlineInputBorder(
-          //       borderSide: BorderSide(width: 2, color: PicmeColors.grayBlack),
-          //       borderRadius: const BorderRadius.all(
-          //         Radius.circular(5),
-          //       ),
-          //     ),
-          //     labelText: 'Number of days',
-
-          //     fillColor: const Color.fromARGB(130, 255, 255, 255),
-          //     filled: true,
-          //     // suffixIcon: Padding(
-          //     //   padding: EdgeInsets.all(0),
-          //     //   child: Icon(Icons.clear),
-          //     // ),
-          //     // suffixIcon: widget.boostpost.text.isEmpty
-          //     //     ? null
-          //     //     : IconButton(
-          //     //         onPressed: (() => _clearTextField(widget.boostpost)),
-          //     //         icon: const Icon(
-          //     //           Icons.clear,
-          //     //           color: Colors.black54,
-          //     //         ),
-          //     //       ),
-          //   ),
-          //   style: GoogleFonts.poppins(
-          //     fontSize: 14,
-          //     fontWeight: FontWeight.normal,
-          //     color: const Color(0xFF141D3B),
-          //   ),
-          //   cursorColor: Colors.black54,
-          // ),
           DropdownMenu<String>(
             initialSelection: list.first,
             onSelected: (String? value) {

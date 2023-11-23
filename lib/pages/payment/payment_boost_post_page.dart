@@ -1,20 +1,84 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:picme/classes/caller.dart';
+import 'package:picme/pages/home/home.dart';
 import 'package:picme/pages/home_page.dart';
 import 'package:picme/utils/colors.dart';
 import 'package:picme/widget/payment_boost_post/detail_payment_boost_post.dart';
 import 'package:picme/widget/payment_support/button_payment_support.dart';
 
+import '../../models/payment.dart';
+
 class PaymentBoostPostPage extends StatefulWidget {
-  const PaymentBoostPostPage({Key? key}) : super(key: key);
+  const PaymentBoostPostPage(
+      {Key? key,
+      required this.postId,
+      required this.amount,
+      required this.total})
+      : super(key: key);
   static const routeName = "/payment_boost_post_page";
+  final int postId;
+  final int amount;
+  final int total;
 
   @override
   State<PaymentBoostPostPage> createState() => _PaymentBoostPostPageState();
 }
 
 class _PaymentBoostPostPageState extends State<PaymentBoostPostPage> {
+  Payment? payment;
+
+  @override
+  void initState() {
+    super.initState();
+    load();
+  }
+
+  load() async {
+    // String uri = "/post/post_get";
+
+    Caller.dio.post("/post/boost", data: {
+      "postId": widget.postId,
+      "boostDay": widget.amount,
+      "amount": widget.total
+    }).then((response) {
+      setState(() {
+        payment = Payment.fromJson(response.data["data"]);
+      });
+      // handle the response
+    }).onError((DioException error, _) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context2) {
+            return AlertDialog(
+              title: const Text('Remind'),
+              content: Text(error.response!.data["message"]),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).popUntil((route) => route.isFirst);
+                  },
+                  child: const Text('Ok'),
+                ),
+              ],
+            );
+          });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (payment == null) {
+      return const Scaffold(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [CircularProgressIndicator()],
+        ),
+      );
+    }
+
     return Scaffold(
         body: SafeArea(
       child: Container(
@@ -67,7 +131,9 @@ class _PaymentBoostPostPageState extends State<PaymentBoostPostPage> {
                     ),
                   ],
                 ),
-                DetailPaymentBoostPost(),
+                DetailPaymentBoostPost(
+                  rawQr: payment!.qrRawData,
+                ),
               ],
             ),
             Column(

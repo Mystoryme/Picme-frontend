@@ -6,9 +6,12 @@ class DetailReviewBoostPost extends StatelessWidget {
   DetailReviewBoostPost({
     Key? key,
     required this.amount,
+    required this.postId,
   }) : super(key: key);
 
   final int amount;
+final int postId;
+
   @override
   Widget build(BuildContext context) {
     int total = amount * 69;

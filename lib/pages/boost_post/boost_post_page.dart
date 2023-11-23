@@ -5,8 +5,9 @@ import 'package:picme/widget/boost_post/button_boost_post.dart';
 import 'package:picme/widget/boost_post/textform_boost_post.dart';
 
 class BoostPostPage extends StatefulWidget {
-  const BoostPostPage({Key? key}) : super(key: key);
+  BoostPostPage({Key? key, required this.postId}) : super(key: key);
   static const routeName = "/boost_post_page";
+  final int postId;
 
   @override
   State<BoostPostPage> createState() => _BoostPostPageState();
@@ -98,7 +99,7 @@ class _BoostPostPageState extends State<BoostPostPage> {
             // const SizedBox(
             //   height: 570,
             // ),
-            ButtonBoostPost(amount: currentAmount),
+            ButtonBoostPost(amount: currentAmount,postId: widget.postId,),
           ],
         ),
       ),

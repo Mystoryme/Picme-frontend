@@ -6,17 +6,21 @@ import 'package:picme/widget/boost_post/button_review_boost_post.dart';
 import 'package:picme/widget/boost_post/detail_review_boost_post.dart';
 
 class ReviewBoostPostPage extends StatefulWidget {
-  const ReviewBoostPostPage({Key? key, required this.amount}) : super(key: key);
+  const ReviewBoostPostPage({Key? key, required this.amount, required this.postId, }) : super(key: key);
   static const routeName = "/review_boost_post_page";
-
+  final int postId;
   final int amount;
+
   @override
   State<ReviewBoostPostPage> createState() => _ReviewBoostPostPageState();
 }
 
 class _ReviewBoostPostPageState extends State<ReviewBoostPostPage> {
+  
   @override
   Widget build(BuildContext context) {
+  int total = widget.amount * 69;
+
     return Scaffold(
         body: SafeArea(
       child: Container(
@@ -41,7 +45,7 @@ class _ReviewBoostPostPageState extends State<ReviewBoostPostPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const BoostPostPage()),
+                                  builder: (context) => BoostPostPage(postId: widget.postId,)),
                             );
                           },
                           icon: const Icon(
@@ -88,6 +92,7 @@ class _ReviewBoostPostPageState extends State<ReviewBoostPostPage> {
                 ),
                 DetailReviewBoostPost(
                   amount: widget.amount,
+                  postId: widget.postId,
                 ),
                 // TextFormSupport(
                 //   support: _support,
@@ -109,7 +114,7 @@ class _ReviewBoostPostPageState extends State<ReviewBoostPostPage> {
                   ),
                 ),
                 const Padding(padding: EdgeInsets.only(bottom: 10)),
-                const ButtonReviewBoostPost(),
+                 ButtonReviewBoostPost(postId: widget.postId,total: total, amount: widget.amount,),
               ],
             ),
           ],

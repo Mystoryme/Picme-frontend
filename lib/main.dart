@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login_page': (context) => const LoginPage(),
         '/register_page': (context) => const RegisterPage(),
-        '/boost_page': (context) => const BoostPostPage(),
+        // '/boost_page': (context) => const BoostPostPage(),
         // '/review_boost_post_page': (context) => const ReviewBoostPostPage(),
         // '/review_support_page': (context) => const ReviewSupportPage(),
         //'/review_support_page': (context) => const ReviewSupportPage(),
@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
         '/explore_page': (context) => const ExplorePage(),
         '/home_page': (context) => const Homepage(),
         // '/payment_support_page': (context) => const PaymentSupportPage(),
-        '/payment_boost_post_page': (context) => const PaymentBoostPostPage(),
+        // '/payment_boost_post_page': (context) => const PaymentBoostPostPage(),
         '/payment_success_page': (context) => const PaymentSuccessPage(),
         '/profile_page': (context) => const ProfilePage(),
         '/search_page': (context) => const SearchPage(),

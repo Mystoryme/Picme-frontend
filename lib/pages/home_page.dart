@@ -15,7 +15,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/widget/postcard/postcard.dart';
 
 class Homepage extends StatefulWidget {
-  const Homepage({super.key});
+  const Homepage({Key? key,  })
+      : super(key: key);
 
   @override
   State<Homepage> createState() => _HomepageState();

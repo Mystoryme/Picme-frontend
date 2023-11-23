@@ -15,9 +15,8 @@ import 'package:picme/pages/support/support_page.dart';
 import 'package:picme/utils/colors.dart';
 
 class PostCardOwner extends StatefulWidget {
-  const PostCardOwner({Key? key, required this.post, required this.onDelete})
+  const PostCardOwner({Key? key,required this.post, required this.onDelete})
       : super(key: key);
-
   final Post post;
   final VoidCallback onDelete;
 
@@ -152,6 +151,7 @@ class _PostCardOwnerState extends State<PostCardOwner> {
                         elevation: 1,
                         tooltip: "",
                         icon: Icon(
+                          
                           CupertinoIcons.ellipsis_vertical,
                           color: PicmeColors.mainColor,
                         ),
@@ -165,7 +165,7 @@ class _PostCardOwnerState extends State<PostCardOwner> {
                           ),
                         ),
                         itemBuilder: (ctx) =>
-                            [_buildPopupMenuItem('Delete', deletePost)],
+                            [_buildPopupMenuItem(context,'Delete', deletePost)],
                       ),
                     ],
                   ),
@@ -270,7 +270,7 @@ class _PostCardOwnerState extends State<PostCardOwner> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => BoostPostPage()),
+                      MaterialPageRoute(builder: (context) => BoostPostPage(postId: widget.post.postId,)),
                     );
                   },
                   child: Container(
@@ -313,12 +313,60 @@ class _PostCardOwnerState extends State<PostCardOwner> {
 }
 
 PopupMenuItem _buildPopupMenuItem(
+  BuildContext context,
   String title,
   void Function() deletePost,
 ) {
   return PopupMenuItem(
     height: 20,
-    onTap: deletePost,
+    onTap: () {
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          titleTextStyle:
+              GoogleFonts.poppins(fontSize: 20, color: Colors.black),
+          titlePadding:
+              EdgeInsets.only(right: 20, left: 20, top: 20, bottom: 20),
+          title: const Text(
+            'You need to delete this post?',
+          ),
+          actionsPadding: EdgeInsets.only(bottom: 20, right: 20),
+          actions: <Widget>[
+            Container(
+              height: 40,
+              width: 70,
+              decoration: BoxDecoration(
+                  border: Border.all(color: PicmeColors.grayWhite),
+                  borderRadius: BorderRadius.circular(10)),
+              child: TextButton(
+                onPressed: () => Navigator.pop(context, 'Cancel'),
+                child: Text(
+                  'No',
+                  style: TextStyle(color: PicmeColors.grayBlack, fontSize: 18),
+                ),
+              ),
+            ),
+            Container(
+              height: 40,
+              width: 70,
+              decoration: BoxDecoration(
+                  color: PicmeColors.mainColor,
+                  borderRadius: BorderRadius.circular(10)),
+              child: TextButton(
+                onPressed: () async {
+                  deletePost();
+                  // await SaverGallery.saveImage(100, name: name)
+                },
+                child: Text(
+                  'Yes',
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    },
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -332,46 +380,4 @@ PopupMenuItem _buildPopupMenuItem(
   );
 }
 
-// PopupMenuItem _buildPopupMenuItem(String title) {
-//   if (title == "Delete") {
-//     return PopupMenuItem(
-//       height: 20,
-//       child: Row(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: [
-//           Text(
-//             title,
-//             style: GoogleFonts.poppins(
-//               fontSize: 12,
-//               fontWeight: FontWeight.normal,
-//               color: Colors.white,
-//             ),
-//           ),
-//         ],
-//       ),
-//       onTap: () {delete(o, property)};
-      //   // Call the `init` method, which triggers the delete operation
-      //   init();
-      //   // Close the menu
-      //   Navigator.pop(context);
-      // },
-//     );
-//   } else {
-//     return PopupMenuItem(
-//       height: 20,
-//       child: Row(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: [
-//           Text(
-//             title,
-//             style: GoogleFonts.poppins(
-//               fontSize: 12,
-//               fontWeight: FontWeight.normal,
-//               color: Colors.white,
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
+
