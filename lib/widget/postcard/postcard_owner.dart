@@ -15,7 +15,7 @@ import 'package:picme/pages/support/support_page.dart';
 import 'package:picme/utils/colors.dart';
 
 class PostCardOwner extends StatefulWidget {
-  const PostCardOwner({Key? key,required this.post, required this.onDelete})
+  const PostCardOwner({Key? key, required this.post, required this.onDelete})
       : super(key: key);
   final Post post;
   final VoidCallback onDelete;
@@ -151,7 +151,6 @@ class _PostCardOwnerState extends State<PostCardOwner> {
                         elevation: 1,
                         tooltip: "",
                         icon: Icon(
-                          
                           CupertinoIcons.ellipsis_vertical,
                           color: PicmeColors.mainColor,
                         ),
@@ -164,8 +163,9 @@ class _PostCardOwnerState extends State<PostCardOwner> {
                             topRight: Radius.circular(6.0),
                           ),
                         ),
-                        itemBuilder: (ctx) =>
-                            [_buildPopupMenuItem(context,'Delete', deletePost)],
+                        itemBuilder: (ctx) => [
+                          _buildPopupMenuItem(context, 'Delete', deletePost)
+                        ],
                       ),
                     ],
                   ),
@@ -270,7 +270,10 @@ class _PostCardOwnerState extends State<PostCardOwner> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => BoostPostPage(postId: widget.post.postId,)),
+                      MaterialPageRoute(
+                          builder: (context) => BoostPostPage(
+                                postId: widget.post.postId,
+                              )),
                     );
                   },
                   child: Container(
@@ -355,6 +358,7 @@ PopupMenuItem _buildPopupMenuItem(
               child: TextButton(
                 onPressed: () async {
                   deletePost();
+                  Navigator.pop(context, 'Yes');
                   // await SaverGallery.saveImage(100, name: name)
                 },
                 child: Text(
@@ -379,5 +383,3 @@ PopupMenuItem _buildPopupMenuItem(
     ),
   );
 }
-
-

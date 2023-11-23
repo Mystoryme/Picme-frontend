@@ -70,6 +70,10 @@ class _CommentPageState extends State<CommentPage> {
     });
   }
 
+  void reloadPost() {
+    init();
+  }
+
   @override
   Widget build(BuildContext context) {
     // if (comments == null) {
@@ -86,11 +90,15 @@ class _CommentPageState extends State<CommentPage> {
               SizedBox(height: 10),
               Expanded(
                 child: ListView(
-                    shrinkWrap: true,
-                    children: comments?.posts
-                            ?.map((el) => CardComment(comment: el))
-                            ?.toList() ??
-                        []),
+                  shrinkWrap: true,
+                  children: comments?.posts
+                          ?.map((el) => CardComment(
+                                comment: el,
+                                onDelete: reloadPost,
+                              ))
+                          ?.toList() ??
+                      [],
+                ),
               )
               // Column(
               //   children: [
@@ -113,12 +121,14 @@ class _CommentPageState extends State<CommentPage> {
               //   ],
               // ),
               ,
-              profile != null ? TextComment(
-                search: _search,
-                textFocusNode: _textFocusNode,
-                profile: profile!,
-                callComment: callComment,
-              ) : SizedBox()
+              profile != null
+                  ? TextComment(
+                      search: _search,
+                      textFocusNode: _textFocusNode,
+                      profile: profile!,
+                      callComment: callComment,
+                    )
+                  : SizedBox()
             ]),
       ),
     ));
