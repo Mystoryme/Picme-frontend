@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/classes/caller.dart';
+import 'package:picme/models/checkpay.dart';
 import 'package:picme/models/payment.dart';
 import 'package:picme/pages/home_page.dart';
 import 'package:picme/utils/colors.dart';
@@ -28,6 +29,7 @@ class PaymentSupportPage extends StatefulWidget {
 class _PaymentSupportPageState extends State<PaymentSupportPage> {
   final TextEditingController _support = TextEditingController();
   Payment? payment;
+  CheckPay? checkPay;
 
   @override
   void initState() {
@@ -62,6 +64,19 @@ class _PaymentSupportPageState extends State<PaymentSupportPage> {
         Caller.handle(context, error);
       });
     }
+  }
+
+  void callCheck() async {
+    Caller.dio.post("/post/donate/inquiry", data: {
+      "transactionId": payment!.transactionId,
+    }).then((response) async {
+      setState(() {
+        checkPay = CheckPay.fromJson(response.data["data"]);
+      });
+    }).onError((DioException error, _) {
+      // * Apply default error handling
+      Caller.handle(context, error);
+    });
   }
 
   @override
@@ -148,7 +163,10 @@ class _PaymentSupportPageState extends State<PaymentSupportPage> {
                   ),
                 ),
                 const Padding(padding: EdgeInsets.only(bottom: 10)),
-                const ButtonPaymentSupport(),
+                ButtonPaymentSupport(
+                  callCheck: callCheck,
+                  check: checkPay!.paymentSuccess,
+                ),
               ],
             ),
           ],
