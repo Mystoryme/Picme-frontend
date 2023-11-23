@@ -5,6 +5,9 @@ part 'comment.g.dart';
 
 @JsonSerializable()
 class CommentPost {
+  @JsonKey(name: 'Id')
+  final int Id;
+
   @JsonKey(name: 'userId')
   final int userId;
 
@@ -23,7 +26,8 @@ class CommentPost {
   // final String category;
 
   CommentPost(
-      {required this.username,
+      {required this.Id,
+      required this.username,
       required this.userId,
       required this.postId,
       required this.avatarUrl,
