@@ -26,17 +26,6 @@ class DetailPaymentSuccess extends StatelessWidget {
             fontWeight: FontWeight.normal,
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 20),
-          child: Text(
-            'Amount',
-            style: GoogleFonts.poppins(
-              color: PicmeColors.grayBlack,
-              fontSize: 18,
-              fontWeight: FontWeight.normal,
-            ),
-          ),
-        ),
       ],
     );
   }
