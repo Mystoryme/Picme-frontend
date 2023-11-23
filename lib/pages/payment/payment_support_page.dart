@@ -150,9 +150,10 @@ class _PaymentSupportPageState extends State<PaymentSupportPage> {
                   ),
                 ),
                 const Padding(padding: EdgeInsets.only(bottom: 10)),
-                ButtonPaymentSupport(
-                  transactionId: payment!.transactionId,
-                ),
+                if (widget.postId != null)
+                  ButtonPaymentSupport(transactionId: payment!.transactionId),
+                if (widget.userId != null)
+                  ButtonPaymentSupport(transactionId2: payment!.transactionId),
               ],
             ),
           ],

@@ -8,12 +8,14 @@ import '../../classes/caller.dart';
 import '../../models/checkpay.dart';
 
 class ButtonPaymentSupport extends StatelessWidget {
- final String transactionId;
-  const ButtonPaymentSupport(
-      {Key? key, required this.transactionId})
-      : super(key: key);
+  final String? transactionId;
+  final String? transactionId2;
 
-
+  const ButtonPaymentSupport({
+    Key? key,
+    this.transactionId,
+    this.transactionId2,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,20 +27,23 @@ class ButtonPaymentSupport extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 80),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-              backgroundColor: PicmeColors.mainColor, elevation: 0),
+            backgroundColor: PicmeColors.mainColor,
+            elevation: 0,
+          ),
           onPressed: () {
-            Caller.dio.post("/post/donate/inquiry", data: {
-              "transactionId": transactionId,
-            }).then((response) async {
-
-               CheckPay checkPay = CheckPay.fromJson(response.data["data"]);
-               if (checkPay.paymentSuccess == true) {
-                 Navigator.push(
-                   context,
-                   MaterialPageRoute(
-                       builder: (context) => const PaymentSuccessPage()),
-                 );
-               } else {
+            if (transactionId != null) {
+              Caller.dio.post("/post/donate/inquiry", data: {
+                "transactionId": transactionId,
+              }).then((response) async {
+                CheckPay checkPay = CheckPay.fromJson(response.data["data"]);
+                if (checkPay.paymentSuccess == true) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const PaymentSuccessPage(),
+                    ),
+                  );
+                } else {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
@@ -56,22 +61,50 @@ class ButtonPaymentSupport extends StatelessWidget {
                       );
                     },
                   );
-                 // const AlertDialog(
-                 //   title: Text('Payment not successful'),
-                 // );
-               }
-
-            }).onError((DioException error, _) {
-              // * Apply default error handling
-              Caller.handle(context, error);
-            });
-
+                }
+              }).onError((DioException error, _) {
+                Caller.handle(context, error);
+              });
+            } else if (transactionId2 != null) {
+              Caller.dio.post("/profile/donate/inquiry", data: {
+                "transactionId": transactionId2,
+              }).then((response) async {
+                CheckPay checkPay = CheckPay.fromJson(response.data["data"]);
+                if (checkPay.paymentSuccess == true) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const PaymentSuccessPage(),
+                    ),
+                  );
+                } else {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text('Payment not successful'),
+                        content: const Text('Please try again'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text('OK'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
+              }).onError((DioException error, _) {
+                Caller.handle(context, error);
+              });
+            }
           },
           child: Container(
             alignment: Alignment.center,
             height: 40,
             decoration: BoxDecoration(
-              // color: PicmeColors.mainColor,
               borderRadius: BorderRadius.circular(5),
             ),
             child: Text(
