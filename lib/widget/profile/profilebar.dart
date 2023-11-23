@@ -14,7 +14,8 @@ import 'package:picme/widget/postcard/postcard_owner.dart';
 import 'package:picme/widget/profile/sortby.dart';
 
 class ProfileBar extends StatefulWidget {
-  const ProfileBar({Key? key}) : super(key: key);
+  const ProfileBar({Key? key,}) : super(key: key);
+  
 
   @override
   _ProfileBarState createState() => _ProfileBarState();

@@ -1,14 +1,19 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/pages/payment_success_page.dart';
 import 'package:picme/utils/colors.dart';
 
+import '../../classes/caller.dart';
+import '../../models/checkpay.dart';
+
 class ButtonPaymentSupport extends StatelessWidget {
-  final Function callCheck;
-  final bool check;
+ final String transactionId;
   const ButtonPaymentSupport(
-      {Key? key, required this.callCheck, required this.check})
+      {Key? key, required this.transactionId})
       : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -22,18 +27,45 @@ class ButtonPaymentSupport extends StatelessWidget {
           style: ElevatedButton.styleFrom(
               backgroundColor: PicmeColors.mainColor, elevation: 0),
           onPressed: () {
-            callCheck();
-            if (check == true) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const PaymentSuccessPage()),
-              );
-            } else {
-              AlertDialog(
-                title: Text('Payment not successful'),
-              );
-            }
+            Caller.dio.post("/post/donate/inquiry", data: {
+              "transactionId": transactionId,
+            }).then((response) async {
+
+               CheckPay checkPay = CheckPay.fromJson(response.data["data"]);
+               if (checkPay.paymentSuccess == true) {
+                 Navigator.push(
+                   context,
+                   MaterialPageRoute(
+                       builder: (context) => const PaymentSuccessPage()),
+                 );
+               } else {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text('Payment not successful'),
+                        content: const Text('Please try again'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text('OK'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                 // const AlertDialog(
+                 //   title: Text('Payment not successful'),
+                 // );
+               }
+
+            }).onError((DioException error, _) {
+              // * Apply default error handling
+              Caller.handle(context, error);
+            });
+
           },
           child: Container(
             alignment: Alignment.center,

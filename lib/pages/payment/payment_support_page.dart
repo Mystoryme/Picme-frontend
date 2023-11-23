@@ -66,18 +66,6 @@ class _PaymentSupportPageState extends State<PaymentSupportPage> {
     }
   }
 
-  void callCheck() async {
-    Caller.dio.post("/post/donate/inquiry", data: {
-      "transactionId": payment!.transactionId,
-    }).then((response) async {
-      setState(() {
-        checkPay = CheckPay.fromJson(response.data["data"]);
-      });
-    }).onError((DioException error, _) {
-      // * Apply default error handling
-      Caller.handle(context, error);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,85 +81,84 @@ class _PaymentSupportPageState extends State<PaymentSupportPage> {
 
     return Scaffold(
         body: SafeArea(
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(15.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  // mainAxisAlignment: MainAxisAlignment.start,
-                  // crossAxisAlignment: CrossAxisAlignment.start,
+                Column(
                   children: [
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        alignment: Alignment.bottomLeft,
-                        child: IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Homepage()),
-                            );
-                          },
-                          icon: const Icon(
-                            Icons.arrow_back_ios_new_rounded,
-                            color: Colors.black54,
+                    Row(
+                      // mainAxisAlignment: MainAxisAlignment.start,
+                      // crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            alignment: Alignment.bottomLeft,
+                            child: IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const Homepage()),
+                                );
+                              },
+                              icon: const Icon(
+                                Icons.arrow_back_ios_new_rounded,
+                                color: Colors.black54,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                        // const SizedBox(
+                        //   height: 150,
+                        // ),
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            padding: const EdgeInsets.only(left: 15),
+                            child: Text(
+                              'Payment',
+                              style: GoogleFonts.poppins(
+                                color: Colors.black,
+                                fontSize: 24,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    // const SizedBox(
-                    //   height: 150,
-                    // ),
-                    Expanded(
-                      flex: 2,
-                      child: Container(
-                        padding: const EdgeInsets.only(left: 15),
-                        child: Text(
-                          'Payment',
-                          style: GoogleFonts.poppins(
-                            color: Colors.black,
-                            fontSize: 24,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
-                      ),
+                    DetailPaymentSupport(
+                      rawQr: payment!.qrRawData,
                     ),
                   ],
                 ),
-                DetailPaymentSupport(
-                  rawQr: payment!.qrRawData,
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Text(
-                    textAlign: TextAlign.center,
-                    'You payment methods are saved and stored securely',
-                    style: GoogleFonts.poppins(
-                      color: PicmeColors.grayBlack,
-                      fontSize: 12,
-                      fontWeight: FontWeight.normal,
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Text(
+                        textAlign: TextAlign.center,
+                        'You payment methods are saved and stored securely',
+                        style: GoogleFonts.poppins(
+                          color: PicmeColors.grayBlack,
+                          fontSize: 12,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                const Padding(padding: EdgeInsets.only(bottom: 10)),
-                ButtonPaymentSupport(
-                  callCheck: callCheck,
-                  check: checkPay!.paymentSuccess,
+                    const Padding(padding: EdgeInsets.only(bottom: 10)),
+                    ButtonPaymentSupport(
+                     transactionId: payment!.transactionId,
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
-      ),
-    ));
+          ),
+        ));
   }
 }

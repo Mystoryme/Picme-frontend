@@ -33,6 +33,7 @@ class ButtonSupport extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) => ReviewSupportPage(
+
                     postId: postId,
                         amount: supportController,
                     userId: userId,
