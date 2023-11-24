@@ -203,21 +203,21 @@ class _PersonSearchState extends State<PersonSearch> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    widget.searches.users.clear();
-                                  });
-                                },
-                                child: Text(
-                                  'Delete all',
-                                  style: TextStyle(
-                                    color: PicmeColors.mainColor,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                                ),
-                              ),
+                              // InkWell(
+                              //   onTap: () {
+                              //     setState(() {
+                              //       widget.searches.users.clear();
+                              //     });
+                              //   },
+                              //   child: Text(
+                              //     'Delete all',
+                              //     style: TextStyle(
+                              //       color: PicmeColors.mainColor,
+                              //       fontSize: 16,
+                              //       fontWeight: FontWeight.normal,
+                              //     ),
+                              //   ),
+                              // ),
                             ],
                           ),
                         ),
