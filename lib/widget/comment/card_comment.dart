@@ -15,11 +15,10 @@ class CardComment extends StatelessWidget {
   final VoidCallback onDelete;
 
   void deleteComment(BuildContext context) async {
-    Caller.dio.delete("/comment/delete", data: {"id": comment.Id}).then(
-        (response) async {
-      onDelete();
-    }).onError((DioException error, _) => Caller.handle(context, error));
-    onDelete();
+    Caller.dio
+        .delete("/comment/delete", data: {"id": comment.Id})
+        .then((response) async {})
+        .onError((DioException error, _) => Caller.handle(context, error));
   }
 
   @override
@@ -162,6 +161,7 @@ class CardComment extends StatelessWidget {
                   onPressed: () async {
                     deleteComment(context);
                     Navigator.pop(context, 'Yes');
+                    onDelete();
                     // await SaverGallery.saveImage(100, name: name)
                   },
                   child: Text(

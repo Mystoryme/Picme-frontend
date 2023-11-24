@@ -26,11 +26,10 @@ class PostCardOwner extends StatefulWidget {
 
 class _PostCardOwnerState extends State<PostCardOwner> {
   void deletePost() async {
-    Caller.dio.delete("/post/delete",
-        data: {"postId": widget.post.postId}).then((response) async {
-      widget.onDelete();
-    }).onError((DioException error, _) => Caller.handle(context, error));
-    widget.onDelete();
+    Caller.dio
+        .delete("/post/delete", data: {"postId": widget.post.postId})
+        .then((response) async {})
+        .onError((DioException error, _) => Caller.handle(context, error));
   }
 
   @override
@@ -164,7 +163,8 @@ class _PostCardOwnerState extends State<PostCardOwner> {
                           ),
                         ),
                         itemBuilder: (ctx) => [
-                          _buildPopupMenuItem(context, 'Delete', deletePost)
+                          _buildPopupMenuItem(
+                              context, 'Delete', deletePost, widget.onDelete)
                         ],
                       ),
                     ],
@@ -315,11 +315,8 @@ class _PostCardOwnerState extends State<PostCardOwner> {
   }
 }
 
-PopupMenuItem _buildPopupMenuItem(
-  BuildContext context,
-  String title,
-  void Function() deletePost,
-) {
+PopupMenuItem _buildPopupMenuItem(BuildContext context, String title,
+    void Function() deletePost, void Function() onDelete) {
   return PopupMenuItem(
     height: 20,
     onTap: () {
@@ -359,6 +356,8 @@ PopupMenuItem _buildPopupMenuItem(
                 onPressed: () async {
                   deletePost();
                   Navigator.pop(context, 'Yes');
+                  onDelete();
+
                   // await SaverGallery.saveImage(100, name: name)
                 },
                 child: Text(
