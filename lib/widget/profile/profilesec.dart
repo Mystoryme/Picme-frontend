@@ -28,6 +28,19 @@ class ProfileSection extends StatefulWidget {
 }
 
 class _ProfileSectionState extends State<ProfileSection> {
+  late SharedPreferences prefs;
+  logout() async {
+    prefs = await SharedPreferences.getInstance();
+    await prefs.remove('token');
+    if (mounted) {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const LoginPage()),
+        (route) => false,
+      );
+    }
+  }
+
   Future<void> _showLogoutDialog(BuildContext context) async {
     return showDialog<void>(
       context: context,
@@ -49,23 +62,22 @@ class _ProfileSectionState extends State<ProfileSection> {
             TextButton(
               child: Text('Logout',
                   style: GoogleFonts.poppins(color: PicmeColors.mainColor)),
-              onPressed: () {
-                // Perform the logout action here.
-                // For example, you can navigate to the login page.
-                Navigator.of(context).pop(); // Close the dialog
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) =>
-                      LoginPage(), // Navigate to the login page
-                ));
-              },
+              onPressed: logout,
+              // onPressed: () {
+              //   // Perform the logout action here.
+              //   // For example, you can navigate to the login page.
+              //   Navigator.of(context).pop(); // Close the dialog
+              //   Navigator.of(context).pushReplacement(MaterialPageRoute(
+              //     builder: (context) =>
+              //         LoginPage(), // Navigate to the login page
+              //   ));
+              // },
             ),
           ],
         );
       },
     );
   }
-
-  late SharedPreferences prefs;
 
   // logout() async {
   @override
