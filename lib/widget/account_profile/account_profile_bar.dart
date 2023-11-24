@@ -44,18 +44,14 @@ class _AccountProfileBarState extends State<AccountProfileBar>
       uri += "?sortBy=" + sortby;
       uri1 += "?sortBy=" + sortby;
     }
-    Caller.dio.post(uri, data: {
-      "userId" : widget.userId
-    }).then((response) {
+    Caller.dio.post(uri, data: {"userId": widget.userId}).then((response) {
       setState(() {
         posts = Posts.fromJson(response.data["data"]);
       });
     }).onError((DioException error, _) {
       Caller.handle(context, error);
     });
-    Caller.dio.post(uri1,  data: {
-      "userId" : widget.userId
-    }).then((response) {
+    Caller.dio.post(uri1, data: {"userId": widget.userId}).then((response) {
       setState(() {
         gridPosts = GridPosts.fromJson(response.data["data"]);
       });
@@ -89,6 +85,10 @@ class _AccountProfileBarState extends State<AccountProfileBar>
     setState(() {
       sortby = c;
     });
+    load();
+  }
+
+  reload() {
     load();
   }
 
@@ -171,7 +171,7 @@ class _AccountProfileBarState extends State<AccountProfileBar>
                     children: posts!.posts
                         .map((e) => PostCard(
                               post: e,
-
+                              reload: reload,
                             ))
                         .toList(),
                   )

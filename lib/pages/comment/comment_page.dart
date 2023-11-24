@@ -93,8 +93,8 @@ class _CommentPageState extends State<CommentPage> {
                   children: comments?.posts
                           ?.map((el) => CardComment(
                                 comment: el,
-                                onDelete: reloadPost,
-                                reload: widget.onDelete,
+                                onDelete: reloadPost, //reloadcomment
+                                reload: widget.onDelete, // reload หน้า post
                               ))
                           ?.toList() ??
                       [],

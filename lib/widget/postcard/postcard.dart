@@ -19,7 +19,9 @@ class PostCard extends StatefulWidget {
   const PostCard({
     super.key,
     required this.post,
+    required this.reload,
   });
+  final VoidCallback reload;
 
   @override
   State<PostCard> createState() => _PostCardState();
@@ -195,6 +197,7 @@ class _PostCardState extends State<PostCard> {
                         MaterialPageRoute(
                             builder: (context) => CommentPage(
                                   postId: widget.post.postId,
+                                  onDelete: widget.reload,
                                 )),
                       );
                     },
@@ -230,23 +233,31 @@ class _PostCardState extends State<PostCard> {
                       showDialog<String>(
                         context: context,
                         builder: (BuildContext context) => AlertDialog(
-                          titleTextStyle: GoogleFonts.poppins(fontSize: 20, color: Colors.black),
-                          titlePadding: EdgeInsets.only(right: 20, left: 20, top: 20, bottom: 20),
-                          title: const Text('You need to download this picture?'),
-                          actionsPadding: EdgeInsets.only(bottom: 20, right: 20),
+                          titleTextStyle: GoogleFonts.poppins(
+                              fontSize: 20, color: Colors.black),
+                          titlePadding: EdgeInsets.only(
+                              right: 20, left: 20, top: 20, bottom: 20),
+                          title:
+                              const Text('You need to download this picture?'),
+                          actionsPadding:
+                              EdgeInsets.only(bottom: 20, right: 20),
                           actions: <Widget>[
                             Container(
                               height: 40,
                               width: 70,
                               decoration: BoxDecoration(
-                                border: Border.all(color: PicmeColors.grayWhite),
+                                border:
+                                    Border.all(color: PicmeColors.grayWhite),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: TextButton(
-                                onPressed: () => Navigator.pop(context, 'Cancel'),
+                                onPressed: () =>
+                                    Navigator.pop(context, 'Cancel'),
                                 child: Text(
                                   'No',
-                                  style: TextStyle(color: PicmeColors.grayBlack, fontSize: 18),
+                                  style: TextStyle(
+                                      color: PicmeColors.grayBlack,
+                                      fontSize: 18),
                                 ),
                               ),
                             ),
@@ -260,13 +271,15 @@ class _PostCardState extends State<PostCard> {
                               child: TextButton(
                                 onPressed: () async {
                                   // Save the image to the gallery
-                                  await ImageDownloader.downloadImage(widget.post.imageUrl);
+                                  await ImageDownloader.downloadImage(
+                                      widget.post.imageUrl);
 
                                   Navigator.pop(context, 'Yes');
                                 },
                                 child: Text(
                                   'Yes',
-                                  style: TextStyle(color: Colors.white, fontSize: 18),
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 18),
                                 ),
                               ),
                             ),
@@ -277,7 +290,6 @@ class _PostCardState extends State<PostCard> {
                     icon: Icon(Icons.save_alt_rounded),
                     iconSize: 24,
                   ),
-                  
                   IconButton(
                     hoverColor: Colors.white,
                     padding: EdgeInsets.only(right: 24),
@@ -285,7 +297,9 @@ class _PostCardState extends State<PostCard> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => SupportPage(postId: widget.post.postId, )),
+                            builder: (context) => SupportPage(
+                                  postId: widget.post.postId,
+                                )),
                       );
                     },
                     icon: Icon(CupertinoIcons.gift),
