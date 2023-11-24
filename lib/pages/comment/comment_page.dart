@@ -9,13 +9,12 @@ import 'package:picme/widget/comment/head_comment.dart';
 import 'package:picme/widget/comment/text_comment.dart';
 
 class CommentPage extends StatefulWidget {
-  const CommentPage({
-    Key? key,
-    required this.postId,
-  }) : super(key: key);
+  const CommentPage({Key? key, required this.postId, required this.onDelete})
+      : super(key: key);
 
   static const routeName = "/comment_page";
   final int postId;
+  final VoidCallback onDelete;
 
   @override
   State<CommentPage> createState() => _CommentPageState();
@@ -95,6 +94,7 @@ class _CommentPageState extends State<CommentPage> {
                           ?.map((el) => CardComment(
                                 comment: el,
                                 onDelete: reloadPost,
+                                reload: widget.onDelete,
                               ))
                           ?.toList() ??
                       [],
