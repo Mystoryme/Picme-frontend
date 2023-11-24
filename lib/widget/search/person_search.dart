@@ -232,7 +232,6 @@ class _PersonSearchState extends State<PersonSearch> {
                             children: histories!.histories
                                 .map((e) => buildListTile2(
                                     context,
-                                    e as History?,
                                     e.trigger?.avatarUrl ??
                                         'https://cdn.crispedge.com/5d76cb.png',
                                     e.triggeeId!,
@@ -305,45 +304,41 @@ class _PersonSearchState extends State<PersonSearch> {
   }
 }
 
-Widget buildListTile2(
-    context, History? info, String avatarUrl, int id, String username) {
-  print("Info: $info");
-  return info != null
-      ? ListTile(
-          leading: CircleAvatar(
-              backgroundColor: Colors.transparent,
-              backgroundImage: Image.network(avatarUrl).image),
-          title: GestureDetector(
-            onTap: () {
-              // Navigate to the account_profile.dart screen when the text is tapped
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => AccountProfilePage(
-                          userId: id,
-                        )),
-              );
-            },
-            child: Text(
-              username,
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
-          ),
-          // trailing: IconButton(
-          //   disabledColor: Colors.transparent,
-          //   icon: const Icon(
-          //     Icons.clear,
-          //     color: Color(0xFFA0A5D8),
-          //   ),
-          //   onPressed: () {
-          //     print("onDelete is called");
-          //     onDelete();
-          //   },
-          // ),
-        )
-      : Text("aaaaa");
+Widget buildListTile2(context, String avatarUrl, int id, String username) {
+  return ListTile(
+    leading: CircleAvatar(
+        backgroundColor: Colors.transparent,
+        backgroundImage: Image.network(avatarUrl).image),
+    title: GestureDetector(
+      onTap: () {
+        // Navigate to the account_profile.dart screen when the text is tapped
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => AccountProfilePage(
+                    userId: id,
+                  )),
+        );
+      },
+      child: Text(
+        username,
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 14,
+          fontWeight: FontWeight.normal,
+        ),
+      ),
+    ),
+    // trailing: IconButton(
+    //   disabledColor: Colors.transparent,
+    //   icon: const Icon(
+    //     Icons.clear,
+    //     color: Color(0xFFA0A5D8),
+    //   ),
+    //   onPressed: () {
+    //     print("onDelete is called");
+    //     onDelete();
+    //   },
+    // ),
+  );
 }
