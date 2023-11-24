@@ -6,19 +6,43 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/classes/caller.dart';
 import 'package:picme/models/comment.dart';
+import 'package:picme/models/profile.dart';
 import 'package:picme/utils/colors.dart';
 
-class CardComment extends StatelessWidget {
+class CardComment extends StatefulWidget {
   const CardComment({Key? key, required this.comment, required this.onDelete})
       : super(key: key);
   final CommentPost comment;
   final VoidCallback onDelete;
 
+  @override
+  State<CardComment> createState() => _CardCommentState();
+}
+
+class _CardCommentState extends State<CardComment> {
+  Profile? profile;
+
+  @override
+  void initState() {
+    super.initState();
+    init();
+  }
+
   void deleteComment(BuildContext context) async {
     Caller.dio
-        .delete("/comment/delete", data: {"id": comment.Id})
+        .delete("/comment/delete", data: {"id": widget.comment.Id})
         .then((response) async {})
         .onError((DioException error, _) => Caller.handle(context, error));
+  }
+
+  init() {
+    Caller.dio.get("/profile/info").then((response) {
+      setState(() {
+        profile = Profile.fromJson(response.data["data"]);
+      });
+    }).onError((DioException error, _) {
+      Caller.handle(context, error);
+    });
   }
 
   @override
@@ -29,9 +53,9 @@ class CardComment extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           buildNotificationRow(
-            comment.username,
-            comment.message,
-            comment.avatarUrl ?? "https://cdn.crispedge.com/5d76cb.png",
+            widget.comment.username,
+            widget.comment.message,
+            widget.comment.avatarUrl ?? "https://cdn.crispedge.com/5d76cb.png",
           ),
           const SizedBox(
             height: 20,
@@ -57,8 +81,8 @@ class CardComment extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   RichText(
-                    maxLines: 2, // Set max lines to allow wrapping
-                    softWrap: true, // Enable text wrapping
+                    maxLines: 2,
+                    softWrap: true,
                     text: TextSpan(
                       text: '$username : ',
                       style: GoogleFonts.poppins(
@@ -78,37 +102,31 @@ class CardComment extends StatelessWidget {
                       ],
                     ),
                   ),
-                  PopupMenuButton(
-                    padding: const EdgeInsets.only(right: 3),
-                    color: PicmeColors.mainColor,
-                    elevation: 1,
-                    tooltip: "",
-                    icon: Icon(
-                      CupertinoIcons.ellipsis_vertical,
+                  if (profile?.id ==
+                      widget.comment.userId) // Remove curly braces here
+                    PopupMenuButton(
+                      padding: const EdgeInsets.only(right: 3),
                       color: PicmeColors.mainColor,
-                    ),
-                    offset: Offset(-15, 45),
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(6.0),
-                        bottomRight: Radius.circular(6.0),
-                        topLeft: Radius.circular(6.0),
-                        topRight: Radius.circular(6.0),
+                      elevation: 1,
+                      tooltip: "",
+                      icon: Icon(
+                        CupertinoIcons.ellipsis_vertical,
+                        color: PicmeColors.mainColor,
                       ),
+                      offset: Offset(-15, 45),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(6.0),
+                          bottomRight: Radius.circular(6.0),
+                          topLeft: Radius.circular(6.0),
+                          topRight: Radius.circular(6.0),
+                        ),
+                      ),
+                      itemBuilder: (ctx) =>
+                          [_buildPopupMenuItem(ctx, 'Delete', deleteComment)],
                     ),
-                    itemBuilder: (ctx) =>
-                        [_buildPopupMenuItem(ctx, 'Delete', deleteComment)],
-                  ),
                 ],
               ),
-              // const SizedBox(height: 10), // Add some spacing
-              // Text(
-              //   'Reply',
-              //   style: GoogleFonts.poppins(
-              //     color: PicmeColors.grayBlack, // You can set the desired color
-              //     fontSize: 12,
-              //   ),
-              // ),
             ],
           ),
         ),
@@ -161,7 +179,7 @@ class CardComment extends StatelessWidget {
                   onPressed: () async {
                     deleteComment(context);
                     Navigator.pop(context, 'Yes');
-                    onDelete();
+                    widget.onDelete();
                     // await SaverGallery.saveImage(100, name: name)
                   },
                   child: Text(
