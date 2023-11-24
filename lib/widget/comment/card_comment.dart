@@ -10,11 +10,15 @@ import 'package:picme/models/profile.dart';
 import 'package:picme/utils/colors.dart';
 
 class CardComment extends StatefulWidget {
-  const CardComment({Key? key, required this.comment, required this.onDelete})
+  const CardComment(
+      {Key? key,
+      required this.comment,
+      required this.onDelete,
+      required this.reload})
       : super(key: key);
   final CommentPost comment;
   final VoidCallback onDelete;
-
+  final VoidCallback reload;
   @override
   State<CardComment> createState() => _CardCommentState();
 }
@@ -32,6 +36,7 @@ class _CardCommentState extends State<CardComment> {
     Caller.dio.delete("/comment/delete", data: {"id": widget.comment.Id}).then(
         (response) async {
       widget.onDelete();
+      widget.reload();
     }).onError((DioException error, _) => Caller.handle(context, error));
   }
 
