@@ -32,6 +32,7 @@ class _CommentPageState extends State<CommentPage> {
       "message": _search.text,
     }).then((response) async {
       init();
+      widget.onDelete();
 
       //  Navigator.push(
       //   context,

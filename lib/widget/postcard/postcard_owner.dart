@@ -232,6 +232,7 @@ class _PostCardOwnerState extends State<PostCardOwner> {
                         MaterialPageRoute(
                             builder: (context) => CommentPage(
                                   postId: widget.post.postId,
+                                  onDelete: widget.onDelete,
                                 )),
                       );
                     },
