@@ -227,7 +227,8 @@ class _PersonSearchState extends State<PersonSearch> {
                             ],
                           ),
                         ),
-                        if (histories!.histories.isNotEmpty)
+                        if (histories != null &&
+                            histories!.histories.isNotEmpty)
                           Column(
                             children: histories!.histories
                                 .map((e) => buildListTile2(
