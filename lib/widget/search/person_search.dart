@@ -19,12 +19,14 @@ class PersonSearch extends StatefulWidget {
       required this.searches,
       required this.search,
       required this.textFocusNode,
-      required this.reload})
+      required this.reload,
+      required this.histories})
       : super(key: key);
   final Searches searches;
   final TextEditingController search;
   final FocusNode textFocusNode;
   final void Function() reload;
+  final Histories? histories;
 
   @override
   _PersonSearchState createState() => _PersonSearchState();
@@ -59,7 +61,6 @@ class _PersonSearchState extends State<PersonSearch> {
   }
 
   Searches? searches;
-  Histories? histories;
 
   @override
   void initState() {
@@ -83,14 +84,7 @@ class _PersonSearchState extends State<PersonSearch> {
     }).then((response) {
       setState(() {
         searches = Searches.fromJson(response.data["data"]);
-      });
-    }).onError((DioException error, _) {
-      Caller.handle(context, error);
-    });
-
-    Caller.dio.get("/insight/search_history").then((response) {
-      setState(() {
-        histories = Histories.fromJson(response.data["data"]);
+        print('2');
       });
     }).onError((DioException error, _) {
       Caller.handle(context, error);
@@ -227,13 +221,13 @@ class _PersonSearchState extends State<PersonSearch> {
                             ],
                           ),
                         ),
-                        if (histories != null &&
-                            histories!.histories.isNotEmpty)
+                        if (widget.histories != null &&
+                            widget.histories!.history.isNotEmpty)
                           Column(
-                            children: histories!.histories
+                            children: widget.histories!.history
                                 .map((e) => buildListTile2(
                                     context,
-                                    e.trigger?.avatarUrl ??
+                                    e.triggee?.avatarUrl ??
                                         'https://cdn.crispedge.com/5d76cb.png',
                                     e.triggeeId!,
                                     e.triggee!.username ?? ""))

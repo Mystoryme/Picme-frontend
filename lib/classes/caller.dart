@@ -4,7 +4,7 @@ import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 
 class Caller {
   static BaseOptions options = BaseOptions(
-    baseUrl: "http://10.17.141.178:3000/api",
+    baseUrl: "http://localhost:3000/api",
     connectTimeout: const Duration(seconds: 60),
     receiveTimeout: const Duration(seconds: 60),
   );

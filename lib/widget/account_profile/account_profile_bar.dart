@@ -94,7 +94,7 @@ class _AccountProfileBarState extends State<AccountProfileBar>
 
   @override
   Widget build(BuildContext context) {
-    if (posts == null) {
+    if (posts == null || gridPosts == null) {
       return Container(
         padding: EdgeInsets.only(top: 10),
         child: TabBar(

@@ -7,11 +7,11 @@ part of 'histories.dart';
 // **************************************************************************
 
 Histories _$HistoriesFromJson(Map<String, dynamic> json) => Histories(
-      histories: (json['histories'] as List<dynamic>)
+      history: (json['history'] as List<dynamic>)
           .map((e) => History.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 Map<String, dynamic> _$HistoriesToJson(Histories instance) => <String, dynamic>{
-      'histories': instance.histories,
+      'history': instance.history,
     };

@@ -4,11 +4,11 @@ part 'histories.g.dart';
 
 @JsonSerializable()
 class Histories {
-  @JsonKey(name: 'histories')
-  final List<History> histories;
+  @JsonKey(name: 'history')
+  final List<History> history;
 
   Histories({
-    required this.histories,
+    required this.history,
   });
   factory Histories.fromJson(Map<String, dynamic> json) => _$HistoriesFromJson(json);
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:picme/classes/caller.dart';
 import 'package:picme/models/boost.dart';
 import 'package:picme/models/boosts.dart';
+import 'package:picme/models/histories.dart';
 import 'package:picme/models/search.dart';
 import 'package:picme/models/searches.dart';
 import 'package:picme/widget/home/buttonbar.dart';
@@ -24,6 +25,7 @@ class _SearchPageState extends State<SearchPage> {
   Boosts? posts;
   String username = '';
   Searches? searches;
+  Histories? histories;
 
   @override
   void reloadState() {
@@ -34,6 +36,8 @@ class _SearchPageState extends State<SearchPage> {
   void initState() {
     super.initState();
     load();
+    load2();
+
   }
 
   load() {
@@ -44,6 +48,20 @@ class _SearchPageState extends State<SearchPage> {
         posts = Boosts.fromJson(response.data["data"]);
       });
     }).onError((DioException error, _) {
+      Caller.handle(context, error);
+    });
+  }
+
+  load2() {
+    print("Making request to /insight/search_history");
+    Caller.dio.get("/insight/search_history").then((response) {
+      print("Response: $response");
+      setState(() {
+        histories = Histories.fromJson(response.data["data"]);
+        print('object');
+      });
+    }).onError((DioException error, _) {
+      print("Error: $error");
       Caller.handle(context, error);
     });
   }
@@ -89,6 +107,7 @@ class _SearchPageState extends State<SearchPage> {
               textFocusNode: _textFocusNode,
               reload: reloadState,
               search: _search,
+              histories: histories ?? Histories(history: []),
             ),
             const SizedBox(height: 10),
             GridPhoto(posts: posts!),
