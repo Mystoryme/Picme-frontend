@@ -8,8 +8,10 @@ import 'package:picme/widget/postcard/postcard.dart';
 import 'package:picme/widget/postcard/postcard_owner.dart';
 
 class BookClickPage extends StatefulWidget {
-  const BookClickPage({Key? key, required this.postId,})
-      : super(key: key);
+  const BookClickPage({
+    Key? key,
+    required this.postId,
+  }) : super(key: key);
   static const routeName = "/book_click_page";
   final int postId;
 
@@ -40,7 +42,9 @@ class _BookClickPageState extends State<BookClickPage> {
     });
   }
 
-
+  reload() {
+    load();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +73,7 @@ class _BookClickPageState extends State<BookClickPage> {
                 children: [
                   PostCard(
                     post: posts!.posts[0],
+                    reload: reload,
                   ),
                 ],
               ),

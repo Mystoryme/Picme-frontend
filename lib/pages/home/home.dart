@@ -48,6 +48,10 @@ class _HomeTabState extends State<HomeTab> {
     load();
   }
 
+  reload() {
+    load();
+  }
+
   @override
   Widget build(BuildContext context) {
     if (posts == null) {
@@ -67,6 +71,7 @@ class _HomeTabState extends State<HomeTab> {
             children: posts!.posts
                 .map((el) => PostCard(
                       post: el,
+                      reload: reload,
                     ))
                 .toList(),
           ),
