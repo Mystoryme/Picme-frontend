@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:html';
 import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/classes/caller.dart';
+import 'package:picme/models/histories.dart';
 import 'package:picme/models/search.dart';
 import 'package:picme/models/searches.dart';
 import 'package:picme/pages/account_profile_page.dart';
@@ -57,6 +59,7 @@ class _PersonSearchState extends State<PersonSearch> {
   }
 
   Searches? searches;
+  Histories? histories;
 
   @override
   void initState() {
@@ -80,6 +83,14 @@ class _PersonSearchState extends State<PersonSearch> {
     }).then((response) {
       setState(() {
         searches = Searches.fromJson(response.data["data"]);
+      });
+    }).onError((DioException error, _) {
+      Caller.handle(context, error);
+    });
+
+    Caller.dio.get("/insight/search_history").then((response) {
+      setState(() {
+        histories = Histories.fromJson(response.data["data"]);
       });
     }).onError((DioException error, _) {
       Caller.handle(context, error);
@@ -179,11 +190,7 @@ class _PersonSearchState extends State<PersonSearch> {
                     ? [
                         Column(
                           children: searches!.users
-                              .map((e) => buildListTile(e, () {
-                                    setState(() {
-                                      widget.searches.users.remove(e);
-                                    });
-                                  }))
+                              .map((e) => buildListTile(e))
                               .toList(),
                         )
                       ]
@@ -220,14 +227,16 @@ class _PersonSearchState extends State<PersonSearch> {
                             ],
                           ),
                         ),
-                        if (searches != null && searches!.users.isNotEmpty)
+                        if (histories!.histories.isNotEmpty)
                           Column(
-                            children: searches!.users
-                                .map((e) => buildListTile(e, () {
-                                      setState(() {
-                                        widget.searches.users.remove(e);
-                                      });
-                                    }))
+                            children: histories!.histories
+                                .map((e) => buildListTile2(
+                                    context,
+                                    e as History?,
+                                    e.trigger?.avatarUrl ??
+                                        'https://cdn.crispedge.com/5d76cb.png',
+                                    e.triggeeId!,
+                                    e.triggee!.username ?? ""))
                                 .toList(),
                           )
                         else
@@ -251,7 +260,7 @@ class _PersonSearchState extends State<PersonSearch> {
     );
   }
 
-  Widget buildListTile(Search? info, VoidCallback onDelete) {
+  Widget buildListTile(Search? info) {
     print("Info: $info");
     return info != null
         ? ListTile(
@@ -280,18 +289,61 @@ class _PersonSearchState extends State<PersonSearch> {
                 ),
               ),
             ),
-            trailing: IconButton(
-              disabledColor: Colors.transparent,
-              icon: const Icon(
-                Icons.clear,
-                color: Color(0xFFA0A5D8),
-              ),
-              onPressed: () {
-                print("onDelete is called");
-                onDelete();
-              },
-            ),
+            // trailing: IconButton(
+            //   disabledColor: Colors.transparent,
+            //   icon: const Icon(
+            //     Icons.clear,
+            //     color: Color(0xFFA0A5D8),
+            //   ),
+            //   onPressed: () {
+            //     print("onDelete is called");
+            //     onDelete();
+            //   },
+            // ),
           )
         : Text("aaaaa");
   }
+}
+
+Widget buildListTile2(
+    context, History? info, String avatarUrl, int id, String username) {
+  print("Info: $info");
+  return info != null
+      ? ListTile(
+          leading: CircleAvatar(
+              backgroundColor: Colors.transparent,
+              backgroundImage: Image.network(avatarUrl).image),
+          title: GestureDetector(
+            onTap: () {
+              // Navigate to the account_profile.dart screen when the text is tapped
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => AccountProfilePage(
+                          userId: id,
+                        )),
+              );
+            },
+            child: Text(
+              username,
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ),
+          // trailing: IconButton(
+          //   disabledColor: Colors.transparent,
+          //   icon: const Icon(
+          //     Icons.clear,
+          //     color: Color(0xFFA0A5D8),
+          //   ),
+          //   onPressed: () {
+          //     print("onDelete is called");
+          //     onDelete();
+          //   },
+          // ),
+        )
+      : Text("aaaaa");
 }

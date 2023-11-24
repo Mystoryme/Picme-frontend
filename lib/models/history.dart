@@ -25,15 +25,13 @@ class History {
   @JsonKey(name: 'type')
   final String? type;
 
-
-  History({
-    required this.id,
-    required this.triggeeId,
-    required this.triggerId,
-    required this.type,
-    required this.triggee,
-    required this.trigger
-  });
+  History(
+      {required this.id,
+      required this.triggeeId,
+      required this.triggerId,
+      required this.type,
+      required this.triggee,
+      required this.trigger});
 
   factory History.fromJson(Map<String, dynamic> json) =>
       _$HistoryFromJson(json);
