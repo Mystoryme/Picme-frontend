@@ -50,7 +50,7 @@ class _CardNotificationState extends State<CardNotification> {
                           notificationTypes[e.type] ?? " notified you.",
                           e.trigger!.avatarUrl!,
                           e.type!,
-                          e.postId!,
+                          e.postId,
                           e.triggerId!),
                       const SizedBox(
                         height: 20,
@@ -64,7 +64,7 @@ class _CardNotificationState extends State<CardNotification> {
   }
 
   Widget buildNotificationRow(String username, String action,
-      String avatarImage, String type, int postId, int userId) {
+      String avatarImage, String type, int? postId, int userId) {
     return InkWell(
       onTap: () {
         if (type == "comment" || type == "like" || type == "post_donate") {
@@ -72,7 +72,7 @@ class _CardNotificationState extends State<CardNotification> {
             context,
             MaterialPageRoute(
                 builder: (context) => GridClickPage(
-                      postId: postId,
+                      postId: postId!,
                       onDelete: () {},
                     )),
           );
