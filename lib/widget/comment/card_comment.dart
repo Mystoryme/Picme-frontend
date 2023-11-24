@@ -29,10 +29,10 @@ class _CardCommentState extends State<CardComment> {
   }
 
   void deleteComment(BuildContext context) async {
-    Caller.dio
-        .delete("/comment/delete", data: {"id": widget.comment.Id})
-        .then((response) async {})
-        .onError((DioException error, _) => Caller.handle(context, error));
+    Caller.dio.delete("/comment/delete", data: {"id": widget.comment.Id}).then(
+        (response) async {
+      widget.onDelete;
+    }).onError((DioException error, _) => Caller.handle(context, error));
   }
 
   init() {
@@ -179,7 +179,7 @@ class _CardCommentState extends State<CardComment> {
                   onPressed: () async {
                     deleteComment(context);
                     Navigator.pop(context, 'Yes');
-                    widget.onDelete();
+
                     // await SaverGallery.saveImage(100, name: name)
                   },
                   child: Text(
