@@ -11,7 +11,6 @@ class PostClickPage extends StatefulWidget {
   static const routeName = "/post_click_page";
   final int postId;
 
-
   @override
   State<PostClickPage> createState() => _PostClickPageState();
 }
@@ -28,7 +27,7 @@ class _PostClickPageState extends State<PostClickPage> {
   load() async {
     // String uri = "/post/post_get";
 
-    Caller.dio.post("/post/post_get",data: {
+    Caller.dio.post("/post/post_get", data: {
       "postId": widget.postId,
     }).then((response) {
       setState(() {
@@ -37,6 +36,10 @@ class _PostClickPageState extends State<PostClickPage> {
     }).onError((DioException error, _) {
       Caller.handle(context, error);
     });
+  }
+
+  reload() {
+    load();
   }
 
   @override
@@ -64,7 +67,10 @@ class _PostClickPageState extends State<PostClickPage> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  PostCard(post: posts!.posts[0]),
+                  PostCard(
+                    post: posts!.posts[0],
+                    reload: reload,
+                  ),
                 ],
               ),
               // CardNotification(),
