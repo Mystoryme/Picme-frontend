@@ -63,6 +63,7 @@ class _GridClickPageState extends State<GridClickPage> {
       );
     } else if (posts!.posts!.isEmpty) {
       return Container(
+        height: MediaQuery.of(context).size.width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -72,13 +73,13 @@ class _GridClickPageState extends State<GridClickPage> {
               style: GoogleFonts.poppins(
                 color: PicmeColors.mainColor,
                 fontSize: 22,
-                fontWeight: FontWeight.normal,
+                fontWeight: FontWeight.w500,
               ),
             ),
             Text(
               'not found because it was delete',
               style: GoogleFonts.poppins(
-                color: PicmeColors.grayWhite,
+                color: PicmeColors.grayBlack,
                 fontSize: 18,
                 fontWeight: FontWeight.normal,
               ),
