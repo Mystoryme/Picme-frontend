@@ -53,7 +53,7 @@ class _GridClickPageState extends State<GridClickPage> {
 
   @override
   Widget buildContent() {
-    if (posts?.posts[0] != null) {
+    if (posts?.posts?.isNotEmpty ?? false) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
