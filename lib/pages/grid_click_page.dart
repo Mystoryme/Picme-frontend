@@ -1,14 +1,17 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:picme/classes/caller.dart';
 import 'package:picme/models/post.dart';
 import 'package:picme/models/posts.dart';
+import 'package:picme/utils/colors.dart';
 import 'package:picme/widget/account_post/head_account_post.dart';
 import 'package:picme/widget/postcard/postcard.dart';
 import 'package:picme/widget/postcard/postcard_owner.dart';
 
 class GridClickPage extends StatefulWidget {
-  const GridClickPage({Key? key, required this.postId, required this.onDelete}) : super(key: key);
+  const GridClickPage({Key? key, required this.postId, required this.onDelete})
+      : super(key: key);
   static const routeName = "/post_click_page";
   final int postId;
   final VoidCallback onDelete;
@@ -29,7 +32,7 @@ class _GridClickPageState extends State<GridClickPage> {
   load() async {
     // String uri = "/post/post_get";
 
-    Caller.dio.post("/post/post_get",data: {
+    Caller.dio.post("/post/post_get", data: {
       "postId": widget.postId,
     }).then((response) {
       setState(() {
@@ -41,21 +44,58 @@ class _GridClickPageState extends State<GridClickPage> {
   }
 
   void deletePost() async {
-    Caller.dio.delete("/post/delete",
-        data: {"postId": widget.postId}).then((response) async {
+    Caller.dio.delete("/post/delete", data: {"postId": widget.postId}).then(
+        (response) async {
       widget.onDelete();
     }).onError((DioException error, _) => Caller.handle(context, error));
     widget.onDelete();
   }
 
   @override
-  Widget build(BuildContext context) {
-    if (posts == null) {
-      return const Scaffold(
-        body: Column(
+  Widget buildContent() {
+    if (posts?.posts[0] != null) {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          PostCardOwner(post: posts!.posts[0], onDelete: deletePost),
+          // Additional widgets can be added here.
+        ],
+      );
+    } else {
+      return Container(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [CircularProgressIndicator()],
+          children: [
+            Text(
+              'This post not found',
+              style: GoogleFonts.poppins(
+                color: PicmeColors.mainColor,
+                fontSize: 22,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+            Text(
+              'not found because it was delete',
+              style: GoogleFonts.poppins(
+                color: PicmeColors.grayWhite,
+                fontSize: 18,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+        // You can customize the placeholder as needed.
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (posts == null) {
+      return Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
         ),
       );
     }
@@ -65,18 +105,11 @@ class _GridClickPageState extends State<GridClickPage> {
         child: Container(
           padding: const EdgeInsets.all(15.0),
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               HeadAccountPost(),
               SizedBox(height: 10),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  PostCardOwner(post: posts!.posts[0],onDelete: deletePost,),
-                ],
-              ),
-              // CardNotification(),
+              buildContent(),
             ],
           ),
         ),
