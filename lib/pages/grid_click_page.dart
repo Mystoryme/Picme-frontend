@@ -53,7 +53,7 @@ class _GridClickPageState extends State<GridClickPage> {
 
   @override
   Widget buildContent() {
-    if (posts?.posts?.isNotEmpty ?? false) {
+    if (posts!.posts!.isNotEmpty) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -61,7 +61,7 @@ class _GridClickPageState extends State<GridClickPage> {
           // Additional widgets can be added here.
         ],
       );
-    } else {
+    } else if (posts!.posts!.isEmpty) {
       return Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -85,8 +85,9 @@ class _GridClickPageState extends State<GridClickPage> {
             ),
           ],
         ),
-        // You can customize the placeholder as needed.
       );
+    } else {
+      return Container();
     }
   }
 
