@@ -25,6 +25,8 @@ class PostCardOwner extends StatefulWidget {
 }
 
 class _PostCardOwnerState extends State<PostCardOwner> {
+  int? commentCount;
+  Posts? post;
   void deletePost() async {
     Caller.dio.delete("/post/delete",
         data: {"postId": widget.post.postId}).then((response) async {
@@ -234,7 +236,18 @@ class _PostCardOwnerState extends State<PostCardOwner> {
                                   postId: widget.post.postId,
                                   onDelete: widget.onDelete,
                                 )),
-                      );
+                      ).then((response) async {
+                        Caller.dio.post("/post/post_get", data: {
+                          "postId": widget.post.postId,
+                        }).then((response) {
+                          setState(() {
+                            post = Posts.fromJson(response.data["data"]);
+                            commentCount = post!.posts[0].commentCount;
+                          });
+                        }).onError((DioException error, _) {
+                          Caller.handle(context, error);
+                        });
+                      });
                     },
                     icon: const Icon(CupertinoIcons.bubble_middle_bottom),
                     color: PicmeColors.mainColor,
