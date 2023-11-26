@@ -211,7 +211,9 @@ class _PostCardState extends State<PostCard> {
                         }).onError((DioException error, _) {
                           Caller.handle(context, error);
                         });
-                        commentCount = posts!.posts[0].commentCount;
+                        setState(() {
+                          commentCount = posts!.posts[0].commentCount;
+                        });
                       });
                     },
                     icon: const Icon(CupertinoIcons.bubble_middle_bottom),
