@@ -29,6 +29,8 @@ class PostCard extends StatefulWidget {
 
 class _PostCardState extends State<PostCard> {
   HomePost? posts;
+  int? commentCount;
+  Posts? post;
 
   @override
   void initState() {
@@ -199,14 +201,27 @@ class _PostCardState extends State<PostCard> {
                                   postId: widget.post.postId,
                                   onDelete: widget.reload,
                                 )),
-                      );
+                      ).then((response) async {
+                        Caller.dio.post("/post/post_get", data: {
+                          "postId": widget.post.postId,
+                        }).then((response) {
+                          setState(() {
+                            post = Posts.fromJson(response.data["data"]);
+                          });
+                        }).onError((DioException error, _) {
+                          Caller.handle(context, error);
+                        });
+                        commentCount = posts!.posts[0].commentCount;
+                      });
                     },
                     icon: const Icon(CupertinoIcons.bubble_middle_bottom),
                     color: PicmeColors.mainColor,
                     iconSize: 24,
                   ),
                   Text(
-                    widget.post.commentCount.toString(),
+                    commentCount != null
+                        ? commentCount.toString()
+                        : widget.post.commentCount.toString(),
                     style: TextStyle(color: Color(0xff9E9E9E)),
                   ),
                   SizedBox(
