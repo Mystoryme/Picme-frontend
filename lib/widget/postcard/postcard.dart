@@ -197,22 +197,21 @@ class _PostCardState extends State<PostCard> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CommentPage(
-                                  postId: widget.post.postId,
-                                  onDelete: widget.reload,
-                                )),
+                          builder: (context) => CommentPage(
+                            postId: widget.post.postId,
+                            onDelete: widget.reload,
+                          ),
+                        ),
                       ).then((response) async {
                         Caller.dio.post("/post/post_get", data: {
                           "postId": widget.post.postId,
                         }).then((response) {
                           setState(() {
                             post = Posts.fromJson(response.data["data"]);
+                            commentCount = post!.posts[0].commentCount;
                           });
                         }).onError((DioException error, _) {
                           Caller.handle(context, error);
-                        });
-                        setState(() {
-                          commentCount = posts!.posts[0].commentCount;
                         });
                       });
                     },
