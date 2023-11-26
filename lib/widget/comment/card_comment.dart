@@ -36,7 +36,7 @@ class _CardCommentState extends State<CardComment> {
     Caller.dio.delete("/comment/delete", data: {"id": widget.comment.Id}).then(
         (response) async {
       widget.onDelete();
-      widget.reload();
+      //widget.reload();
     }).onError((DioException error, _) => Caller.handle(context, error));
   }
 
