@@ -38,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
       // * Set caller token value
       Caller.setToken(data.token);
 
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const Homepage()),
       );
