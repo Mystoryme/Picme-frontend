@@ -85,26 +85,25 @@ class _CardCommentState extends State<CardComment> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  RichText(
-                    maxLines: 2,
-                    softWrap: true,
-                    text: TextSpan(
-                      text: '$username : ',
+                  Text(
+                    '$username : ',
+                    style: GoogleFonts.poppins(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      action,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      softWrap: true,
                       style: GoogleFonts.poppins(
                         color: Colors.black,
                         fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.normal,
                       ),
-                      children: [
-                        TextSpan(
-                          text: action,
-                          style: GoogleFonts.poppins(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
-                      ],
                     ),
                   ),
                   if (profile?.id ==
