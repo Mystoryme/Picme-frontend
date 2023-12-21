@@ -34,6 +34,18 @@ class _PostCardOwnerState extends State<PostCardOwner> {
     });
   }
 
+  Future<void> _updatePostData() async {
+    try {
+      final response = await Caller.dio.post("/post/post_get", data: {
+        "postId": widget.post.postId,
+      });
+
+      setState(() {
+        post = Posts.fromJson(response.data["data"]);
+      });
+    } catch (error) {}
+  }
+
   @override
   Widget build(BuildContext context) {
     Image img = Image.network(widget.post.imageUrl);
@@ -244,6 +256,8 @@ class _PostCardOwnerState extends State<PostCardOwner> {
                             post = Posts.fromJson(response.data["data"]);
                             commentCount = post!.posts[0].commentCount;
                           });
+                        }).then((response) async {
+                          await _updatePostData();
                         }).onError((DioException error, _) {
                           Caller.handle(context, error);
                         });
